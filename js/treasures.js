@@ -50,51 +50,37 @@ const Treasures = {
       filtered.forEach(t => {
         const imgHtml = t.image
           ? `<img src="${t.image}" alt="${t.name}" style="width:100%;height:180px;object-fit:cover;border-radius:4px;">`
-          : `<div style="width:100%;height:180px;background:#0f0f23;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#555;">无法宝图</div>`;
+          : `<div style="width:100%;height:180px;background:#eef5e6;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#95a385;">无法宝图</div>`;
         cards += `
-          <div class="card" data-id="${t.id}">
+          <div class="card" onclick="App.navigate('treasures/detail?id=${t.id}')">
             ${imgHtml}
             <div style="margin-top:8px;font-weight:bold;">${t.name || '未命名'}</div>
-            <div style="color:#a0a0a0;font-size:13px;">${t.grade} · ${TREASURE_TYPES[t.type]?.sub.find(s => s === t.subtype) || t.subtype}</div>
+            <div style="color:#6b7a5e;font-size:13px;">${t.grade} · ${TREASURE_TYPES[t.type]?.sub.find(s => s === t.subtype) || t.subtype}</div>
           </div>`;
       });
       cards += '</div>';
     }
 
     const filterBtns = Object.entries(TREASURE_TYPES).map(([k, v]) => {
-      const active = currentFilter === k ? 'style="background:#e2b04a;color:#1a1a2e;"' : '';
-      return `<button data-filter="${k}" ${active}>${v.label}</button>`;
+      const active = currentFilter === k ? 'style="background:#b8944c;color:#f5f0e6;"' : '';
+      return `<button data-filter="${k}" ${active} onclick="Treasures.setFilter('${k}');App.navigate('treasures')">${v.label}</button>`;
     }).join('');
 
     return `
       <div class="toolbar">
-        <h2 style="color:#e2b04a;flex:1;">法宝图鉴</h2>
+        <h2 style="color:#b8944c;flex:1;">法宝图鉴</h2>
         <div style="display:flex;gap:6px;">
-          <button data-filter="all" ${currentFilter === 'all' ? 'style="background:#e2b04a;color:#1a1a2e;"' : ''}>全部</button>
+          <button data-filter="all" ${currentFilter === 'all' ? 'style="background:#b8944c;color:#f5f0e6;"' : ''} onclick="Treasures.setFilter('all');App.navigate('treasures')">全部</button>
           ${filterBtns}
         </div>
-        <button class="btn-primary" id="btn-add-treasure">+ 添加法宝</button>
+        <button class="btn-primary" onclick="App.navigate('treasures/detail')">+ 添加法宝</button>
       </div>
       ${cards}
     `;
   },
 
   bindListEvents() {
-    document.getElementById('btn-add-treasure')?.addEventListener('click', () => {
-      location.hash = 'treasures/detail';
-    });
-    document.querySelectorAll('.card[data-id]').forEach(card => {
-      card.addEventListener('click', () => {
-        location.hash = 'treasures/detail?id=' + card.dataset.id;
-      });
-    });
-    // 筛选按钮
-    document.querySelectorAll('[data-filter]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        this._currentFilter = btn.dataset.filter;
-        App.navigate('treasures');
-      });
-    });
+    // 所有点击已通过 inline onclick 处理
   },
 
   _currentFilter: 'all',
@@ -132,7 +118,7 @@ const Treasures = {
     return `
       <div class="detail-page" data-treasure-id="${treasure.id || ''}" data-is-new="${isNew}">
         <div class="toolbar">
-          <button class="btn-primary" id="btn-back-list">← 返回列表</button>
+          <button class="btn-primary" onclick="App.navigate('treasures')">← 返回列表</button>
           <button class="btn-primary" id="btn-save">保存</button>
           ${!isNew ? '<button class="btn-danger" id="btn-del">删除法宝</button>' : ''}
         </div>
@@ -180,7 +166,7 @@ const Treasures = {
         <!-- 被动技能 -->
         <fieldset class="fieldset">
           <legend>被动技能 <button class="btn-add" id="btn-add-skill">+</button></legend>
-          <div id="skills-container">${skillsHtml || '<div style="color:#a0a0a0;">暂无被动技能</div>'}</div>
+          <div id="skills-container">${skillsHtml || '<div style="color:#6b7a5e;">暂无被动技能</div>'}</div>
         </fieldset>
 
         <div class="toolbar" style="margin-top:20px;">
@@ -207,7 +193,7 @@ const Treasures = {
     }
 
     // 返回
-    document.getElementById('btn-back-list')?.addEventListener('click', () => { location.hash = 'treasures'; });
+    // Back button uses inline onclick
 
     // 保存
     const save = () => {
@@ -215,14 +201,14 @@ const Treasures = {
       if (!data.name.trim()) { alert('请输入法宝名称'); return; }
       if (!data.id) data.id = Storage.uid();
       Storage.save(TREASURE_STORAGE, data);
-      location.hash = 'treasures';
+      App.navigate('treasures');
     };
     document.getElementById('btn-save')?.addEventListener('click', save);
     document.getElementById('btn-save2')?.addEventListener('click', save);
 
     // 删除
     const del = () => {
-      if (confirm('确定要删除该法宝吗？')) { Storage.deleteById(TREASURE_STORAGE, treasureId); location.hash = 'treasures'; }
+      if (confirm('确定要删除该法宝吗？')) { Storage.deleteById(TREASURE_STORAGE, treasureId); App.navigate('treasures'); }
     };
     document.getElementById('btn-del')?.addEventListener('click', del);
     document.getElementById('btn-del2')?.addEventListener('click', del);
@@ -270,7 +256,7 @@ const Treasures = {
       const empty = container.querySelector(':scope > div:not(.entry-item)');
       if (empty) empty.remove();
       container.appendChild(div);
-      div.querySelector('.del-skill-btn2').addEventListener('click', () => { div.remove(); if (container.children.length === 0) container.innerHTML = '<div style="color:#a0a0a0;">暂无被动技能</div>'; });
+      div.querySelector('.del-skill-btn2').addEventListener('click', () => { div.remove(); if (container.children.length === 0) container.innerHTML = '<div style="color:#6b7a5e;">暂无被动技能</div>'; });
       self._reindexSkills(container);
     });
 
@@ -278,7 +264,7 @@ const Treasures = {
       btn.addEventListener('click', function () {
         this.closest('.entry-item').remove();
         const c = document.getElementById('skills-container');
-        if (c.children.length === 0) c.innerHTML = '<div style="color:#a0a0a0;">暂无被动技能</div>';
+        if (c.children.length === 0) c.innerHTML = '<div style="color:#6b7a5e;">暂无被动技能</div>';
         self._reindexSkills(c);
       });
     });
@@ -322,3 +308,5 @@ const Treasures = {
     });
   }
 };
+
+Treasures.setFilter = function(f) { Treasures._currentFilter = f; };

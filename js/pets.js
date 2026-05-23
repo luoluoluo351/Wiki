@@ -32,20 +32,17 @@ const Pets = {
       list.forEach(p => {
         const imgHtml = p.image
           ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:180px;object-fit:cover;border-radius:4px;">`
-          : `<div style="width:100%;height:180px;background:#0f0f23;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#555;">无图片</div>`;
+          : `<div style="width:100%;height:180px;background:#eef5e6;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#95a385;">无图片</div>`;
         const tags = p.spiritRoots.map(e => `<span class="tag tag-${e==='金'?'gold':e==='木'?'wood':e==='水'?'water':e==='火'?'fire':'earth'}">${e}</span>`).join('');
-        cards += `<div class="card" data-id="${p.id}">${imgHtml}<div style="margin-top:8px;font-weight:bold;">${p.name||'未命名'}</div><div style="color:#a0a0a0;font-size:13px;">${p.realm}</div><div style="margin-top:4px;">${tags}</div></div>`;
+        cards += `<div class="card" onclick="App.navigate('pets/detail?id=${p.id}')">${imgHtml}<div style="margin-top:8px;font-weight:bold;">${p.name||'未命名'}</div><div style="color:#6b7a5e;font-size:13px;">${p.realm}</div><div style="margin-top:4px;">${tags}</div></div>`;
       });
       cards += '</div>';
     }
-    return `<div class="toolbar"><h2 style="color:#e2b04a;flex:1;">灵宠图鉴</h2><button class="btn-primary" id="btn-add-pet">+ 添加灵宠</button></div>${cards}`;
+    return `<div class="toolbar"><h2 style="color:#b8944c;flex:1;">灵宠图鉴</h2><button class="btn-primary" onclick="App.navigate('pets/detail')">+ 添加灵宠</button></div>${cards}`;
   },
 
   bindListEvents() {
-    document.getElementById('btn-add-pet')?.addEventListener('click', () => { location.hash = 'pets/detail'; });
-    document.querySelectorAll('.card[data-id]').forEach(card => {
-      card.addEventListener('click', () => { location.hash = 'pets/detail?id=' + card.dataset.id; });
-    });
+    // 所有点击已通过 inline onclick 处理
   },
 
   renderDetail(id) {
@@ -92,7 +89,7 @@ const Pets = {
 
     return `<div class="detail-page" data-pet-id="${pet.id||''}" data-is-new="${isNew}">
       <div class="toolbar">
-        <button class="btn-primary" id="btn-back">← 返回列表</button>
+        <button class="btn-primary" onclick="App.navigate('pets')">← 返回列表</button>
         <button class="btn-primary" id="btn-save">保存</button>
         ${!isNew?'<button class="btn-danger" id="btn-del">删除灵宠</button>':''}
       </div>
@@ -114,9 +111,9 @@ const Pets = {
 
       <fieldset class="fieldset"><legend>进阶属性（1级→60级，线性成长）</legend>
         ${advRow('暴击率','critRate')}${advRow('暴击伤害','critDmg')}
-        <div style="margin-top:12px;color:#e2b04a;font-weight:bold;">五行抗性</div>
+        <div style="margin-top:12px;color:#b8944c;font-weight:bold;">五行抗性</div>
         ${ELEMENTS.map(e=>{const m={金:'metal',木:'wood',水:'water',火:'fire',土:'earth'};return advRow(e+'抗性','resist_'+m[e]);}).join('')}
-        <div style="margin-top:12px;color:#e2b04a;font-weight:bold;">五行伤害加成</div>
+        <div style="margin-top:12px;color:#b8944c;font-weight:bold;">五行伤害加成</div>
         ${ELEMENTS.map(e=>{const m={金:'metal',木:'wood',水:'water',火:'fire',土:'earth'};return advRow(e+'伤害加成','dmg_'+m[e]);}).join('')}
       </fieldset>
 
@@ -149,20 +146,20 @@ const Pets = {
       ImageUpload.create(imgZone, () => {});
     }
 
-    document.getElementById('btn-back')?.addEventListener('click', () => { location.hash = 'pets'; });
+    // Back button uses inline onclick
 
     const save = () => {
       const data = self._collect(petId);
       if (!data.name.trim()) { alert('请输入灵宠名称'); return; }
       if (!data.id) data.id = Storage.uid();
       Storage.save(PET_STORAGE, data);
-      location.hash = 'pets';
+      App.navigate('pets');
     };
     document.getElementById('btn-save')?.addEventListener('click', save);
     document.getElementById('btn-save2')?.addEventListener('click', save);
 
     const del = () => {
-      if (confirm('确定删除该灵宠？')) { Storage.deleteById(PET_STORAGE, petId); location.hash = 'pets'; }
+      if (confirm('确定删除该灵宠？')) { Storage.deleteById(PET_STORAGE, petId); App.navigate('pets'); }
     };
     document.getElementById('btn-del')?.addEventListener('click', del);
     document.getElementById('btn-del2')?.addEventListener('click', del);

@@ -51,11 +51,11 @@ const Damage = {
     }
 
     return `
-      <div class="toolbar"><h2 style="color:#e2b04a;">伤害计算器</h2></div>
+      <div class="toolbar"><h2 style="color:#b8944c;">伤害计算器</h2></div>
 
       <div class="two-col">
         <!-- 左：攻击方 -->
-        <div class="col" style="background:#16213e;border-radius:8px;padding:20px;">
+        <div class="col" style="background:#f5f9f0;border-radius:8px;padding:20px;">
           <h3>攻击方</h3>
 
           <div class="form-group"><label>修为</label><select id="dam-atk-realm">${realmOpts}</select></div>
@@ -73,7 +73,7 @@ const Damage = {
             <div class="form-group" id="atk-treasure-level-group" style="display:none;">
               <label>法宝等级(1-60)</label>
               <input type="number" id="dam-atk-treasure-level" value="1" min="1" max="60">
-              <div style="color:#a0a0a0;font-size:12px;margin-top:4px;">法宝基础攻击力加成：<span id="atk-treasure-bonus">0</span></div>
+              <div style="color:#6b7a5e;font-size:12px;margin-top:4px;">法宝基础攻击力加成：<span id="atk-treasure-bonus">0</span></div>
             </div>
             <div class="form-group">
               <label>饰品类法宝</label>
@@ -82,7 +82,7 @@ const Damage = {
             <div class="form-group" id="acc-treasure-level-group" style="display:none;">
               <label>法宝等级(1-60)</label>
               <input type="number" id="dam-acc-treasure-level" value="1" min="1" max="60">
-              <div style="color:#a0a0a0;font-size:12px;margin-top:4px;">词条加成：<span id="acc-treasure-bonus">—</span></div>
+              <div style="color:#6b7a5e;font-size:12px;margin-top:4px;">词条加成：<span id="acc-treasure-bonus">—</span></div>
             </div>
           </fieldset>
 
@@ -95,17 +95,17 @@ const Damage = {
             <div style="flex:1;"><label>防御穿透(%)</label><input type="number" id="dam-atk-pen" value="0" step="0.01"></div>
           </div>
 
-          <div style="margin-top:12px;"><label style="color:#e2b04a;">五行伤害加成(%)</label></div>
+          <div style="margin-top:12px;"><label style="color:#b8944c;">五行伤害加成(%)</label></div>
           <div class="form-row">${elemInputs('dmg', null)}</div>
 
           <fieldset class="fieldset" style="margin-top:16px;">
             <legend>灵宠伤害计算器</legend>
-            <div style="color:#a0a0a0;padding:12px;">待开发</div>
+            <div style="color:#6b7a5e;padding:12px;">待开发</div>
           </fieldset>
         </div>
 
         <!-- 右：防御方 -->
-        <div class="col" style="background:#16213e;border-radius:8px;padding:20px;">
+        <div class="col" style="background:#f5f9f0;border-radius:8px;padding:20px;">
           <h3>防御方</h3>
 
           <div class="form-group"><label>修为</label><select id="dam-def-realm">${realmOpts}</select></div>
@@ -114,7 +114,7 @@ const Damage = {
 
           <div class="form-group"><label>防御力</label><input type="number" id="dam-def-def" value="0"></div>
 
-          <div style="margin-top:12px;"><label style="color:#e2b04a;">各属性抗性(%)</label></div>
+          <div style="margin-top:12px;"><label style="color:#b8944c;">各属性抗性(%)</label></div>
           <div class="form-row">${elemInputs('resist', null)}</div>
         </div>
       </div>
@@ -304,17 +304,17 @@ const Damage = {
         <div><strong>伤害加成系数</strong><br>×${dmgMultiplier.toFixed(2)}</div>
         <div><strong>暴击率 / 暴击伤害</strong><br>${critRate.toFixed(1)}% / ${critDmg.toFixed(1)}%</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #e2b04a;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #b8944c;">
         <div style="text-align:center;">
-          <div style="font-size:24px;color:#e2b04a;">${nonCrit.toFixed(2)}</div>
-          <div style="color:#a0a0a0;">非暴击伤害</div>
+          <div style="font-size:24px;color:#b8944c;">${nonCrit.toFixed(2)}</div>
+          <div style="color:#6b7a5e;">非暴击伤害</div>
         </div>
         <div style="text-align:center;">
-          <div style="font-size:24px;color:#e74c3c;">${crit.toFixed(2)}</div>
-          <div style="color:#a0a0a0;">暴击伤害</div>
+          <div style="font-size:24px;color:#d48070;">${crit.toFixed(2)}</div>
+          <div style="color:#6b7a5e;">暴击伤害</div>
         </div>
       </div>
-      <div style="margin-top:12px;color:#a0a0a0;font-size:12px;">
+      <div style="margin-top:12px;color:#6b7a5e;font-size:12px;">
         期望伤害 = 非暴击 × (1 - ${critRate.toFixed(1)}%) + 暴击 × ${critRate.toFixed(1)}%
         = ${(nonCrit * (1 - critRate/100) + crit * critRate/100).toFixed(2)}
       </div>

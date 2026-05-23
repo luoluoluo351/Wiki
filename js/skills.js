@@ -34,14 +34,14 @@ const Skills = {
       list.forEach(s => {
         const imgHtml = s.image
           ? `<img src="${s.image}" alt="${s.name}">`
-          : `<div style="width:40px;height:40px;background:#0f0f23;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#555;font-size:10px;">无图</div>`;
+          : `<div style="width:40px;height:40px;background:#eef5e6;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#95a385;font-size:10px;">无图</div>`;
         const elTag = `<span class="tag tag-${s.element==='金'?'gold':s.element==='木'?'wood':s.element==='水'?'water':s.element==='火'?'fire':'earth'}">${s.element}</span>`;
         rows += `
-          <div class="row-item" data-id="${s.id}" data-type="${this._currentTab}">
+          <div class="row-item" onclick="App.navigate('skills/detail?id=${s.id}&type=${Skills._currentTab}')">
             ${imgHtml}
             <span style="font-weight:bold;flex:1;">${s.name || '未命名'}</span>
             ${elTag}
-            <span style="color:#a0a0a0;">${s.grade}</span>
+            <span style="color:#6b7a5e;">${s.grade}</span>
           </div>`;
       });
       rows += '</div>';
@@ -52,12 +52,12 @@ const Skills = {
 
     return `
       <div class="toolbar">
-        <h2 style="color:#e2b04a;flex:1;">功法与神通</h2>
+        <h2 style="color:#b8944c;flex:1;">功法与神通</h2>
         <div style="display:flex;gap:6px;">
-          <button class="tab-btn ${gongfaActive}" data-tab="gongfa" style="background:${this._currentTab==='gongfa'?'#e2b04a':'#2a2a4a'};color:${this._currentTab==='gongfa'?'#1a1a2e':'#e0e0e0'};border-radius:6px 0 0 6px;">功法（被动）</button>
-          <button class="tab-btn ${shentongActive}" data-tab="shentong" style="background:${this._currentTab==='shentong'?'#e2b04a':'#2a2a4a'};color:${this._currentTab==='shentong'?'#1a1a2e':'#e0e0e0'};border-radius:0 6px 6px 0;">神通（主动）</button>
+          <button class="tab-btn ${gongfaActive}" data-tab="gongfa" style="background:${this._currentTab==='gongfa'?'#b8944c':'#d4c8b0'};color:${this._currentTab==='gongfa'?'#f5f0e6':'#3d3226'};border-radius:6px 0 0 6px;">功法</button>
+          <button class="tab-btn ${shentongActive}" data-tab="shentong" style="background:${this._currentTab==='shentong'?'#b8944c':'#d4c8b0'};color:${this._currentTab==='shentong'?'#f5f0e6':'#3d3226'};border-radius:0 6px 6px 0;">神通</button>
         </div>
-        <button class="btn-primary" id="btn-add-skill">+ 添加${label}</button>
+        <button class="btn-primary" onclick="App.navigate('skills/detail?type=' + Skills._currentTab)">+ 添加${label}</button>
       </div>
       ${rows}
     `;
@@ -65,16 +65,7 @@ const Skills = {
 
   bindListEvents() {
     const self = this;
-    document.getElementById('btn-add-skill')?.addEventListener('click', () => {
-      location.hash = `skills/detail?type=${self._currentTab}`;
-    });
-    // 卡片点击
-    document.querySelectorAll('.row-item[data-id]').forEach(row => {
-      row.addEventListener('click', () => {
-        location.hash = `skills/detail?id=${row.dataset.id}&type=${row.dataset.type}`;
-      });
-    });
-    // Tab 切换
+    // Tab 切换按钮（需要先切换 _currentTab 再导航）
     document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
       btn.addEventListener('click', () => {
         self._currentTab = btn.dataset.tab;
@@ -95,7 +86,7 @@ const Skills = {
     return `
       <div class="detail-page" data-skill-id="${skill.id||''}" data-skill-type="${type}" data-is-new="${isNew}">
         <div class="toolbar">
-          <button class="btn-primary" id="btn-back">← 返回列表</button>
+          <button class="btn-primary" onclick="App.navigate('skills')">← 返回列表</button>
           <button class="btn-primary" id="btn-save">保存</button>
           ${!isNew?'<button class="btn-danger" id="btn-del">删除</button>':''}
         </div>
@@ -139,7 +130,7 @@ const Skills = {
       ImageUpload.create(imgZone, () => {});
     }
 
-    document.getElementById('btn-back')?.addEventListener('click', () => { location.hash = 'skills'; });
+    // Back button uses inline onclick
 
     const save = () => {
       const data = self._collect(skillId, skillType);
@@ -149,7 +140,7 @@ const Skills = {
       Storage.save(storageKey, data);
       // 恢复当前 tab
       this._currentTab = skillType;
-      location.hash = 'skills';
+      App.navigate('skills');
     };
     document.getElementById('btn-save')?.addEventListener('click', save);
     document.getElementById('btn-save2')?.addEventListener('click', save);
@@ -159,7 +150,7 @@ const Skills = {
         const storageKey = skillType === 'shentong' ? SKILL_SHENTONG : SKILL_GONGFA;
         Storage.deleteById(storageKey, skillId);
         this._currentTab = skillType;
-        location.hash = 'skills';
+        App.navigate('skills');
       }
     };
     document.getElementById('btn-del')?.addEventListener('click', del);

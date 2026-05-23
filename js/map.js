@@ -10,7 +10,7 @@ const MapModule = {
 
     return `
       <div class="toolbar">
-        <h2 style="color:#e2b04a;flex:1;">地图</h2>
+        <h2 style="color:#b8944c;flex:1;">地图</h2>
         ${hasImage ? '<button class="btn-danger" id="btn-del-map">删除地图</button>' : ''}
       </div>
       <div id="map-drop-zone" class="drop-zone" style="min-height:${hasImage ? 'auto' : '300px'};padding:${hasImage ? '0' : '40px'};">
