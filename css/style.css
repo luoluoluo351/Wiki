@@ -1,0 +1,369 @@
+/* 全局样式（第一阶段：仅基础，保证可用） */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  min-height: 100vh;
+}
+
+/* 顶部导航栏 */
+#top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: #0f0f23;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 6px;
+  z-index: 100;
+  border-bottom: 1px solid #2a2a4a;
+  overflow-x: auto;
+}
+
+.nav-brand {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e2b04a;
+  margin-right: 16px;
+  white-space: nowrap;
+}
+
+.nav-link {
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.nav-link:hover {
+  background: #2a2a4a;
+}
+
+.nav-link.active {
+  background: #e2b04a;
+  color: #1a1a2e;
+  font-weight: bold;
+}
+
+/* 内容区 */
+#app {
+  margin-top: 56px;
+  padding: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 页面区块 */
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+/* 通用卡片网格 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* 通用卡片 */
+.card {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* 按钮 */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: #e2b04a;
+  color: #1a1a2e;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background: #f0c060;
+}
+
+.btn-danger {
+  background: #c0392b;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #e74c3c;
+}
+
+.btn-add {
+  background: #27ae60;
+  color: #fff;
+  font-size: 20px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 32px;
+  text-align: center;
+}
+
+.btn-delete {
+  background: #c0392b;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+}
+
+/* 表单 */
+input, textarea, select {
+  background: #0f0f23;
+  color: #e0e0e0;
+  border: 1px solid #2a2a4a;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #e2b04a;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+  color: #a0a0a0;
+  font-size: 13px;
+}
+
+/* 标签 */
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin: 2px;
+}
+
+.tag-gold { background: #e2b04a; color: #1a1a2e; }
+.tag-wood { background: #27ae60; color: #fff; }
+.tag-water { background: #2980b9; color: #fff; }
+.tag-fire  { background: #c0392b; color: #fff; }
+.tag-earth { background: #8e6b3e; color: #fff; }
+
+/* 拖拽上传区 */
+.drop-zone {
+  border: 2px dashed #2a2a4a;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  color: #a0a0a0;
+  transition: border-color 0.2s;
+  cursor: pointer;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop-zone:hover, .drop-zone.dragover {
+  border-color: #e2b04a;
+  color: #e2b04a;
+}
+
+.drop-zone img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 4px;
+}
+
+/* 行式列表 */
+.row-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.row-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #16213e;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.row-item:hover {
+  background: #1e2d4a;
+}
+
+.row-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+/* 占位 */
+.placeholder {
+  text-align: center;
+  padding: 80px 20px;
+  color: #a0a0a0;
+  font-size: 18px;
+}
+
+/* 详情页 */
+.detail-page {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.detail-page h2 {
+  color: #e2b04a;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.form-row > * {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* 技能/突破列表项 */
+.entry-item {
+  background: #0f0f23;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.fieldset {
+  border: 1px solid #2a2a4a;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.fieldset legend {
+  color: #e2b04a;
+  font-weight: bold;
+  padding: 0 8px;
+}
+
+/* 两栏布局 */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.col {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.col h3 {
+  color: #e2b04a;
+  margin-bottom: 16px;
+}
+
+/* 结果区 */
+.result-box {
+  background: #0f0f23;
+  border: 1px solid #e2b04a;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.result-box h3 {
+  color: #e2b04a;
+  margin-bottom: 12px;
+}
+
+/* checkbox 标签 */
+.checkbox-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #e0e0e0;
+}
