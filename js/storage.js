@@ -59,5 +59,30 @@ const Storage = {
   // 生成唯一 ID
   uid() {
     return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  },
+
+  // 导出全部数据到 JSON 字符串
+  exportAll() {
+    const all = {};
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      all[key] = this.get(key);
+    }
+    return JSON.stringify(all, null, 2);
+  },
+
+  // 从 JSON 字符串导入全部数据（合并模式）
+  importAll(jsonStr) {
+    try {
+      const data = JSON.parse(jsonStr);
+      if (typeof data !== 'object' || !data) return false;
+      Object.keys(data).forEach(key => {
+        this.set(key, data[key]);
+      });
+      return true;
+    } catch (e) {
+      console.error('导入数据失败:', e);
+      return false;
+    }
   }
 };

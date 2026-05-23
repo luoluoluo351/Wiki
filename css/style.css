@@ -112,6 +112,17 @@ body::after {
   box-shadow: 0 2px 8px rgba(184,148,76,0.3);
 }
 
+/* 导航栏右侧操作按钮 */
+.nav-action-btn {
+  background: none; border: 1px solid transparent; cursor: pointer;
+  font-size: 16px; padding: 6px 10px; border-radius: 6px;
+  color: var(--text-light); transition: all 0.2s;
+}
+.nav-action-btn:hover {
+  background: rgba(184,148,76,0.1); border-color: var(--gold);
+  color: var(--gold);
+}
+
 /* 下拉菜单 */
 .nav-dropdown {
   position: relative; display: inline-block;
@@ -280,23 +291,6 @@ body::after {
 }
 .home-nav-link:hover { background: rgba(184,148,76,0.1); color: var(--gold); }
 
-/* 右下角更换背景按钮 */
-.home-bg-btn {
-  position: absolute; bottom: 20px; right: 20px;
-  width: 36px; height: 36px; border-radius: 50%;
-  background: rgba(255,255,255,0.35);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(184,148,76,0.2);
-  color: var(--text-light); font-size: 16px;
-  cursor: pointer; z-index: 10;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-}
-.home-bg-btn:hover {
-  background: rgba(255,255,255,0.6);
-  border-color: var(--gold);
-  color: var(--gold);
-}
 
 /* 响应式：小屏隐藏侧栏 */
 @media (max-width: 900px) {

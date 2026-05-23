@@ -5,11 +5,51 @@ const App = {
 
   init() {
     this._bindNav();
+    this._bindDataActions();
     window.addEventListener('hashchange', () => {
       if (this._suppressHashChange) { this._suppressHashChange = false; return; }
       this._route(location.hash.slice(1));
     });
     this.navigate(location.hash.slice(1) || 'home');
+  },
+
+
+
+
+  _bindDataActions() {
+    document.getElementById('btn-export')?.addEventListener('click', () => {
+      const json = Storage.exportAll();
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `wiki-data-${new Date().toISOString().slice(0,10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('btn-import')?.addEventListener('click', () => {
+      if (!confirm('导入将覆盖当前所有数据，确定继续？')) return;
+      const input = document.createElement('input');
+      input.type = 'file'; input.accept = '.json';
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          if (Storage.importAll(reader.result)) {
+            alert('导入成功！页面将刷新。');
+            App.navigate('home');
+          } else {
+            alert('导入失败，请检查文件格式。');
+          }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    });
   },
 
   _bindNav() {
@@ -91,10 +131,6 @@ const App = {
 // 首页模块
 const HomePage = {
 
-  _rotationTimer: null,
-  _rotationIndex: 0,
-  _bgList: [],
-
   // 默认修仙诗
   _defaultPoem: `【修仙行】
 青崖白鹿访名山，一剑凌霄破九关。
@@ -105,7 +141,7 @@ const HomePage = {
 千劫万难终不老，一朝飞升任往还。`,
 
   render() {
-    const bg = localStorage.getItem('home_bg') || 'img/bg-1.jpg';
+    const bg = 'img/bg-1.jpg';
 
     // 近期更新
     const updates = JSON.parse(localStorage.getItem('home_updates') || '[]');
@@ -163,9 +199,6 @@ const HomePage = {
             <div class="home-title">修仙 Wiki</div>
           </div>
 
-          <!-- 更换背景按钮（右下角） -->
-          <button class="home-bg-btn" id="btn-change-bg" title="更换背景图">🖼</button>
-
           <!-- 右栏：公告 + 导航 -->
           <div class="home-panel home-panel-right">
             <div class="home-panel-header">
@@ -179,7 +212,7 @@ const HomePage = {
             </div>
             <div class="home-panel-header" style="margin-top:16px;"><h3>快捷导航</h3></div>
             <div class="home-panel-body home-nav-links">${navHtml}</div>
-          </div>
+            </div>
 
         </div>
       </div>
@@ -187,35 +220,6 @@ const HomePage = {
   },
 
   bindEvents() {
-    const zone = document.getElementById('home-bg-zone');
-    if (!zone) return;
-
-    // === 背景轮换 ===
-    this._startRotation(zone);
-
-    // 更换背景
-    const doUpload = () => {
-      const input = document.createElement('input');
-      input.type = 'file'; input.accept = 'image/*';
-      input.onchange = (e) => {
-        const file = e.target.files[0];
-        if (!file || !file.type.startsWith('image/')) return;
-        const reader = new FileReader();
-        reader.onload = () => {
-          localStorage.setItem('home_bg', reader.result);
-          this._stopRotation();
-          App.navigate('home');
-        };
-        reader.readAsDataURL(file);
-      };
-      input.click();
-    };
-
-    document.getElementById('btn-change-bg')?.addEventListener('click', (e) => {
-      e.stopPropagation(); doUpload();
-    });
-    // Background change only via the bottom-right button
-
     // === 近期更新 ===
     document.getElementById('btn-add-update')?.addEventListener('click', () => {
       const text = prompt('输入更新内容：');
@@ -278,56 +282,23 @@ const HomePage = {
         App.navigate('home');
       }
     });
+
   },
 
-  // 扫描可用背景图
-  _scanBgImages(callback) {
-    const list = [];
-    let loaded = 0;
-    for (let i = 1; i <= 20; i++) {
-      const img = new Image();
-      img.onload = function () { list.push({ path: this.src, idx: i - 1 }); check(); };
-      img.onerror = function () { check(); };
-      img.src = `img/bg-${i}.jpg?t=${Date.now()}`;
-    }
-    function check() {
-      loaded++;
-      if (loaded >= 20 && callback) {
-        callback(list.sort((a, b) => a.idx - b.idx).map(x => x.path));
-      }
-    }
-  },
-
-  _startRotation(zone) {
-    this._stopRotation();
-    // 如果有用户上传的背景，不轮换
-    if (localStorage.getItem('home_bg')) return;
-
-    this._scanBgImages((bgList) => {
-      if (bgList.length <= 1) return;
-      this._bgList = bgList;
-      this._rotationIndex = parseInt(sessionStorage.getItem('home_bg_idx') || '0', 10) % bgList.length;
-      // 立即应用当前索引
-      zone.style.backgroundImage = `url(${bgList[this._rotationIndex]})`;
-
-      this._rotationTimer = setInterval(() => {
-        this._rotationIndex = (this._rotationIndex + 1) % this._bgList.length;
-        sessionStorage.setItem('home_bg_idx', this._rotationIndex);
-        const el = document.getElementById('home-bg-zone');
-        if (el && this._bgList[this._rotationIndex]) {
-          el.style.backgroundImage = `url(${this._bgList[this._rotationIndex]})`;
-          el.style.transition = 'background-image 0.8s ease-in-out';
-        }
-      }, 60000);
-    });
-  },
-
-  _stopRotation() {
-    if (this._rotationTimer) {
-      clearInterval(this._rotationTimer);
-      this._rotationTimer = null;
-    }
-  }
 };
 
 document.addEventListener('DOMContentLoaded', () => App.init());
+
+// 全局背景轮换 — 独立于所有模块
+(function () {
+  var _idx = 0;
+  var _count = parseInt(localStorage.getItem('home_bg_count') || '4', 10);
+  if (_count >= 2) {
+    setInterval(function () {
+      var el = document.getElementById('home-bg-zone');
+      if (!el) return;
+      _idx = (_idx + 1) % _count;
+      el.style.backgroundImage = 'url(img/bg-' + (_idx + 1) + '.jpg)';
+    }, 30000);
+  }
+})();
