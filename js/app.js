@@ -8,8 +8,8 @@ function showAbilityModal(title, skills, extraSkills) {
     let h = label ? `<div style="color:var(--gold);font-weight:bold;font-size:16px;margin-bottom:4px;">${label}</div>` : '';
     list.forEach(s => {
       h += `<div class="entry-item" style="margin-bottom:6px;">
-        <div style="font-weight:bold;margin-bottom:4px;">${s.name || '(无名称)'}</div>
-        <div style="color:var(--text-dim);font-size:14px;white-space:pre-line;">${s.desc || '(无描述)'}</div>
+        <div style="font-weight:bold;margin-bottom:4px;">${s.name || ''}</div>
+        <div style="color:var(--text-dim);font-size:14px;white-space:pre-line;">${s.desc || ''}</div>
       </div>`;
     });
     return h;
@@ -188,6 +188,8 @@ const Leaderboard = {
         (cb.mainSkills||[]).forEach(id => { const s=skillNameById(id); if(s) tb+=s.combat||0; });
         (ca.learnedAbilities||[]).forEach(id => { const s=skillNameById(id); if(s) ta+=s.combat||0; });
         (cb.learnedAbilities||[]).forEach(id => { const s=skillNameById(id); if(s) tb+=s.combat||0; });
+        [ca.equippedAttack,ca.equippedDefense,ca.equippedAccessory].forEach(tid=>{if(tid){const t=Storage.findById('treasures',tid);if(t)ta+=calcTreasureCombat(t);}});
+        [cb.equippedAttack,cb.equippedDefense,cb.equippedAccessory].forEach(tid=>{if(tid){const t=Storage.findById('treasures',tid);if(t)tb+=calcTreasureCombat(t);}});
         return tb - ta;
       });
       // 始终至少显示 10 名，无上限
@@ -220,6 +222,12 @@ const Leaderboard = {
         (c.learnedAbilities||[]).forEach(skId => {
           const s = skillNameById(skId);
           if (s) totalCombat += (s.combat||0);
+        });
+        // 装备法宝战力
+        [c.equippedAttack, c.equippedDefense, c.equippedAccessory].forEach(tid => {
+          if (!tid) return;
+          const t = Storage.findById('treasures', tid);
+          if (t) totalCombat += calcTreasureCombat(t);
         });
         rows += `<div class="row-item" style="min-height:130px;">
           <span class="rank-badge ${rankClass}">${rankLabel}</span>

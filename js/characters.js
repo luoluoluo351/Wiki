@@ -3,11 +3,16 @@
 const REALMS = ['练气初期','练气中期','练气后期','筑基初期','筑基中期','筑基后期','金丹初期','金丹中期','金丹后期','元婴初期','元婴中期','元婴后期','化神初期','化神中期','化神后期'];
 const ELEMENTS = ['金','木','水','火','土'];
 const STORAGE_KEY = 'characters';
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII','XXIV','XXV','XXVI','XXVII','XXVIII','XXIX','XXX'];
 
 function realmToLevel(r) { const i = REALMS.indexOf(r); return i >= 0 ? i + 1 : 1; }
 function calcGrowth(lv1, lvMax, maxLv) { return (lvMax - lv1) / (maxLv - 1); }
-function isYuanYing(realm) { return REALMS.indexOf(realm) >= 9; } // 元婴初期 = index 9
+function isYuanYing(realm) { return REALMS.indexOf(realm) >= 9; }
+function displayRealm(baseRealm, advCount) {
+  const idx = REALMS.indexOf(baseRealm);
+  if (idx < 0) return baseRealm;
+  return REALMS[Math.min(idx + advCount, REALMS.length - 1)];
+}
 
 // 战力计算（满级值）
 function calcCombatPower(c) {
@@ -34,11 +39,12 @@ function createEmptyChar() {
     basicAttr:{hp:{lv1:0,lv100:0},atk:{lv1:0,lv100:0},def:{lv1:0,lv100:0}},
     advancedAttr:{critRate:5,critDmg:150,resist:{metal:0,wood:0,water:0,fire:0,earth:0},dmgBonus:{metal:0,wood:0,water:0,fire:0,earth:0}},
     passiveSkills:[], breakthroughs:[], advancements:[],
-    mainSkills:[], yuanYingSkill:null, learnedAbilities:[]
+    mainSkills:[], yuanYingSkill:null, learnedAbilities:[],
+    equippedAttack:null, equippedDefense:null, equippedAccessory:null
   };
 }
 function nextBreakLevel(el) { for (let lv=20;lv<=100;lv+=20) if (!el.includes(lv)) return lv; return 0; }
-function nextAdvRank(el) { for (let i=1;i<=10;i++) if (!el.includes(i)) return i; return 0; }
+function nextAdvRank(el) { for (let i=1;i<=30;i++) if (!el.includes(i)) return i; return 0; }
 
 // 根据 ID 查找功法/神通名称
 function skillNameById(id) {
@@ -91,11 +97,21 @@ const Characters = {
           }).filter(Boolean);
           mainSkillText = names.join('、') || '—';
         }
-        const skillsEsc = JSON.stringify(c.passiveSkills).replace(/'/g,'&#39;');
+        // 弹窗数据：被动技能 + 主修功法 + 习得神通
+        const modalData = [...c.passiveSkills];
+        (c.mainSkills||[]).forEach(skId => {
+          const sk = skillNameById(skId);
+          if (sk) modalData.push({ name: '主修功法：' + sk.name, desc: (Storage.findById('skills_gongfa',skId)||{}).desc || '' });
+        });
+        (c.learnedAbilities||[]).forEach(skId => {
+          const sk = skillNameById(skId);
+          if (sk) modalData.push({ name: '习得神通：' + sk.name, desc: (Storage.findById('skills_shentong',skId)||{}).desc || '' });
+        });
+        const modalEsc = JSON.stringify(modalData).replace(/'/g,'&#39;');
         rows += `<div class="row-item" style="gap:18px;padding:22px 28px;min-height:140px;">
           ${avatarHtml}
           <span class="row-name" style="width:80px;">${c.name||'未命名'}</span>
-          <span style="color:var(--text-dim);width:65px;font-size:13px;text-align:center;white-space:nowrap;overflow:hidden;">${c.realm}</span>
+          <span style="color:var(--text-dim);width:65px;font-size:13px;text-align:center;white-space:nowrap;overflow:hidden;">${displayRealm(c.realm, (c.advancements||[]).length)}</span>
           <span style="color:var(--text-dim);width:55px;font-size:13px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.sect||'—'}</span>
           <span class="row-tags" style="width:65px;overflow:hidden;">${tags}</span>
           <span class="row-stat" style="width:55px;">${c.basicAttr.hp.lv100}</span>
@@ -105,7 +121,7 @@ const Characters = {
           <span style="color:var(--gold);width:50px;font-size:14px;text-align:center;white-space:nowrap;">${cp}</span>
           <span class="row-actions" style="width:100px;justify-content:center;">
             <button class="row-icon-btn" onclick="App.navigate('characters/detail?id=${c.id}')" title="编辑">✎</button>
-            <button class="row-icon-btn" data-skills='${skillsEsc}' onclick="event.stopPropagation();showAbilityModal('${c.name||'角色'} 被动技能',JSON.parse(this.dataset.skills))" title="查看能力">👁</button>
+            <button class="row-icon-btn" data-skills='${modalEsc}' onclick="event.stopPropagation();showAbilityModal('${c.name||'角色'} 详情',JSON.parse(this.dataset.skills))" title="查看能力">👁</button>
             <button class="row-icon-btn" onclick="event.stopPropagation();if(confirm('确定删除「${c.name||'未命名'}」？')){Storage.deleteById('characters','${c.id}');App.navigate('characters');}" title="删除" style="color:var(--red);">×</button>
           </span>
         </div>`;
@@ -173,6 +189,7 @@ const Characters = {
       <fieldset class="fieldset"><legend>被动技能 <button class="btn-add" id="btn-add-skill">+</button></legend><div id="skills-container">${skillsHtml||'<div style="color:var(--text-dim);">暂无被动技能</div>'}</div></fieldset>
       <fieldset class="fieldset"><legend>突破 <button class="btn-add" id="btn-add-bt">+</button></legend><div id="bt-container">${btHtml||'<div style="color:var(--text-dim);">暂无突破</div>'}</div></fieldset>
       <fieldset class="fieldset"><legend>进阶 <button class="btn-add" id="btn-add-adv">+</button></legend><div id="adv-container">${advHtml2||'<div style="color:var(--text-dim);">暂无进阶</div>'}</div></fieldset>
+      <fieldset class="fieldset"><legend>装备法宝</legend><div class="form-row">${(()=>{const atkList=Storage.list('treasures').filter(t=>t.type==='attack');const defList=Storage.list('treasures').filter(t=>t.type==='defense');const accList=Storage.list('treasures').filter(t=>t.type==='accessory');return`<div style="flex:1;"><label>攻击类</label><select id="equip-attack"><option value="">不装备</option>${atkList.map(t=>`<option value="${t.id}" ${char.equippedAttack===t.id?'selected':''}>${t.name||'未命名'}(${t.grade})</option>`).join('')}</select></div><div style="flex:1;"><label>防具类</label><select id="equip-defense"><option value="">不装备</option>${defList.map(t=>`<option value="${t.id}" ${char.equippedDefense===t.id?'selected':''}>${t.name||'未命名'}(${t.grade})</option>`).join('')}</select></div><div style="flex:1;"><label>饰品类</label><select id="equip-accessory"><option value="">不装备</option>${accList.map(t=>`<option value="${t.id}" ${char.equippedAccessory===t.id?'selected':''}>${t.name||'未命名'}(${t.grade})</option>`).join('')}</select></div>`;})()}</div></fieldset>
       <fieldset class="fieldset"><legend>主修功法 <button class="btn-add" id="btn-add-ms">+</button></legend><div id="ms-container">${mainSkillHtml||'<div style="color:var(--text-dim);">暂无主修功法</div>'}</div></fieldset>
       <fieldset class="fieldset"><legend>习得神通 <button class="btn-add" id="btn-add-la">+</button></legend><div id="la-container">${learnedHtml||'<div style="color:var(--text-dim);">暂无习得神通</div>'}</div></fieldset>
       <div class="toolbar" style="margin-top:20px;"><button class="btn-primary" id="btn-save-char2">保存</button><button class="btn-danger" id="btn-del-char2" ${isNew?'style="display:none"':''}>删除角色</button></div>
@@ -205,7 +222,7 @@ const Characters = {
     document.querySelectorAll('[data-action="del-bt"]').forEach(b=>{b.addEventListener('click',function(){this.closest('.entry-item').remove();self._checkEmpty(document.getElementById('bt-container'),'暂无突破');});});
 
     // 进阶
-    document.getElementById('btn-add-adv')?.addEventListener('click', () => { const c = document.getElementById('adv-container'); const existing = Array.from(c.querySelectorAll('.bt-level-title')).map(s=>{const r=ROMAN.indexOf(s.textContent.replace('阶',''));return r>=0?r+1:0;}); const nr = nextAdvRank(existing); if (nr===0) { alert('已达上限 X阶'); return; } const div=document.createElement('div');div.className='entry-item';div.innerHTML=`<div class="entry-header"><span class="bt-level-title">${ROMAN[nr-1]}阶</span><button class="btn-delete ad">×</button></div><textarea data-field="adv_${c.querySelectorAll('.entry-item').length}" placeholder="属性加成描述" style="width:100%;"></textarea>`;self._clearEmpty(c);c.appendChild(div);div.querySelector('.ad').addEventListener('click',()=>{div.remove();self._checkEmpty(c,'暂无进阶');}); });
+    document.getElementById('btn-add-adv')?.addEventListener('click', () => { const c = document.getElementById('adv-container'); const existing = Array.from(c.querySelectorAll('.bt-level-title')).map(s=>{const r=ROMAN.indexOf(s.textContent.replace('阶',''));return r>=0?r+1:0;}); const nr = nextAdvRank(existing); if (nr===0) { alert('已达上限 XXX阶'); return; } const div=document.createElement('div');div.className='entry-item';div.innerHTML=`<div class="entry-header"><span class="bt-level-title">${ROMAN[nr-1]}阶</span><button class="btn-delete ad">×</button></div><textarea data-field="adv_${c.querySelectorAll('.entry-item').length}" placeholder="属性加成描述" style="width:100%;"></textarea>`;self._clearEmpty(c);c.appendChild(div);div.querySelector('.ad').addEventListener('click',()=>{div.remove();self._checkEmpty(c,'暂无进阶');}); });
     document.querySelectorAll('[data-action="del-adv"]').forEach(b=>{b.addEventListener('click',function(){this.closest('.entry-item').remove();self._checkEmpty(document.getElementById('adv-container'),'暂无进阶');});});
 
     // 主修功法
@@ -305,6 +322,9 @@ const Characters = {
     // 元婴功法
     const yyCheck = document.querySelector('.yy-check:checked');
     d.yuanYingSkill = yyCheck ? yyCheck.dataset.skid : null;
+    d.equippedAttack = document.getElementById('equip-attack')?.value || null;
+    d.equippedDefense = document.getElementById('equip-defense')?.value || null;
+    d.equippedAccessory = document.getElementById('equip-accessory')?.value || null;
     return d;
   },
 
