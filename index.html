@@ -26,6 +26,7 @@
   <span class="nav-link" data-route="story">剧情</span>
   <span class="nav-link" data-route="map">地图</span>
   <span class="nav-link" data-route="damage">伤害计算器</span>
+  <span class="nav-link" data-route="leaderboard">排行榜</span>
   <span style="flex:1;"></span>
   <button class="nav-action-btn" id="btn-export" title="导出数据">📤</button>
   <button class="nav-action-btn" id="btn-import" title="导入数据">📥</button>
@@ -33,6 +34,17 @@
 
 <!-- 内容区 -->
 <div id="app"></div>
+
+<!-- 技能查看弹窗（只读） -->
+<div id="skill-modal" class="modal-overlay" style="display:none;" onclick="this.style.display='none'">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="toolbar">
+      <span class="modal-title" id="modal-title">技能详情</span>
+      <button class="btn-delete" onclick="document.getElementById('skill-modal').style.display='none'">×</button>
+    </div>
+    <div id="modal-body"></div>
+  </div>
+</div>
 
 <script src="js/storage.js"></script>
 <script src="js/image.js"></script>

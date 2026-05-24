@@ -60,7 +60,7 @@ const Damage = {
 
           <div class="form-group"><label>修为</label><select id="dam-atk-realm">${realmOpts}</select></div>
 
-          <div class="form-group"><label>攻击属性（用于克制判定）</label><select id="dam-atk-element">${elemOpts}</select></div>
+          <div class="form-group"><label>攻击属性（用于克制判定，可多选）</label><div class="checkbox-group" id="dam-atk-elements">${ELEMENTS.map(e => `<label><input type="checkbox" value="${e}" checked onchange="limitCheckbox(event,3)"> ${e}</label>`).join('')}</div></div>
 
           <div class="form-group"><label>角色基础攻击力</label><input type="number" id="dam-atk-atk" value="0"></div>
 
@@ -88,6 +88,7 @@ const Damage = {
 
           <div class="form-group"><label>攻击力%加成</label><input type="number" id="dam-atk-pct" value="0" step="0.01"> %</div>
           <div class="form-group"><label>固定值加成</label><input type="number" id="dam-atk-flat" value="0"></div>
+          <div class="form-group"><label>技能倍率</label><input type="number" id="dam-skill-mult" value="100" step="1" style="width:100%;"> %</div>
 
           <div class="form-row">
             <div style="flex:1;"><label>暴击率(%)</label><input type="number" id="dam-atk-critrate" value="5" step="0.01"></div>
@@ -95,8 +96,8 @@ const Damage = {
             <div style="flex:1;"><label>防御穿透(%)</label><input type="number" id="dam-atk-pen" value="0" step="0.01"></div>
           </div>
 
-          <div style="margin-top:12px;"><label style="color:#b8944c;">五行伤害加成(%)</label></div>
-          <div class="form-row">${elemInputs('dmg', null)}</div>
+          <div style="margin-top:12px;"><label style="color:var(--gold);">五行伤害加成(%)</label></div>
+          <div class="form-row">${elemInputs('伤害加成', null)}</div>
 
           <fieldset class="fieldset" style="margin-top:16px;">
             <legend>灵宠伤害计算器</legend>
@@ -110,12 +111,12 @@ const Damage = {
 
           <div class="form-group"><label>修为</label><select id="dam-def-realm">${realmOpts}</select></div>
 
-          <div class="form-group"><label>五行属性（用于克制判定）</label><select id="dam-def-element">${elemOpts}</select></div>
+          <div class="form-group"><label>五行属性（用于克制判定，可多选）</label><div class="checkbox-group" id="dam-def-elements">${ELEMENTS.map(e => `<label><input type="checkbox" value="${e}" onchange="limitCheckbox(event,3)"> ${e}</label>`).join('')}</div></div>
 
           <div class="form-group"><label>防御力</label><input type="number" id="dam-def-def" value="0"></div>
 
-          <div style="margin-top:12px;"><label style="color:#b8944c;">各属性抗性(%)</label></div>
-          <div class="form-row">${elemInputs('resist', null)}</div>
+          <div style="margin-top:12px;"><label style="color:var(--gold);">各属性抗性(%)</label></div>
+          <div class="form-row">${elemInputs('抗性', null)}</div>
         </div>
       </div>
 
@@ -201,7 +202,7 @@ const Damage = {
   _calculate() {
     // 读取攻击方数据
     const atkRealm = document.getElementById('dam-atk-realm')?.value || '练气初期';
-    const atkElement = document.getElementById('dam-atk-element')?.value || '金';
+    const atkElements = Array.from(document.querySelectorAll('#dam-atk-elements input:checked')).map(cb => cb.value);
     let baseAtk = parseFloat(document.getElementById('dam-atk-atk')?.value) || 0;
 
     // 攻击法宝加成
@@ -246,17 +247,17 @@ const Damage = {
     // 五行伤害加成
     const atkDmgBonus = {};
     ELEMENTS.forEach(e => {
-      atkDmgBonus[e] = parseFloat(document.getElementById(`dam-dmg-${e}`)?.value) || 0;
+      atkDmgBonus[e] = parseFloat(document.getElementById(`dam-伤害加成-${e}`)?.value) || 0;
     });
 
     // 读取防御方数据
     const defRealm = document.getElementById('dam-def-realm')?.value || '练气初期';
-    const defElement = document.getElementById('dam-def-element')?.value || '金';
+    const defElements = Array.from(document.querySelectorAll('#dam-def-elements input:checked')).map(cb => cb.value);
     let defDef = parseFloat(document.getElementById('dam-def-def')?.value) || 0;
 
     const defResist = {};
     ELEMENTS.forEach(e => {
-      defResist[e] = parseFloat(document.getElementById(`dam-resist-${e}`)?.value) || 0;
+      defResist[e] = parseFloat(document.getElementById(`dam-抗性-${e}`)?.value) || 0;
     });
 
     // === 计算 ===
@@ -273,22 +274,31 @@ const Damage = {
     const atkMajor = majorIndex(atkRealm);
     const defMajor = majorIndex(defRealm);
     if (atkMajor > defMajor) {
-      pen += 10;  // 大境界高 → +10%穿透
+      pen += (atkMajor - defMajor) * 10;  // 每高一个大境界 +10%穿透
     }
 
     // 3. 防御免伤
     const effectiveDef = Math.max(defDef * (1 - pen / 100), 0);
     const defReduction = effectiveDef / (effectiveDef + 800);
 
-    // 4. 五行克制
-    const countered = ELEM_CYCLE[atkElement] === defElement;
+    // 4. 五行克制（攻方任一属性克制守方任一属性即触发）
+    const countered = atkElements.some(ae => defElements.some(de => ELEM_CYCLE[ae] === de));
     const elementBonus = countered ? 1.2 : 1.0;
 
-    // 5. 伤害加成
-    const dmgMultiplier = 1 + (atkDmgBonus[atkElement] / 100) - (defResist[atkElement] / 100);
+    // 5. 伤害加成（取攻方所有属性中最高加成）
+    let bestDmgBonus = 0;
+    let bestResist = 0;
+    atkElements.forEach(ae => {
+      bestDmgBonus = Math.max(bestDmgBonus, atkDmgBonus[ae] || 0);
+      bestResist = Math.max(bestResist, defResist[ae] || 0);
+    });
+    const dmgMultiplier = 1 + (bestDmgBonus / 100) - (bestResist / 100);
 
-    // 6. 最终伤害
-    const nonCrit = totalAtk * (1 - defReduction) * minorBonus * elementBonus * dmgMultiplier;
+    // 6. 技能倍率
+    const skillMult = (parseFloat(document.getElementById('dam-skill-mult')?.value) || 100) / 100;
+
+    // 7. 最终伤害
+    const nonCrit = totalAtk * (1 - defReduction) * minorBonus * elementBonus * dmgMultiplier * skillMult;
     const crit = nonCrit * (critDmg / 100);
 
     // 显示结果
@@ -300,7 +310,7 @@ const Damage = {
         <div><strong>有效防御</strong><br>${effectiveDef.toFixed(2)}（穿透${pen.toFixed(1)}%）</div>
         <div><strong>防御免伤比例</strong><br>${(defReduction * 100).toFixed(2)}%</div>
         <div><strong>修为压制加成</strong><br>×${minorBonus.toFixed(2)} ${atkLevel > defLevel ? '(攻方高' + (atkLevel - defLevel) + '个小境界)' : '(无)'}</div>
-        <div><strong>五行克制</strong><br>×${elementBonus.toFixed(1)} ${countered ? '(克制!)' : '(无克制)'}</div>
+        <div><strong>五行克制</strong><br>×${elementBonus.toFixed(1)} ${countered ? '可克制' : '无克制'}（攻${atkElements.join('/')} vs 守${defElements.join('/')}）</div>
         <div><strong>伤害加成系数</strong><br>×${dmgMultiplier.toFixed(2)}</div>
         <div><strong>暴击率 / 暴击伤害</strong><br>${critRate.toFixed(1)}% / ${critDmg.toFixed(1)}%</div>
       </div>

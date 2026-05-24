@@ -27,6 +27,7 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
+  font-size: 21px;
   font-family: "Microsoft YaHei", "PingFang SC", "Noto Serif SC", "KaiTi", sans-serif;
   background: var(--bg);
   background-image:
@@ -125,7 +126,7 @@ body::after {
 
 /* 下拉菜单 */
 .nav-dropdown {
-  position: relative; display: inline-block;
+  position: relative; display: inline-flex; align-items: center;
 }
 .nav-dropdown-menu {
   display: none; position: absolute; top: 100%; left: 0;
@@ -325,16 +326,55 @@ body::after {
 
 .row-item {
   display:flex; align-items:center; gap:14px;
-  background: var(--card-bg); padding:12px 18px;
-  border-radius: var(--radius); cursor:pointer;
+  background: var(--card-bg); padding:18px 24px; min-height:130px;
+  border-radius: var(--radius);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow);
   transition: all 0.2s;
 }
 
+/* 排行榜 TOP3 特效 */
+.rank-badge {
+  width:72px; text-align:center; font-weight:bold; flex-shrink:0;
+  font-family:"KaiTi","Noto Serif SC",serif;
+}
+.rank-1 { font-size:32px; color:#c9a85e; text-shadow:0 0 12px rgba(201,168,94,0.5),0 2px 4px rgba(0,0,0,0.3); }
+.rank-2 { font-size:28px; color:#a0a8b0; text-shadow:0 0 10px rgba(160,168,176,0.4),0 2px 3px rgba(0,0,0,0.2); }
+.rank-3 { font-size:24px; color:#c47b5b; text-shadow:0 0 8px rgba(196,123,91,0.4),0 1px 3px rgba(0,0,0,0.2); }
+.rank-n  { font-size:18px; color:var(--text-dim); }
+
 .row-item:hover { border-color: var(--gold); background: #fffef9; }
 
-.row-item img { width:44px; height:44px; object-fit:cover; border-radius:6px; }
+/* 行表头 */
+.row-header {
+  display:flex; align-items:center; gap:14px;
+  padding:10px 24px;
+  color: var(--gold); font-size:14px; font-weight:bold;
+  pointer-events:none; user-select:none;
+  border-bottom:1px solid var(--border-light); margin-bottom:2px;
+}
+.row-h-col {
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+
+.row-item img { width:72px; height:72px; object-fit:cover; border-radius:6px; flex-shrink:0; }
+.row-noimg { width:72px; height:72px; background:var(--input-bg); border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--text-light); font-size:10px; flex-shrink:0; }
+.row-tags { display:flex; gap:2px; flex-shrink:0; justify-content:center; }
+.row-stat { font-size:14px; color:var(--text-dim); white-space:nowrap; text-align:center; overflow:hidden; text-overflow:ellipsis; }
+.row-name { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:center; color: var(--gold); }
+
+/* 笔眼操作区 — 左侧竖线隔离 */
+.row-actions {
+  display:flex; gap:8px; margin-left:auto; flex-shrink:0; align-items:center;
+  padding-left:20px; border-left:1px solid var(--border-light);
+}
+.row-icon-btn {
+  background:none; border:1px solid var(--border); cursor:pointer;
+  font-size:18px; padding:6px 10px; border-radius:6px;
+  transition: all 0.15s; line-height:1;
+}
+.row-icon-btn:hover { border-color: var(--gold); background: rgba(184,148,76,0.08); }
+.btn-sm { font-size:12px; padding:5px 12px; }
 
 /* === 按钮 === */
 button {
@@ -385,9 +425,11 @@ label { display:block; margin-bottom:4px; color: var(--text-dim); font-size:13px
 
 /* === 标签 === */
 .tag {
-  display:inline-block; padding:2px 10px; border-radius:4px;
-  font-size:12px; margin:2px; font-weight:bold; color:#fff;
+  display:inline-block; padding:1px 5px; border-radius:3px;
+  font-size:10px; margin:1px; font-weight:bold; color:#fff;
+  white-space:nowrap;
 }
+.row-tags { display:flex; gap:1px; flex-shrink:0; justify-content:center; overflow:hidden; }
 .tag-gold  { background: #b8944c; }
 .tag-wood  { background: #6b8c5c; }
 .tag-water { background: #5b8a9a; }
@@ -494,6 +536,22 @@ label { display:block; margin-bottom:4px; color: var(--text-dim); font-size:13px
   padding:8px 20px; border:none; cursor:pointer;
   font-size:14px; font-family:inherit; border-radius:6px;
   transition: all 0.2s;
+}
+
+/* === 技能弹窗 === */
+.modal-overlay {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(30,40,25,0.5); z-index:500;
+  display:flex; align-items:center; justify-content:center;
+}
+.modal-box {
+  background: var(--card-bg); border-radius: var(--radius);
+  padding: 24px; max-width: 600px; width:90%; max-height:80vh;
+  overflow-y: auto; box-shadow: var(--shadow-lg);
+}
+.modal-title {
+  font-family: "KaiTi","Noto Serif SC",serif;
+  font-size: 18px; color: var(--gold); letter-spacing: 2px;
 }
 
 /* === 响应式 === */

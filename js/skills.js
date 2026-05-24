@@ -2,24 +2,16 @@
 
 const SKILL_GONGFA = 'skills_gongfa';
 const SKILL_SHENTONG = 'skills_shentong';
-
 const SKILL_GRADES = ['人阶下','人阶中','人阶上'];
+const SKILL_TYPES = ['攻击','防御','增益','辅助'];
 
 function createEmptySkill() {
-  return {
-    id: '',
-    name: '',
-    image: '',
-    element: '金',
-    grade: '人阶下',
-    desc: '',
-    cd: ''  // 仅神通使用
-  };
+  return { id: '', name: '', image: '', elements: [], grade: '人阶下', type: '攻击', desc: '', cd: '', combat: 0, subtype: '战技', lingli: 0 };
 }
 
 const Skills = {
 
-  _currentTab: 'gongfa',  // 'gongfa' | 'shentong'
+  _currentTab: 'gongfa',
 
   renderList() {
     const key = this._currentTab === 'gongfa' ? SKILL_GONGFA : SKILL_SHENTONG;
@@ -30,32 +22,48 @@ const Skills = {
     if (list.length === 0) {
       rows = `<div class="placeholder">暂无${label}，点击右上角按钮添加</div>`;
     } else {
-      rows = '<div class="row-list">';
+      rows = `<div class="row-list">
+      <div class="row-header">
+        <span class="row-h-col" style="width:72px;"></span>
+        <span class="row-h-col" style="width:155px;">名称</span>
+        <span class="row-h-col" style="width:90px;">五行</span>
+        <span class="row-h-col" style="width:75px;">等阶</span>
+        <span class="row-h-col" style="width:60px;">类型</span>
+        ${this._currentTab==='shentong'?'<span class="row-h-col" style="width:100px;">获取/消耗灵力</span>':''}
+        <span class="row-h-col" style="width:50px;">战力</span>
+      </div>`;
       list.forEach(s => {
-        const imgHtml = s.image
-          ? `<img src="${s.image}" alt="${s.name}">`
-          : `<div style="width:40px;height:40px;background:#eef5e6;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#95a385;font-size:10px;">无图</div>`;
-        const elTag = `<span class="tag tag-${s.element==='金'?'gold':s.element==='木'?'wood':s.element==='水'?'water':s.element==='火'?'fire':'earth'}">${s.element}</span>`;
+        const imgHtml = s.image ? `<img src="${s.image}" alt="${s.name}">` : '<div class="row-noimg">无图</div>';
+        const els = Array.isArray(s.elements) ? s.elements : (s.element ? [s.element] : []);
+        const elTag = els.map(e => `<span class="tag tag-${e==='金'?'gold':e==='木'?'wood':e==='水'?'water':e==='火'?'fire':'earth'}">${e}</span>`).join('');
+        // 详情弹窗 — 不显示"描述"标签
+        const detailArr = [{ name: '', desc: s.desc || '(无描述)' }];
+        if (s.cd) detailArr.push({ name: '冷却时间', desc: s.cd + '秒' });
+        const detailEsc = JSON.stringify(detailArr).replace(/'/g,'&#39;');
         rows += `
-          <div class="row-item" onclick="App.navigate('skills/detail?id=${s.id}&type=${Skills._currentTab}')">
+          <div class="row-item">
             ${imgHtml}
-            <span style="font-weight:bold;flex:1;">${s.name || '未命名'}</span>
-            ${elTag}
-            <span style="color:#6b7a5e;">${s.grade}</span>
+            <span class="row-name" style="width:155px;">${s.name || '未命名'}</span>
+            <span class="row-tags" style="width:90px;justify-content:center;">${elTag}</span>
+            <span style="color:var(--text-dim);width:75px;font-size:13px;text-align:center;white-space:nowrap;">${s.grade}</span>
+            <span style="color:var(--text-dim);width:60px;font-size:13px;text-align:center;white-space:nowrap;">${s.type||'攻击'}类</span>
+            ${Skills._currentTab==='shentong'?`<span style="color:var(--text-dim);width:100px;font-size:13px;text-align:center;white-space:nowrap;">${s.subtype==='绝技'?'消耗':'获取'}${s.lingli||0}</span>`:''}
+            <span style="color:var(--gold);width:50px;font-size:14px;text-align:center;white-space:nowrap;">${s.combat||0}</span>
+            <span class="row-actions">
+              <button class="row-icon-btn" onclick="App.navigate('skills/detail?id=${s.id}&type=${Skills._currentTab}')" title="编辑">✎</button>
+              <button class="row-icon-btn" data-detail='${detailEsc}' onclick="event.stopPropagation();showAbilityModal('${s.name||'功法'} 详情',JSON.parse(this.dataset.detail))" title="查看详情">👁</button>
+            </span>
           </div>`;
       });
       rows += '</div>';
     }
 
-    const gongfaActive = this._currentTab === 'gongfa' ? 'active' : '';
-    const shentongActive = this._currentTab === 'shentong' ? 'active' : '';
-
     return `
       <div class="toolbar">
-        <h2 style="color:#b8944c;flex:1;">功法与神通</h2>
+        <h2 style="color:var(--gold);flex:1;">功法与神通</h2>
         <div style="display:flex;gap:6px;">
-          <button class="tab-btn ${gongfaActive}" data-tab="gongfa" style="background:${this._currentTab==='gongfa'?'#b8944c':'#d4c8b0'};color:${this._currentTab==='gongfa'?'#f5f0e6':'#3d3226'};border-radius:6px 0 0 6px;">功法</button>
-          <button class="tab-btn ${shentongActive}" data-tab="shentong" style="background:${this._currentTab==='shentong'?'#b8944c':'#d4c8b0'};color:${this._currentTab==='shentong'?'#f5f0e6':'#3d3226'};border-radius:0 6px 6px 0;">神通</button>
+          <button class="tab-btn" data-tab="gongfa" style="background:${this._currentTab==='gongfa'?'var(--gold)':'var(--border)'};color:${this._currentTab==='gongfa'?'#fff':'var(--text)'};border-radius:6px 0 0 6px;">功法</button>
+          <button class="tab-btn" data-tab="shentong" style="background:${this._currentTab==='shentong'?'var(--gold)':'var(--border)'};color:${this._currentTab==='shentong'?'#fff':'var(--text)'};border-radius:0 6px 6px 0;">神通</button>
         </div>
         <button class="btn-primary" onclick="App.navigate('skills/detail?type=' + Skills._currentTab)">+ 添加${label}</button>
       </div>
@@ -65,23 +73,18 @@ const Skills = {
 
   bindListEvents() {
     const self = this;
-    // Tab 切换按钮（需要先切换 _currentTab 再导航）
     document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        self._currentTab = btn.dataset.tab;
-        App.navigate('skills');
-      });
+      btn.addEventListener('click', () => { self._currentTab = btn.dataset.tab; App.navigate('skills'); });
     });
   },
 
-  // === 详情页 ===
   renderDetail(id, type) {
     const storageKey = type === 'shentong' ? SKILL_SHENTONG : SKILL_GONGFA;
     const skill = id ? Storage.findById(storageKey, id) : createEmptySkill();
     if (id && !skill) return '<div class="placeholder">不存在</div>';
     const isNew = !id;
-    const label = type === 'shentong' ? '神通' : '功法';
     const isShentong = type === 'shentong';
+    const els = Array.isArray(skill.elements) ? skill.elements : (skill.element ? [skill.element] : []);
 
     return `
       <div class="detail-page" data-skill-id="${skill.id||''}" data-skill-type="${type}" data-is-new="${isNew}">
@@ -97,9 +100,16 @@ const Skills = {
             <div style="flex:1;">
               <div class="form-group"><label>名称</label><input type="text" id="skill-name" value="${skill.name}" style="width:100%;font-size:18px;"></div>
               <div class="form-row">
-                <div style="flex:1;"><label>五行属性</label><select id="skill-element">${ELEMENTS.map(e=>`<option value="${e}" ${skill.element===e?'selected':''}>${e}</option>`).join('')}</select></div>
+                <div style="flex:1;"><label>五行属性（可多选，最多3个）</label><div class="checkbox-group" id="skill-elements">${ELEMENTS.map(e => `<label><input type="checkbox" value="${e}" ${els.includes(e)?'checked':''} onchange="limitCheckbox(event,3)"> ${e}</label>`).join('')}</div></div>
                 <div style="flex:1;"><label>等阶</label><select id="skill-grade">${SKILL_GRADES.map(g=>`<option value="${g}" ${skill.grade===g?'selected':''}>${g}</option>`).join('')}</select></div>
-                ${isShentong?`<div style="flex:1;"><label>冷却时间(CD)</label><input type="text" id="skill-cd" value="${skill.cd||''}" placeholder="如：3回合"></div>`:''}
+              </div>
+              <div class="form-row">
+                <div style="flex:1;"><label>类型</label><select id="skill-type">${SKILL_TYPES.map(t=>`<option value="${t}" ${(skill.type||'攻击')===t?'selected':''}>${t}</option>`).join('')}</select></div>
+                ${isShentong?`<div style="flex:1;"><label>冷却时间(CD)</label><input type="text" id="skill-cd" value="${skill.cd||''}" placeholder="如：30秒"></div>`:''}
+                <div style="flex:1;"><label>战力</label><input type="number" id="skill-combat" value="${skill.combat||0}"></div>
+              </div>
+              ${isShentong?`<div class="form-row"><div style="flex:1;"><label>神通类型</label><select id="skill-subtype"><option value="战技" ${(skill.subtype||'战技')==='战技'?'selected':''}>战技（获取灵力）</option><option value="绝技" ${skill.subtype==='绝技'?'selected':''}>绝技（消耗灵力）</option></select></div><div style="flex:1;"><label>灵力${skill.subtype==='绝技'?'消耗':'获取'}</label><input type="number" id="skill-lingli" value="${skill.lingli||0}"></div></div>`:''}
+              <div class="form-group"><label>详细描述</label>
               </div>
               <div class="form-group"><label>详细描述</label><textarea id="skill-desc" style="width:100%;min-height:120px;">${skill.desc||''}</textarea></div>
             </div>
@@ -115,12 +125,8 @@ const Skills = {
   },
 
   bindDetailEvents() {
-    const self = this;
-    const el = document.querySelector('.detail-page');
-    if (!el) return;
-    const skillId = el.dataset.skillId;
-    const skillType = el.dataset.skillType;
-    const isNew = el.dataset.isNew === 'true';
+    const el = document.querySelector('.detail-page'); if (!el) return;
+    const skillId = el.dataset.skillId; const skillType = el.dataset.skillType;
 
     const imgZone = document.getElementById('skill-img-zone');
     if (imgZone) {
@@ -130,15 +136,12 @@ const Skills = {
       ImageUpload.create(imgZone, () => {});
     }
 
-    // Back button uses inline onclick
-
     const save = () => {
-      const data = self._collect(skillId, skillType);
+      const data = this._collect(skillId, skillType);
       if (!data.name.trim()) { alert('请输入名称'); return; }
       if (!data.id) data.id = Storage.uid();
       const storageKey = skillType === 'shentong' ? SKILL_SHENTONG : SKILL_GONGFA;
       Storage.save(storageKey, data);
-      // 恢复当前 tab
       this._currentTab = skillType;
       App.navigate('skills');
     };
@@ -160,14 +163,16 @@ const Skills = {
   _collect(skillId, type) {
     let data = { id: skillId || '' };
     data.name = document.getElementById('skill-name')?.value || '';
-    data.element = document.getElementById('skill-element')?.value || '金';
+    data.elements = Array.from(document.querySelectorAll('#skill-elements input:checked')).map(cb => cb.value);
     data.grade = document.getElementById('skill-grade')?.value || '人阶下';
+    data.type = document.getElementById('skill-type')?.value || '攻击';
     data.desc = document.getElementById('skill-desc')?.value || '';
     data.image = document.querySelector('#skill-img-zone img')?.src || '';
+    data.cd = type === 'shentong' ? (document.getElementById('skill-cd')?.value || '') : '';
+    data.combat = parseInt(document.getElementById('skill-combat')?.value) || 0;
     if (type === 'shentong') {
-      data.cd = document.getElementById('skill-cd')?.value || '';
-    } else {
-      data.cd = '';
+      data.subtype = document.getElementById('skill-subtype')?.value || '战技';
+      data.lingli = parseInt(document.getElementById('skill-lingli')?.value) || 0;
     }
     return data;
   }

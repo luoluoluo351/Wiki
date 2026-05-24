@@ -1,5 +1,33 @@
 // 应用入口：路由 + 导航 + 初始化
 
+// 全局技能查看弹窗
+function showAbilityModal(title, skills, extraSkills) {
+  let html = '<div style="display:flex;flex-direction:column;gap:12px;">';
+  function renderList(list, label) {
+    if (!list || list.length === 0) return '';
+    let h = label ? `<div style="color:var(--gold);font-weight:bold;font-size:16px;margin-bottom:4px;">${label}</div>` : '';
+    list.forEach(s => {
+      h += `<div class="entry-item" style="margin-bottom:6px;">
+        <div style="font-weight:bold;margin-bottom:4px;">${s.name || '(无名称)'}</div>
+        <div style="color:var(--text-dim);font-size:14px;white-space:pre-line;">${s.desc || '(无描述)'}</div>
+      </div>`;
+    });
+    return h;
+  }
+  // skills 参数：true 为显示标签，false 为隐藏标签
+  // 灵宠分主动/被动，用 extraSkills 区分
+  if (skills && Array.isArray(skills)) {
+    html += renderList(skills, extraSkills ? '主动技能' : '');
+  }
+  if (extraSkills && Array.isArray(extraSkills)) {
+    html += renderList(extraSkills, skills ? '被动技能' : '');
+  }
+  html += '</div>';
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').innerHTML = html;
+  document.getElementById('skill-modal').style.display = 'flex';
+}
+
 const App = {
   _suppressHashChange: false,
 
@@ -105,6 +133,8 @@ const App = {
           app.innerHTML = MapModule.render(); if (MapModule.bindEvents) MapModule.bindEvents(); break;
         case 'damage':
           app.innerHTML = Damage.render();   if (Damage.bindEvents)   Damage.bindEvents();   break;
+        case 'leaderboard':
+          app.innerHTML = Leaderboard.render(); Leaderboard.bindEvents(); break;
         default:
           app.innerHTML = Placeholder.render('页面不存在');
       }
@@ -125,6 +155,112 @@ const App = {
       });
     }
     return { module: parts[0] || 'home', action: parts[1] || '', params };
+  }
+};
+
+// 排行榜模块
+const Leaderboard = {
+  STORAGE: 'leaderboard',
+
+  render() {
+    const list = Storage.list(this.STORAGE);
+    let rows = '';
+    if (list.length === 0) {
+      rows = '<div class="placeholder">暂无排行，点击右上角添加角色</div>';
+    } else {
+      rows = `<div class="row-list">
+      <div class="row-header">
+        <span class="row-h-col" style="width:72px;">排名</span>
+        <span class="row-h-col" style="width:72px;"></span>
+        <span class="row-h-col" style="width:100px;">名称</span>
+        <span class="row-h-col" style="width:80px;">修为</span>
+        <span class="row-h-col" style="width:80px;">宗门</span>
+        <span class="row-h-col" style="width:150px;">主修功法</span>
+        <span class="row-h-col" style="width:70px;">战力</span>
+      </div>`;
+      // 按战力排序
+      const sorted = [...list].sort((a,b) => {
+        const ca = Storage.findById('characters', a.charId);
+        const cb = Storage.findById('characters', b.charId);
+        if (!ca || !cb) return 0;
+        let ta = calcCombatPower(ca), tb = calcCombatPower(cb);
+        (ca.mainSkills||[]).forEach(id => { const s=skillNameById(id); if(s) ta+=s.combat||0; });
+        (cb.mainSkills||[]).forEach(id => { const s=skillNameById(id); if(s) tb+=s.combat||0; });
+        (ca.learnedAbilities||[]).forEach(id => { const s=skillNameById(id); if(s) ta+=s.combat||0; });
+        (cb.learnedAbilities||[]).forEach(id => { const s=skillNameById(id); if(s) tb+=s.combat||0; });
+        return tb - ta;
+      });
+      // 始终至少显示 10 名，无上限
+      const totalRows = Math.max(sorted.length, 10);
+      for (let rank = 1; rank <= totalRows; rank++) {
+        const entry = sorted[rank - 1];
+        const c = entry ? Storage.findById('characters', entry.charId) : null;
+        const rankClass = rank === 1 ? 'rank-1' : rank === 2 ? 'rank-2' : rank === 3 ? 'rank-3' : 'rank-n';
+        const rankLabel = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`;
+        if (!c) {
+          rows += `<div class="row-item" style="min-height:130px;opacity:0.35;">
+            <span class="rank-badge ${rankClass}">${rankLabel}</span>
+            <div class="row-noimg">虚位</div>
+            <span class="row-name" style="width:100px;">虚位以待</span>
+            <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;">—</span>
+            <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;">—</span>
+            <span style="color:var(--text-dim);width:150px;font-size:12px;text-align:center;">—</span>
+            <span style="color:var(--text-dim);width:70px;text-align:center;">—</span>
+            <span class="row-actions"></span>
+          </div>`;
+          continue;
+        }
+        const avatarHtml = c.avatar ? `<img src="${c.avatar}" alt="${c.name}">` : '<div class="row-noimg">无图</div>';
+        let totalCombat = calcCombatPower(c);
+        let mainNames = [];
+        (c.mainSkills||[]).forEach(skId => {
+          const s = skillNameById(skId);
+          if (s) { totalCombat += (s.combat||0); mainNames.push(s.name); }
+        });
+        (c.learnedAbilities||[]).forEach(skId => {
+          const s = skillNameById(skId);
+          if (s) totalCombat += (s.combat||0);
+        });
+        rows += `<div class="row-item" style="min-height:130px;">
+          <span class="rank-badge ${rankClass}">${rankLabel}</span>
+          ${avatarHtml}
+          <span class="row-name" style="width:100px;">${c.name||'未命名'}</span>
+          <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${c.realm}</span>
+          <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${c.sect||'—'}</span>
+          <span style="color:var(--text-dim);width:150px;font-size:12px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${mainNames.join('、')||'—'}</span>
+          <span style="color:var(--gold);font-size:18px;font-weight:bold;width:70px;text-align:center;white-space:nowrap;">${totalCombat}</span>
+          <span class="row-actions"><button class="row-icon-btn" onclick="Leaderboard.remove('${entry.charId}')" title="移除">×</button></span>
+        </div>`;
+      }
+      rows += '</div>';
+    }
+    return `<div class="toolbar"><h2 style="color:var(--gold);flex:1;">排行榜</h2><button class="btn-primary" id="btn-add-lb">+ 添加角色</button></div>${rows}`;
+  },
+
+  bindEvents() {
+    document.getElementById('btn-add-lb')?.addEventListener('click', () => {
+      const chars = Storage.list('characters');
+      if (chars.length === 0) { alert('请先在角色图鉴中添加角色'); return; }
+      const list = Storage.list(this.STORAGE);
+      const names = chars.map((c,i) => {
+        const already = list.some(e => e.charId === c.id) ? ' [已添加]' : '';
+        return `${i+1}. ${c.name||'未命名'} ${c.realm}${already}`;
+      }).join('\n');
+      const idx = prompt('选择角色加入排行榜（输入序号）：\n' + names);
+      if (!idx) return;
+      const ci = parseInt(idx) - 1;
+      if (ci < 0 || ci >= chars.length) { alert('无效序号'); return; }
+      if (list.some(e => e.charId === chars[ci].id)) { alert('该角色已在排行榜中'); return; }
+      list.push({ charId: chars[ci].id });
+      Storage.set(Leaderboard.STORAGE, list);
+      App.navigate('leaderboard');
+    });
+  },
+
+  remove(charId) {
+    const list = Storage.list(this.STORAGE);
+    Storage.set(this.STORAGE, list.filter(e => e.charId !== charId));
+    App.navigate('leaderboard');
   }
 };
 
@@ -286,6 +422,15 @@ const HomePage = {
   },
 
 };
+
+// 多选项最多选3个
+function limitCheckbox(e, max) {
+  if (!e.target.checked) return;
+  const group = e.target.closest('.checkbox-group');
+  if (!group) return;
+  const checked = group.querySelectorAll('input[type="checkbox"]:checked');
+  if (checked.length > max) { e.target.checked = false; alert(`最多选择 ${max} 个`); }
+}
 
 document.addEventListener('DOMContentLoaded', () => App.init());
 

@@ -13,7 +13,7 @@ const MapModule = {
         <h2 style="color:#b8944c;flex:1;">地图</h2>
         ${hasImage ? '<button class="btn-danger" id="btn-del-map">删除地图</button>' : ''}
       </div>
-      <div id="map-drop-zone" class="drop-zone" style="min-height:${hasImage ? 'auto' : '300px'};padding:${hasImage ? '0' : '40px'};">
+      <div id="map-drop-zone" class="drop-zone" style="min-height:${hasImage ? 'auto' : '500px'};padding:${hasImage ? '0' : '40px'};">
         ${hasImage ? `<img src="${image}" style="width:100%;border-radius:4px;" alt="地图">` : '拖拽地图图片到此处<br>或点击选择文件'}
       </div>
     `;
