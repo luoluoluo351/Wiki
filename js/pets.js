@@ -58,9 +58,10 @@ const Pets = {
           <span class="row-stat" style="width:65px;">${p.basicAttr.atk.lv60}</span>
           <span class="row-stat" style="width:65px;">${p.basicAttr.def.lv60}</span>
           <span style="color:var(--gold);width:50px;font-size:14px;text-align:center;white-space:nowrap;">${calcPetCombat(p)}</span>
-          <span class="row-actions">
+          <span class="row-actions" style="width:100px;justify-content:center;">
             <button class="row-icon-btn" onclick="App.navigate('pets/detail?id=${p.id}')" title="编辑">✎</button>
             <button class="row-icon-btn" data-active='${activeEsc}' data-passive='${passiveEsc}' onclick="event.stopPropagation();showAbilityModal('${p.name||'灵宠'} 技能',JSON.parse(this.dataset.active),JSON.parse(this.dataset.passive))" title="查看能力">👁</button>
+            <button class="row-icon-btn" onclick="event.stopPropagation();if(confirm('确定删除「${p.name||'未命名'}」？')){Storage.deleteById('pets','${p.id}');App.navigate('pets');}" title="删除" style="color:var(--red);">×</button>
           </span>
         </div>`;
       });
@@ -80,13 +81,13 @@ const Pets = {
     function advRow(label, key) { const val=pet.advancedAttr[key]||{lv1:0,lv60:0}; const g=(val.lv60-val.lv1)/59; const red=g<0?'color:var(--red);':''; return `<div class="form-row"><div style="flex:1;"><label>${label} 1级值(%)</label><input type="number" value="${val.lv1}" data-field="adv_${key}_lv1" step="0.01"></div><div style="flex:1;"><label>${label} 60级值(%)</label><input type="number" value="${val.lv60}" data-field="adv_${key}_lv60" step="0.01"></div><div style="flex:1;"><label>每级成长</label><span class="adv-growth-display" data-adv="${key}" style="${red}">${g.toFixed(2)}</span></div></div>`; }
     function skillHtml(skills, label) { let h=''; skills.forEach((s,i)=>{ h+=`<div class="entry-item"><div class="entry-header"><span>${label} #${i+1}</span><button class="btn-delete pet-skill-del">×</button></div><input type="text" value="${s.name||''}" data-field="${label}_name_${i}" placeholder="技能名称" style="width:100%;margin-bottom:8px;"><textarea data-field="${label}_desc_${i}" placeholder="技能描述">${s.desc||''}</textarea></div>`; }); return h||`<div class="empty-hint">暂无${label}</div>`; }
     return `<div class="detail-page" data-pet-id="${pet.id||''}" data-is-new="${isNew}">
-      <div class="toolbar"><button class="btn-primary" onclick="App.navigate('pets')">← 返回列表</button><button class="btn-primary" id="btn-save">保存</button>${!isNew?'<button class="btn-danger" id="btn-del">删除灵宠</button>':''}</div>
+      <div class="toolbar"><button class="btn-primary" onclick="App.navigate('pets')">← 返回列表</button><button class="btn-primary" id="btn-save">保存</button><button class="btn-danger" id="btn-del" ${isNew?'style="display:none"':''}>删除灵宠</button></div>
       <fieldset class="fieldset"><legend>基本信息</legend><div class="form-row"><div style="flex:0 0 200px;"><label>图片</label><div id="pet-img-zone" class="drop-zone">拖拽图片到此处<br>或点击选择文件</div></div><div style="flex:1;"><div class="form-group"><label>名称</label><input type="text" id="pet-name" value="${pet.name}" style="width:100%;font-size:18px;"></div><div class="form-group"><label>境界</label><select id="pet-realm">${REALMS.map(r=>`<option value="${r}" ${pet.realm===r?'selected':''}>${r}</option>`).join('')}</select></div><div class="form-group"><label>五行属性（可多选，最多3个）</label><div class="checkbox-group" id="pet-roots">${rootsHtml}</div></div></div></div></fieldset>
       <fieldset class="fieldset"><legend>基础属性（1级→60级，线性成长）</legend>${basicRow('生命','hp')}${basicRow('攻击','atk')}${basicRow('防御','def')}</fieldset>
       <fieldset class="fieldset"><legend>进阶属性（1级→60级，线性成长）</legend>${advRow('暴击率','critRate')}${advRow('暴击伤害','critDmg')}<div style="margin-top:12px;color:var(--gold);font-weight:bold;">五行抗性</div>${ELEMENTS.map(e=>{const m={金:'metal',木:'wood',水:'water',火:'fire',土:'earth'};return advRow(e+'抗性','resist_'+m[e]);}).join('')}<div style="margin-top:12px;color:var(--gold);font-weight:bold;">五行伤害加成</div>${ELEMENTS.map(e=>{const m={金:'metal',木:'wood',水:'water',火:'fire',土:'earth'};return advRow(e+'伤害加成','dmg_'+m[e]);}).join('')}</fieldset>
       <fieldset class="fieldset"><legend>主动技能 <button class="btn-add" id="btn-add-active">+</button></legend><div id="active-container">${skillHtml(pet.activeSkills,'主动技能')}</div></fieldset>
       <fieldset class="fieldset"><legend>被动技能 <button class="btn-add" id="btn-add-passive">+</button></legend><div id="passive-container">${skillHtml(pet.passiveSkills,'被动技能')}</div></fieldset>
-      <div class="toolbar" style="margin-top:20px;"><button class="btn-primary" id="btn-save2">保存</button>${!isNew?'<button class="btn-danger" id="btn-del2">删除灵宠</button>':''}</div>
+      <div class="toolbar" style="margin-top:20px;"><button class="btn-primary" id="btn-save2">保存</button><button class="btn-danger" id="btn-del2" ${isNew?'style="display:none"':''}>删除灵宠</button></div>
     </div>`;
   },
 

@@ -51,9 +51,10 @@ const Treasures = {
           ${anyAttack ? (hasEntry1 ? `<span class="row-stat" style="width:105px;">${e1Label}+${t.entry1.lv60}</span>` : '<span style="width:105px;text-align:center;">—</span>') : ''}
           <span class="row-stat" style="width:100px;">${t.entry2.stat}+${t.entry2.lv60}%</span>
           <span style="color:var(--gold);width:55px;font-size:14px;text-align:center;white-space:nowrap;">${calcTreasureCombat(t)}</span>
-          <span class="row-actions">
+          <span class="row-actions" style="width:100px;justify-content:center;">
             <button class="row-icon-btn" onclick="App.navigate('treasures/detail?id=${t.id}')" title="编辑">✎</button>
             <button class="row-icon-btn" data-skills='${skillsEsc}' onclick="event.stopPropagation();showAbilityModal('${t.name||'法宝'} 特性',JSON.parse(this.dataset.skills))" title="查看能力">👁</button>
+            <button class="row-icon-btn" onclick="event.stopPropagation();if(confirm('确定删除「${t.name||'未命名'}」？')){Storage.deleteById('treasures','${t.id}');App.navigate('treasures');}" title="删除" style="color:var(--red);">×</button>
           </span>
         </div>`;
       });
@@ -77,12 +78,12 @@ const Treasures = {
     const e2g = ((t.entry2.lv60 - t.entry2.lv1) / 59);
     let skillsHtml = ''; (t.passiveSkills||[]).forEach((sk,i)=>{ skillsHtml += `<div class="entry-item"><div class="entry-header"><span>特性 #${i+1}</span><button class="btn-delete" data-action="del-skill" data-idx="${i}">×</button></div><input type="text" value="${sk.name||''}" data-field="tskill_name_${i}" placeholder="技能名称" style="width:100%;margin-bottom:8px;"><textarea data-field="tskill_desc_${i}" placeholder="技能描述" style="width:100%;">${sk.desc||''}</textarea></div>`; });
     return `<div class="detail-page" data-treasure-id="${t.id||''}" data-is-new="${isNew}">
-      <div class="toolbar"><button class="btn-primary" onclick="App.navigate('treasures')">← 返回列表</button><button class="btn-primary" id="btn-save">保存</button>${!isNew?'<button class="btn-danger" id="btn-del">删除法宝</button>':''}</div>
+      <div class="toolbar"><button class="btn-primary" onclick="App.navigate('treasures')">← 返回列表</button><button class="btn-primary" id="btn-save">保存</button><button class="btn-danger" id="btn-del" ${isNew?'style="display:none"':''}>删除法宝</button></div>
       <fieldset class="fieldset"><legend>基本信息</legend><div class="form-row"><div style="flex:0 0 200px;"><label>法宝图片</label><div id="treasure-img-zone" class="drop-zone">拖拽图片到此处<br>或点击选择文件</div></div><div style="flex:1;"><div class="form-group"><label>名称</label><input type="text" id="treasure-name" value="${t.name}" style="width:100%;font-size:18px;"></div><div class="form-row"><div style="flex:1;"><label>类型</label><select id="treasure-type">${Object.entries(TREASURE_TYPES).map(([k,v])=>`<option value="${k}" ${t.type===k?'selected':''}>${v.label}</option>`).join('')}</select></div><div style="flex:1;"><label>子类型</label><select id="treasure-subtype">${subOptions.map(s=>`<option value="${s}" ${t.subtype===s?'selected':''}>${s}</option>`).join('')}</select></div><div style="flex:1;"><label>品阶</label><select id="treasure-grade">${TREASURE_GRADES.map(g=>`<option value="${g}" ${t.grade===g?'selected':''}>${g}</option>`).join('')}</select></div></div></div></div></fieldset>
       <fieldset class="fieldset" id="entry1-section" ${hasEntry1?'':'style="display:none;"'}><legend>词条1 — ${e1Label}（1级→60级，线性成长）</legend><div class="form-row"><div style="flex:1;"><label>1级值</label><input type="number" id="entry1-lv1" value="${t.entry1.lv1}"></div><div style="flex:1;"><label>60级值</label><input type="number" id="entry1-lv60" value="${t.entry1.lv60}"></div><div style="flex:1;"><label>每级成长</label><span id="entry1-growth" style="${e1g<0?'color:var(--red);':''}">${e1g.toFixed(2)}</span></div></div></fieldset>
       <fieldset class="fieldset"><legend>词条2 — 可选属性（1级→60级，线性成长，百分比值）</legend><div class="form-row"><div style="flex:1;"><label>属性</label><select id="entry2-stat">${ENTRY2_STATS.map(s=>`<option value="${s}" ${t.entry2.stat===s?'selected':''}>${s}</option>`).join('')}</select></div><div style="flex:1;"><label>1级值 (%)</label><input type="number" id="entry2-lv1" value="${t.entry2.lv1}" step="0.01"></div><div style="flex:1;"><label>60级值 (%)</label><input type="number" id="entry2-lv60" value="${t.entry2.lv60}" step="0.01"></div><div style="flex:1;"><label>每级成长</label><span id="entry2-growth" style="${e2g<0?'color:var(--red);':''}">${e2g.toFixed(2)}</span></div></div></fieldset>
       <fieldset class="fieldset"><legend>特性 <button class="btn-add" id="btn-add-skill">+</button></legend><div id="skills-container">${skillsHtml||'<div style="color:var(--text-dim);">暂无特性</div>'}</div></fieldset>
-      <div class="toolbar" style="margin-top:20px;"><button class="btn-primary" id="btn-save2">保存</button>${!isNew?'<button class="btn-danger" id="btn-del2">删除法宝</button>':''}</div>
+      <div class="toolbar" style="margin-top:20px;"><button class="btn-primary" id="btn-save2">保存</button><button class="btn-danger" id="btn-del2" ${isNew?'style="display:none"':''}>删除法宝</button></div>
     </div>`;
   },
 
