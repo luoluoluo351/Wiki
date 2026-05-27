@@ -13,7 +13,7 @@ function calcTreasureCombat(t) {
   else if (t.type === 'defense') pts += (t.entry1.lv60||0) / 10;
   const s = t.entry2.stat; const v = t.entry2.lv60 || 0;
   if (s==='生命') pts += v / 0.1;
-  else if (s==='攻击') pts += v / 0.15;
+  else if (s==='攻击') pts += v / 0.1;
   else if (s==='防御') pts += v / 0.1;
   else if (s==='暴击率'||s==='暴击伤害') pts += v;
   else if (s.includes('抗性')||s.includes('伤害加成')) pts += v / 0.8;

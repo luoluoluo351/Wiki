@@ -16,7 +16,7 @@
 | `pets` | 灵宠列表 | JSON 数组 |
 | `skills_gongfa` | 功法列表 | JSON 数组 |
 | `skills_shentong` | 神通列表 | JSON 数组 |
-| `map_image` | 地图图片 | Base64 字符串 |
+| `map_image` | ~~地图图片~~（已废弃，改用固定文件引用） |
 
 ## 图片处理
 
