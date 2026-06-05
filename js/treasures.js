@@ -40,7 +40,7 @@ const Treasures = {
         <span class="row-h-col" style="width:55px;">战力</span>
       </div>`;
       filtered.forEach(t => {
-        const imgHtml = t.image ? `<img src="${t.image}" alt="${t.name}">` : '<div class="row-noimg">无图</div>';
+        const tSrc=(t.image||'').startsWith('data:')?t.image:(t.image?'img/'+t.image:'');const imgHtml=tSrc?`<img src="${tSrc}" alt="${t.name}">`:'<div class="row-noimg">无图</div>';
         const hasEntry1 = t.type === 'attack' || t.type === 'defense';
         const e1Label = t.type === 'attack' ? '基础攻击' : '基础生命';
         const skillsEsc = JSON.stringify(t.passiveSkills||[]).replace(/'/g,'&#39;');
@@ -90,7 +90,7 @@ const Treasures = {
   bindDetailEvents() {
     const self=this; const el=document.querySelector('.detail-page'); if(!el)return;
     const tid=el.dataset.treasureId; const isNew=el.dataset.isNew==='true';
-    const iz=document.getElementById('treasure-img-zone'); if(iz){let cur=tid?Storage.findById(TREASURE_STORAGE,tid):null;if(cur?.image)ImageUpload.setPreview(iz,cur.image);ImageUpload.create(iz,()=>{});}
+    const iz=document.getElementById('treasure-img-zone'); if(iz){let cur=tid?Storage.findById(TREASURE_STORAGE,tid):null;ImageUpload.setup(iz,cur?.image||'',(v)=>{});}
     const save=()=>{const d=self._collect(tid);if(!d.name.trim()){alert('请输入法宝名称');return;}if(!d.id)d.id=Storage.uid();Storage.save(TREASURE_STORAGE,d);App.navigate('treasures');};
     document.getElementById('btn-save')?.addEventListener('click',save); document.getElementById('btn-save2')?.addEventListener('click',save);
     const del=()=>{if(confirm('确定删除该法宝？')){Storage.deleteById(TREASURE_STORAGE,tid);App.navigate('treasures');}};
@@ -102,6 +102,6 @@ const Treasures = {
     document.querySelectorAll('[data-action="del-skill"]').forEach(b=>{b.addEventListener('click',function(){this.closest('.entry-item').remove();const c=document.getElementById('skills-container');if(c.children.length===0)c.innerHTML='<div style="color:var(--text-dim);">暂无特性</div>';});});
   },
 
-  _collect(tid){let d=tid?Storage.findById(TREASURE_STORAGE,tid):createEmptyTreasure();if(!d)d=createEmptyTreasure();d.id=tid||'';d.name=document.getElementById('treasure-name')?.value||'';d.type=document.getElementById('treasure-type')?.value||'attack';d.subtype=document.getElementById('treasure-subtype')?.value||'剑';d.grade=document.getElementById('treasure-grade')?.value||'下品法器';d.entry1={lv1:parseFloat(document.getElementById('entry1-lv1')?.value)||0,lv60:parseFloat(document.getElementById('entry1-lv60')?.value)||0};d.entry2={stat:document.getElementById('entry2-stat')?.value||'攻击',lv1:parseFloat(document.getElementById('entry2-lv1')?.value)||0,lv60:parseFloat(document.getElementById('entry2-lv60')?.value)||0};d.image=document.querySelector('#treasure-img-zone img')?.src||'';d.passiveSkills=[];document.querySelectorAll('#skills-container .entry-item').forEach(item=>{const n=item.querySelector('input');const t=item.querySelector('textarea');d.passiveSkills.push({name:n?.value||'',desc:t?.value||''});});return d;}
+  _collect(tid){let d=tid?Storage.findById(TREASURE_STORAGE,tid):createEmptyTreasure();if(!d)d=createEmptyTreasure();d.id=tid||'';d.name=document.getElementById('treasure-name')?.value||'';d.type=document.getElementById('treasure-type')?.value||'attack';d.subtype=document.getElementById('treasure-subtype')?.value||'剑';d.grade=document.getElementById('treasure-grade')?.value||'下品法器';d.entry1={lv1:parseFloat(document.getElementById('entry1-lv1')?.value)||0,lv60:parseFloat(document.getElementById('entry1-lv60')?.value)||0};d.entry2={stat:document.getElementById('entry2-stat')?.value||'攻击',lv1:parseFloat(document.getElementById('entry2-lv1')?.value)||0,lv60:parseFloat(document.getElementById('entry2-lv60')?.value)||0};d.image=document.querySelector('#treasure-img-zone .img-filename-input')?.value?.trim()||'';d.passiveSkills=[];document.querySelectorAll('#skills-container .entry-item').forEach(item=>{const n=item.querySelector('input');const t=item.querySelector('textarea');d.passiveSkills.push({name:n?.value||'',desc:t?.value||''});});return d;}
 };
 Treasures.setFilter = function(f) { Treasures._currentFilter = f; };

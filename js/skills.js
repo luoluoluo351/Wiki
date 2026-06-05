@@ -33,7 +33,7 @@ const Skills = {
         <span class="row-h-col" style="width:50px;">战力</span>
       </div>`;
       list.forEach(s => {
-        const imgHtml = s.image ? `<img src="${s.image}" alt="${s.name}">` : '<div class="row-noimg">无图</div>';
+        const sSrc=(s.image||'').startsWith('data:')?s.image:(s.image?'img/'+s.image:'');const imgHtml=sSrc?`<img src="${sSrc}" alt="${s.name}">`:'<div class="row-noimg">无图</div>';
         const els = Array.isArray(s.elements) ? s.elements : (s.element ? [s.element] : []);
         const elTag = els.map(e => `<span class="tag tag-${e==='金'?'gold':e==='木'?'wood':e==='水'?'water':e==='火'?'fire':'earth'}">${e}</span>`).join('');
         // 详情弹窗 — 不显示"描述"标签
@@ -132,8 +132,7 @@ const Skills = {
     if (imgZone) {
       const storageKey = skillType === 'shentong' ? SKILL_SHENTONG : SKILL_GONGFA;
       let cur = skillId ? Storage.findById(storageKey, skillId) : null;
-      if (cur?.image) ImageUpload.setPreview(imgZone, cur.image);
-      ImageUpload.create(imgZone, () => {});
+      ImageUpload.setup(imgZone, cur?.image||'', (v)=>{});
     }
 
     const save = () => {
@@ -141,7 +140,7 @@ const Skills = {
       if (!data.name.trim()) { alert('请输入名称'); return; }
       if (!data.id) data.id = Storage.uid();
       const storageKey = skillType === 'shentong' ? SKILL_SHENTONG : SKILL_GONGFA;
-      Storage.save(storageKey, data);
+      if (!Storage.save(storageKey, data)) { alert('保存失败，数据过大，请压缩图片后重试'); return; }
       this._currentTab = skillType;
       App.navigate('skills');
     };
@@ -161,13 +160,15 @@ const Skills = {
   },
 
   _collect(skillId, type) {
-    let data = { id: skillId || '' };
+    const storageKey = type === 'shentong' ? SKILL_SHENTONG : SKILL_GONGFA;
+    let data = skillId ? (Storage.findById(storageKey, skillId) || createEmptySkill()) : createEmptySkill();
+    data.id = skillId || '';
     data.name = document.getElementById('skill-name')?.value || '';
     data.elements = Array.from(document.querySelectorAll('#skill-elements input:checked')).map(cb => cb.value);
     data.grade = document.getElementById('skill-grade')?.value || '人阶下';
     data.type = document.getElementById('skill-type')?.value || '攻击';
     data.desc = document.getElementById('skill-desc')?.value || '';
-    data.image = document.querySelector('#skill-img-zone img')?.src || '';
+    data.image = document.querySelector('#skill-img-zone .img-filename-input')?.value?.trim() || '';
     data.cd = type === 'shentong' ? (document.getElementById('skill-cd')?.value || '') : '';
     data.combat = parseInt(document.getElementById('skill-combat')?.value) || 0;
     if (type === 'shentong') {

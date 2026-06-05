@@ -212,6 +212,15 @@ const Leaderboard = {
           </div>`;
           continue;
         }
+        // 兼容旧数据
+        if (!c.realmStages||c.realmStages.length===0) {
+          c.realmStages = [];
+          if (c.basicAttr) {
+            const s = {realm:c.realm||'练气初期',hp:c.basicAttr.hp?.lv100||0,atk:c.basicAttr.atk?.lv100||0,def:c.basicAttr.def?.lv100||0,critRate:0,critDmg:0,resist:{metal:0,wood:0,water:0,fire:0,earth:0},dmgBonus:{metal:0,wood:0,water:0,fire:0,earth:0}};
+            if (c.advancedAttr) { s.critRate=c.advancedAttr.critRate||0; s.critDmg=c.advancedAttr.critDmg||0; ['metal','wood','water','fire','earth'].forEach(k=>{s.resist[k]=c.advancedAttr.resist?.[k]||0;s.dmgBonus[k]=c.advancedAttr.dmgBonus?.[k]||0;}); }
+            c.realmStages.push(s);
+          }
+        }
         const avatarHtml = c.avatar ? `<img src="${c.avatar}" alt="${c.name}">` : '<div class="row-noimg">无图</div>';
         let totalCombat = calcCombatPower(c);
         let mainNames = [];
@@ -233,7 +242,7 @@ const Leaderboard = {
           <span class="rank-badge ${rankClass}">${rankLabel}</span>
           ${avatarHtml}
           <span class="row-name" style="width:100px;">${c.name||'未命名'}</span>
-          <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${c.realm}</span>
+          <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${majorName(c.realm)}</span>
           <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${c.sect||'—'}</span>
           <span style="color:var(--text-dim);width:150px;font-size:12px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${mainNames.join('、')||'—'}</span>
           <span style="color:var(--gold);font-size:18px;font-weight:bold;width:70px;text-align:center;white-space:nowrap;">${totalCombat}</span>
