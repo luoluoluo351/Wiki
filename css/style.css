@@ -151,6 +151,27 @@ body::after {
   max-width:1200px; margin-left:auto; margin-right:auto;
 }
 
+/* === 活动轮播 === */
+.event-carousel {
+  width: 100%; max-width: 850px; margin: 0 auto;
+  align-self: stretch; overflow: hidden; border-radius: 12px;
+  background: none; position: relative; z-index: 3;
+}
+.event-track {
+  display: flex; transition: transform 0.5s ease; width: 100%; flex:1;
+}
+.event-slide { min-width: 100%; }
+.ev-hidden { display: none !important; }
+.event-slide img { width: 100%; height: 100%; object-fit: contain; object-position: top center; display: block; }
+.event-dots {
+  display: flex; justify-content: center; gap: 12px; padding: 10px 0; min-height: 24px;
+}
+.event-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: rgba(0,0,0,0.35); cursor: pointer; transition: all 0.2s;
+}
+.event-dot.active { background: var(--gold); transform: scale(1.3); }
+
 /* === 首页 === */
 .home-page {
   position: fixed; top:0; left:0; width:100vw; height:100vh; z-index:0;
@@ -207,20 +228,14 @@ body::after {
   z-index:1; max-width:500px; padding: 0 16px;
 }
 
-/* 左右面板绝对贴边 */
+/* 左右面板 — 弹性布局内嵌 */
 .home-panel {
-  position: absolute; top: 80px; bottom: 30px;
-  width: 260px;
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(184,148,76,0.15);
-  box-shadow: 0 4px 20px rgba(60,40,20,0.06);
+  width: 260px; flex-shrink:0;
+  background: none; backdrop-filter: none;
+  border: none; box-shadow: none;
   z-index:2; display:flex; flex-direction:column;
-  overflow: hidden;
+  overflow-y:auto; border-radius:var(--radius);
 }
-
-.home-panel-left { left: 0; border-radius: 0 var(--radius) var(--radius) 0; }
-.home-panel-right { right: 0; border-radius: var(--radius) 0 0 var(--radius); }
 
 .home-title {
   font-size:52px; color: var(--gold); letter-spacing:8px;
@@ -238,12 +253,12 @@ body::after {
 
 .home-panel-header {
   display:flex; align-items:center; justify-content:space-between;
-  padding: 16px 18px 10px;
+  padding: 6px 14px 8px;
   border-bottom: 1px solid rgba(184,148,76,0.1);
 }
 .home-panel-header h3 {
   font-family: "KaiTi","Noto Serif SC",serif;
-  color: var(--bamboo); font-size:16px; letter-spacing:2px;
+  color: var(--bamboo); font-size:22px; font-weight:bold; letter-spacing:3px;
 }
 
 .home-panel-body {
@@ -255,31 +270,18 @@ body::after {
   padding: 6px 0; border-bottom:1px dashed rgba(180,160,130,0.2);
   font-size:13px; line-height:1.5;
 }
-.home-update-date {
-  display:block; color: var(--text-light); font-size:11px; margin-bottom:2px;
-}
-.home-update-text { color: var(--text); }
-
-.home-update-top {
-  display:flex; align-items:center; justify-content:space-between;
-}
-.home-update-actions {
-  display:flex; gap:2px; opacity:0; transition: opacity 0.2s;
-}
+/* 近期更新条目 */
+.home-update-item { padding: 8px 0; border-bottom:1px dashed rgba(180,160,130,0.2); font-size:15px; line-height:1.6; }
+.home-update-date { display:block; color: var(--text-dim); font-size:14px; margin-bottom:2px; opacity:0.85; }
+.home-update-text { color: var(--text); font-size:15px; }
+.home-update-top { display:flex; align-items:center; justify-content:space-between; }
+.home-update-actions { display:flex; gap:2px; opacity:0; transition: opacity 0.2s; }
 .home-update-item:hover .home-update-actions { opacity:1; }
-
-.home-update-btn {
-  background:none; border:none; cursor:pointer; font-size:12px;
-  padding:2px 6px; border-radius:3px; color: var(--text-light);
-  transition: all 0.15s;
-}
+.home-update-btn { background:none; border:none; cursor:pointer; font-size:12px; padding:2px 6px; border-radius:3px; color: var(--text-light); transition: all 0.15s; }
 .home-update-btn:hover { color: var(--gold); background: rgba(184,148,76,0.1); }
 
 /* 公告 */
-.home-announce-text {
-  font-size:13px; line-height:1.7; color: var(--text-dim);
-  white-space: pre-line;
-}
+.home-announce-text { font-size:15px; line-height:1.8; color: var(--text-dim); white-space: pre-line; }
 
 /* 快捷导航 */
 .home-nav-links { display:flex; flex-direction:column; gap:2px; }

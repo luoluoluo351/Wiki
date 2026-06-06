@@ -77,7 +77,7 @@ const Characters = {
       <div class="row-header" style="gap:18px;padding:10px 28px;">
         <span class="row-h-col" style="width:72px;"></span>
         <span class="row-h-col" style="width:80px;">名称</span>
-        <span class="row-h-col" style="width:55px;">修为</span>
+        <span class="row-h-col" style="width:85px;">初始/当前</span>
         <span class="row-h-col" style="width:50px;">宗门</span>
         <span class="row-h-col" style="width:55px;">灵根</span>
         <span class="row-h-col" style="width:55px;">生命</span>
@@ -111,7 +111,7 @@ const Characters = {
         const tags = c.spiritRoots.map(e=>`<span class="tag tag-${e==='金'?'gold':e==='木'?'wood':e==='水'?'water':e==='火'?'fire':'earth'}">${e}</span>`).join('');
         const total = totalAttr(c);
         const cp = calcCombatPower(c);
-        const dispRealm = majorName(c.realm)+'期';
+        const stages=c.realmStages||[];const curRealmName=majorName(stages.length>0?stages[stages.length-1].realm:c.realm)+'期';const dispRealm=majorName(c.realm)+'期/'+curRealmName;
         let mainSkillText = '—';
         if (c.mainSkills.length>0) {
           const names = c.mainSkills.map(id=>{const s=skillNameById(id);if(!s)return'';return id===c.yuanYingSkill?s.name+'(元婴)':s.name;}).filter(Boolean);
@@ -126,7 +126,7 @@ const Characters = {
         rows += `<div class="row-item" style="gap:18px;padding:22px 28px;min-height:140px;">
           ${avatarHtml}
           <span class="row-name" style="width:80px;">${c.name||'未命名'}</span>
-          <span style="color:var(--text-dim);width:55px;font-size:13px;text-align:center;white-space:nowrap;">${dispRealm}</span>
+          <span style="color:var(--text-dim);width:85px;font-size:12px;text-align:center;white-space:nowrap;overflow:hidden;">${dispRealm}</span>
           <span style="color:var(--text-dim);width:50px;font-size:13px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.sect||'—'}</span>
           <span class="row-tags" style="width:55px;overflow:hidden;">${tags}</span>
           <span class="row-stat" style="width:55px;">${total.hp}</span>
@@ -173,8 +173,8 @@ const Characters = {
     // 修为阶段 HTML
     let stagesHtml = '';
     char.realmStages.forEach((s,i)=>{
-      stagesHtml += `<fieldset class="fieldset"><legend><span style="cursor:pointer;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'':'none';this.textContent=this.textContent.startsWith('▸')?this.textContent.replace('▸','▾'):this.textContent.replace('▾','▸')">▾ ${s.realm}</span></legend>
-        <div class="stage-body"><div class="form-row">
+      stagesHtml += `<fieldset class="fieldset"><legend><span style="cursor:pointer;" onclick="var b=this.parentElement.nextElementSibling;b.style.display=b.style.display==='none'?'':'none';this.textContent=this.textContent.startsWith('▸')?this.textContent.replace('▸','▾'):this.textContent.replace('▾','▸')">▸ ${s.realm}</span></legend>
+        <div class="stage-body" style="display:none"><div class="form-row">
           <div style="flex:1;"><label>生命</label><input type="number" value="${s.hp}" data-field="stage_hp_${i}"></div>
           <div style="flex:1;"><label>攻击</label><input type="number" value="${s.atk}" data-field="stage_atk_${i}"></div>
           <div style="flex:1;"><label>防御</label><input type="number" value="${s.def}" data-field="stage_def_${i}"></div>
@@ -243,7 +243,7 @@ const Characters = {
   bindDetailEvents() {
     const self=this; const el=document.querySelector('.detail-page'); if(!el)return;
     const charId=el.dataset.charId; const isNew=el.dataset.isNew==='true';
-    const az=document.getElementById('char-avatar-zone'); if(az){let cur=charId?Storage.findById(STORAGE_KEY,charId):createEmptyChar();ImageUpload.setup(az,cur?.avatar||'',(v)=>{},'characters/');}
+    const az=document.getElementById('char-avatar-zone'); if(az){let cur=charId?Storage.findById(STORAGE_KEY,charId):createEmptyChar();ImageUpload.setup(az,cur?.avatar||'',(v)=>{},'characters/');az.addEventListener('click',function(){const i=this.querySelector('img');if(i){const o=document.getElementById('skill-modal');document.getElementById('modal-title').textContent='立绘预览';document.getElementById('modal-body').innerHTML=`<img src="${i.src}" style="max-width:100%;max-height:70vh;">`;o.style.display='flex';}});}
     const save=()=>{const d=self._collect(charId);if(!d.name.trim()){alert('请输入角色姓名');return;}if(!d.id)d.id=Storage.uid();if(!d.realmStages||d.realmStages.length===0){d.realmStages=[emptyStage(d.realm)];}Storage.save(STORAGE_KEY,d);App.navigate('characters');};
     document.getElementById('btn-save-char')?.addEventListener('click',save);
     document.getElementById('btn-save-char2')?.addEventListener('click',save);

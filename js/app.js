@@ -135,6 +135,8 @@ const App = {
           app.innerHTML = Damage.render();   if (Damage.bindEvents)   Damage.bindEvents();   break;
         case 'leaderboard':
           app.innerHTML = Leaderboard.render(); Leaderboard.bindEvents(); break;
+        case 'gacha-normal': case 'gacha-up': case 'gacha-skill':
+          app.innerHTML = Placeholder.render('召募系统 — 机制设计中'); break;
         default:
           app.innerHTML = Placeholder.render('页面不存在');
       }
@@ -221,7 +223,7 @@ const Leaderboard = {
             c.realmStages.push(s);
           }
         }
-        const avatarHtml = c.avatar ? `<img src="${c.avatar}" alt="${c.name}">` : '<div class="row-noimg">无图</div>';
+        const aSrc=(c.avatar||'').startsWith('data:')?c.avatar:(c.avatar?'img/characters/'+c.avatar:'');const avatarHtml=aSrc?`<img src="${aSrc}" alt="${c.name}">`:'<div class="row-noimg">无图</div>';
         let totalCombat = calcCombatPower(c);
         let mainNames = [];
         (c.mainSkills||[]).forEach(skId => {
@@ -242,7 +244,7 @@ const Leaderboard = {
           <span class="rank-badge ${rankClass}">${rankLabel}</span>
           ${avatarHtml}
           <span class="row-name" style="width:100px;">${c.name||'未命名'}</span>
-          <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${majorName(c.realm)}</span>
+          ${(()=>{const stages=c.realmStages||[];const cr=stages.length>0?stages[stages.length-1].realm:c.realm;return`<span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${majorName(cr)}期</span>`;})()}
           <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${c.sect||'—'}</span>
           <span style="color:var(--text-dim);width:150px;font-size:12px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${mainNames.join('、')||'—'}</span>
           <span style="color:var(--gold);font-size:18px;font-weight:bold;width:70px;text-align:center;white-space:nowrap;">${totalCombat}</span>
@@ -283,8 +285,25 @@ const Leaderboard = {
 
 // 首页模块
 const HomePage = {
+  _eventIdx: 0,
+  _eventTimer: null,
 
-  // 默认修仙诗
+  _slideEvent(dir){const a=document.querySelectorAll('.event-slide');const v=[];a.forEach((s,i)=>{if(!s.classList.contains('ev-hidden'))v.push(i);});if(v.length<=1)return;let c=v.indexOf(this._eventIdx);if(c<0)c=0;this._eventIdx=v[(c+dir+v.length)%v.length];this._goEvent(this._eventIdx);},
+  _goEvent(idx) {
+    this._eventIdx = idx;
+    const track = document.getElementById('event-track');
+    if (track) track.style.transform = `translateX(-${idx * 100}%)`;
+    this._updateDots();
+  },
+
+  _startEventAuto() {
+    clearInterval(this._eventTimer);
+    this._updateDots();
+    this._eventTimer = setInterval(() => { this._slideEvent(1); }, 5000);
+  },
+
+  _updateDots(){const a=document.querySelectorAll('.event-slide');const v=[];a.forEach((s,i)=>{if(!s.classList.contains('ev-hidden'))v.push(i);});const dots=document.getElementById('event-dots');if(!dots||v.length<=1){if(dots)dots.innerHTML='';return;}dots.innerHTML=v.map(vi=>`<span class="event-dot${vi===this._eventIdx?' active':''}" onclick="HomePage._goEvent(${vi})"></span>`).join('');},
+
   _defaultPoem: `【修仙行】
 青崖白鹿访名山，一剑凌霄破九关。
 炼气筑基磨道骨，金丹元婴换朱颜。
@@ -336,10 +355,13 @@ const HomePage = {
 
     return `
       <div class="home-page">
-        <div class="home-hero" id="home-bg-zone" style="background-image:url(${bg});background-size:cover;background-position:center;">
+        <div class="home-hero" id="home-bg-zone" style="background-image:url(${bg});background-size:cover;background-position:center;display:flex;flex-direction:column;padding:58px 0 0;min-height:calc(100vh - 58px);">
+
+          <!-- 三栏：左更新 + 中轮播 + 右公告 -->
+          <div style="display:flex;width:100%;align-items:stretch;flex:1;min-height:400px;gap:0;padding:0;max-width:1400px;margin:0 auto;background:rgba(255,255,255,0.5);border-radius:16px;">
 
           <!-- 左栏：近期更新 -->
-          <div class="home-panel home-panel-left">
+          <div class="home-panel" style="width:260px;border-right:1px solid rgba(184,148,76,0.15);">
             <div class="home-panel-header">
               <h3>近期更新</h3>
               <button class="btn-add" id="btn-add-update" style="font-size:14px;">+</button>
@@ -347,13 +369,16 @@ const HomePage = {
             <div class="home-panel-body" id="updates-list">${updatesHtml}</div>
           </div>
 
-          <!-- 中栏：标题+八卦 -->
-          <div class="home-center">
-            <div class="home-title">修仙 Wiki</div>
+          <!-- 中栏：活动轮播 -->
+          <div class="event-carousel" id="event-carousel" style="flex:1;flex-direction:column;">
+            <div class="event-track" id="event-track" style="flex:1;">
+              ${Array.from({length:8},(_,i)=>`<div class="event-slide" id="evs-${i}"><img src="img/events/event-${i+1}.png" onerror="document.getElementById('evs-${i}').classList.add('ev-hidden');HomePage._updateDots()" onload="HomePage._updateDots()"></div>`).join('')}
+            </div>
+            <div class="event-dots" id="event-dots"></div>
           </div>
 
           <!-- 右栏：公告 + 导航 -->
-          <div class="home-panel home-panel-right">
+          <div class="home-panel" style="width:260px;border-left:1px solid rgba(184,148,76,0.15);">
             <div class="home-panel-header">
               <h3>公告</h3>
               <button class="btn-add" id="btn-edit-announce" style="font-size:14px;">✎</button>
@@ -367,12 +392,14 @@ const HomePage = {
             <div class="home-panel-body home-nav-links">${navHtml}</div>
             </div>
 
+          </div>
         </div>
       </div>
     `;
   },
 
   bindEvents() {
+    this._startEventAuto();
     // === 近期更新 ===
     document.getElementById('btn-add-update')?.addEventListener('click', () => {
       const text = prompt('输入更新内容：');
