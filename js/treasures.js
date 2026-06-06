@@ -40,7 +40,7 @@ const Treasures = {
         <span class="row-h-col" style="width:55px;">战力</span>
       </div>`;
       filtered.forEach(t => {
-        const tSrc=(t.image||'').startsWith('data:')?t.image:(t.image?'img/'+t.image:'');const imgHtml=tSrc?`<img src="${tSrc}" alt="${t.name}">`:'<div class="row-noimg">无图</div>';
+        const tSrc=(t.image||'').startsWith('data:')?t.image:(t.image?'img/treasures/'+t.image:'');const imgHtml=tSrc?`<img src="${tSrc}" alt="${t.name}">`:'<div class="row-noimg">无图</div>';
         const hasEntry1 = t.type === 'attack' || t.type === 'defense';
         const e1Label = t.type === 'attack' ? '基础攻击' : '基础生命';
         const skillsEsc = JSON.stringify(t.passiveSkills||[]).replace(/'/g,'&#39;');
@@ -90,7 +90,7 @@ const Treasures = {
   bindDetailEvents() {
     const self=this; const el=document.querySelector('.detail-page'); if(!el)return;
     const tid=el.dataset.treasureId; const isNew=el.dataset.isNew==='true';
-    const iz=document.getElementById('treasure-img-zone'); if(iz){let cur=tid?Storage.findById(TREASURE_STORAGE,tid):null;ImageUpload.setup(iz,cur?.image||'',(v)=>{});}
+    const iz=document.getElementById('treasure-img-zone'); if(iz){let cur=tid?Storage.findById(TREASURE_STORAGE,tid):null;ImageUpload.setup(iz,cur?.image||'',(v)=>{},'treasures/');}
     const save=()=>{const d=self._collect(tid);if(!d.name.trim()){alert('请输入法宝名称');return;}if(!d.id)d.id=Storage.uid();Storage.save(TREASURE_STORAGE,d);App.navigate('treasures');};
     document.getElementById('btn-save')?.addEventListener('click',save); document.getElementById('btn-save2')?.addEventListener('click',save);
     const del=()=>{if(confirm('确定删除该法宝？')){Storage.deleteById(TREASURE_STORAGE,tid);App.navigate('treasures');}};

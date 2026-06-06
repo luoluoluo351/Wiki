@@ -33,7 +33,7 @@ const Skills = {
         <span class="row-h-col" style="width:50px;">战力</span>
       </div>`;
       list.forEach(s => {
-        const sSrc=(s.image||'').startsWith('data:')?s.image:(s.image?'img/'+s.image:'');const imgHtml=sSrc?`<img src="${sSrc}" alt="${s.name}">`:'<div class="row-noimg">无图</div>';
+        const sSrc=(s.image||'').startsWith('data:')?s.image:(s.image?'img/skills/'+s.image:'');const imgHtml=sSrc?`<img src="${sSrc}" alt="${s.name}">`:'<div class="row-noimg">无图</div>';
         const els = Array.isArray(s.elements) ? s.elements : (s.element ? [s.element] : []);
         const elTag = els.map(e => `<span class="tag tag-${e==='金'?'gold':e==='木'?'wood':e==='水'?'water':e==='火'?'fire':'earth'}">${e}</span>`).join('');
         // 详情弹窗 — 不显示"描述"标签
@@ -132,7 +132,7 @@ const Skills = {
     if (imgZone) {
       const storageKey = skillType === 'shentong' ? SKILL_SHENTONG : SKILL_GONGFA;
       let cur = skillId ? Storage.findById(storageKey, skillId) : null;
-      ImageUpload.setup(imgZone, cur?.image||'', (v)=>{});
+      ImageUpload.setup(imgZone, cur?.image||'', (v)=>{}, 'skills/');
     }
 
     const save = () => {

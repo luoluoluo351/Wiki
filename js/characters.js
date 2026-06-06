@@ -107,7 +107,7 @@ const Characters = {
         if(!c.advancements)c.advancements=[];
         if(!c.mainSkills)c.mainSkills=[]; if(!c.learnedAbilities)c.learnedAbilities=[];
 
-        const aSrc=(c.avatar||'').startsWith('data:')?c.avatar:(c.avatar?'img/'+c.avatar:'');const avatarHtml=aSrc?`<img src="${aSrc}" alt="${c.name}">`:'<div class="row-noimg">无图</div>';
+        const aSrc=(c.avatar||'').startsWith('data:')?c.avatar:(c.avatar?'img/characters/'+c.avatar:'');const avatarHtml=aSrc?`<img src="${aSrc}" alt="${c.name}">`:'<div class="row-noimg">无图</div>';
         const tags = c.spiritRoots.map(e=>`<span class="tag tag-${e==='金'?'gold':e==='木'?'wood':e==='水'?'water':e==='火'?'fire':'earth'}">${e}</span>`).join('');
         const total = totalAttr(c);
         const cp = calcCombatPower(c);
@@ -243,7 +243,7 @@ const Characters = {
   bindDetailEvents() {
     const self=this; const el=document.querySelector('.detail-page'); if(!el)return;
     const charId=el.dataset.charId; const isNew=el.dataset.isNew==='true';
-    const az=document.getElementById('char-avatar-zone'); if(az){let cur=charId?Storage.findById(STORAGE_KEY,charId):createEmptyChar();ImageUpload.setup(az,cur?.avatar||'',(v)=>{});}
+    const az=document.getElementById('char-avatar-zone'); if(az){let cur=charId?Storage.findById(STORAGE_KEY,charId):createEmptyChar();ImageUpload.setup(az,cur?.avatar||'',(v)=>{},'characters/');}
     const save=()=>{const d=self._collect(charId);if(!d.name.trim()){alert('请输入角色姓名');return;}if(!d.id)d.id=Storage.uid();if(!d.realmStages||d.realmStages.length===0){d.realmStages=[emptyStage(d.realm)];}Storage.save(STORAGE_KEY,d);App.navigate('characters');};
     document.getElementById('btn-save-char')?.addEventListener('click',save);
     document.getElementById('btn-save-char2')?.addEventListener('click',save);

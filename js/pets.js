@@ -46,7 +46,7 @@ const Pets={
       list.forEach(p=>{
         // 兼容旧数据
         if(!p.realmStages||p.realmStages.length===0){p.realmStages=[];if(p.basicAttr){const s=emptyPetStage(p.realm||'练气初期');s.hp=p.basicAttr.hp?.lv60||0;s.atk=p.basicAttr.atk?.lv60||0;s.def=p.basicAttr.def?.lv60||0;if(p.advancedAttr){s.critRate=p.advancedAttr.critRate?.lv60||0;s.critDmg=p.advancedAttr.critDmg?.lv60||0;['metal','wood','water','fire','earth'].forEach(k=>{const rk='resist_'+k;s.resist[k]=p.advancedAttr[rk]?.lv60||0;const dk='dmg_'+k;s.dmgBonus[k]=p.advancedAttr[dk]?.lv60||0;});}p.realmStages.push(s);}}
-        const pSrc=(p.image||'').startsWith('data:')?p.image:(p.image?'img/'+p.image:'');const imgHtml=pSrc?`<img src="${pSrc}" alt="${p.name}">`:'<div class="row-noimg">无图</div>';
+        const pSrc=(p.image||'').startsWith('data:')?p.image:(p.image?'img/pets/'+p.image:'');const imgHtml=pSrc?`<img src="${pSrc}" alt="${p.name}">`:'<div class="row-noimg">无图</div>';
         const tags=p.spiritRoots.map(e=>`<span class="tag tag-${e==='金'?'gold':e==='木'?'wood':e==='水'?'water':e==='火'?'fire':'earth'}">${e}</span>`).join('');
         const total=petTotalAttr(p);const cp=calcPetCombat(p);
         const activeEsc=JSON.stringify(p.activeSkills||[]).replace(/'/g,'&#39;');
@@ -127,7 +127,7 @@ const Pets={
   bindDetailEvents(){
     const self=this;const el=document.querySelector('.detail-page');if(!el)return;
     const petId=el.dataset.petId;const isNew=el.dataset.isNew==='true';
-    const iz=document.getElementById('pet-img-zone');if(iz){let cur=petId?Storage.findById(PET_STORAGE,petId):null;ImageUpload.setup(iz,cur?.image||'',(v)=>{});}
+    const iz=document.getElementById('pet-img-zone');if(iz){let cur=petId?Storage.findById(PET_STORAGE,petId):null;ImageUpload.setup(iz,cur?.image||'',(v)=>{},'pets/');}
 
     const save=()=>{const d=self._collect(petId);if(!d.name.trim()){alert('请输入灵宠名称');return;}if(!d.id)d.id=Storage.uid();if(!d.realmStages||d.realmStages.length===0){d.realmStages=[emptyPetStage(d.realm)];}Storage.save(PET_STORAGE,d);App.navigate('pets');};
     document.getElementById('btn-save')?.addEventListener('click',save);
