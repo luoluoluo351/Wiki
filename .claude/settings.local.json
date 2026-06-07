@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(node -c \"d:/Wiki/js/characters.js\")",
-      "Bash(node -c \"d:/Wiki/js/skills.js\")"
+      "Bash(node -c \"d:/Wiki/js/skills.js\")",
+      "Bash(node --check js/gacha.js)"
     ]
   }
 }

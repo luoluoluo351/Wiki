@@ -116,7 +116,14 @@ const App = {
           case 'treasures':  app.innerHTML = Treasures.renderDetail(params.id || '');  Treasures.bindDetailEvents();  return;
           case 'pets':       app.innerHTML = Pets.renderDetail(params.id || '');       Pets.bindDetailEvents();       return;
           case 'skills':     app.innerHTML = Skills.renderDetail(params.id || '', params.type || ''); Skills.bindDetailEvents(); return;
+          case 'items':      app.innerHTML = Items.renderDetail(params.id || '');      Items.bindDetailEvents();      return;
+          case 'gacha':      app.innerHTML = Gacha.renderPoolDetail(params.id || '');  Gacha.bindPoolDetailEvents();  return;
         }
+      }
+      if (module === 'gacha' && action === 'edit') {
+        app.innerHTML = Gacha.renderPoolEdit(params.id || '');
+        Gacha.bindPoolEditEvents();
+        return;
       }
 
       switch (module) {
@@ -131,7 +138,7 @@ const App = {
         case 'monsters':
           app.innerHTML = Placeholder.render('怪物图鉴 — 暂未开发'); break;
         case 'items':
-          app.innerHTML = Placeholder.render('道具图鉴 — 暂未开发'); break;
+          app.innerHTML = Items.renderList();       Items.bindListEvents();       break;
         case 'pets':
           app.innerHTML = Pets.renderList();       Pets.bindListEvents();       break;
         case 'skills':
@@ -144,8 +151,12 @@ const App = {
           app.innerHTML = Damage.render();   if (Damage.bindEvents)   Damage.bindEvents();   break;
         case 'leaderboard':
           app.innerHTML = Leaderboard.render(); Leaderboard.bindEvents(); break;
-        case 'gacha-normal': case 'gacha-up': case 'gacha-skill':
-          app.innerHTML = Placeholder.render('召募系统 — 机制设计中'); break;
+        case 'gacha-normal':
+          app.innerHTML = Gacha.renderPoolList('character', 'normal'); Gacha.bindPoolListEvents(); break;
+        case 'gacha-up':
+          app.innerHTML = Gacha.renderPoolList('character', 'up');     Gacha.bindPoolListEvents(); break;
+        case 'gacha-skill':
+          app.innerHTML = Gacha.renderPoolList('skill', 'normal');     Gacha.bindPoolListEvents(); break;
         default:
           app.innerHTML = Placeholder.render('页面不存在');
       }

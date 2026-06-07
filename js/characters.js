@@ -52,7 +52,7 @@ function calcCombatPower(c) {
 
 function createEmptyChar() {
   return {
-    id:'', name:'', avatar:'', realm:'练气初期', sect:'', spiritRoots:[],
+    id:'', name:'', avatar:'', fullBody:'', realm:'练气初期', sect:'', spiritRoots:[],
     realmStages:[],
     passiveSkills:[],
     mainSkills:[], yuanYingSkill:null, learnedAbilities:[],
@@ -210,7 +210,7 @@ const Characters = {
       <div class="toolbar"><button class="btn-primary" onclick="App.navigate('characters')">← 返回列表</button><button class="btn-primary" id="btn-save-char">保存</button><button class="btn-danger" id="btn-del-char" ${isNew?'style="display:none"':''}>删除角色</button></div>
 
       <fieldset class="fieldset"><legend>基本信息</legend>
-        <div class="form-row"><div style="flex:0 0 200px;"><label>立绘</label><div id="char-avatar-zone" class="drop-zone">拖拽图片到此处<br>或点击选择文件</div></div><div style="flex:1;">
+        <div class="form-row"><div style="flex:0 0 200px;"><label>半身头像（列表展示）</label><div id="char-avatar-zone" class="drop-zone">拖拽图片到此处<br>或点击选择文件</div></div><div style="flex:0 0 200px;"><label>全身立绘（抽卡展示）</label><div id="char-fullbody-zone" class="drop-zone">拖拽图片到此处<br>或点击选择文件</div></div><div style="flex:1;">
         <div class="form-group"><label>姓名</label><input type="text" id="char-name" value="${char.name}" style="width:100%;font-size:18px;"></div>
         <div class="form-row"><div style="flex:1;"><label>宗门</label><input type="text" id="char-sect" value="${char.sect||''}" placeholder="如：青云宗" style="width:100%;"></div><div style="flex:1;"><label>初始修为</label><select id="char-realm" style="width:100%;">${REALMS.map(r=>`<option value="${r}" ${char.realm===r?'selected':''}>${r}</option>`).join('')}</select></div></div>
         <div class="form-group"><label>灵根（可多选，最多3个）</label><div class="checkbox-group" id="char-roots">${rootsHtml}</div></div></div></div>
@@ -244,6 +244,7 @@ const Characters = {
     const self=this; const el=document.querySelector('.detail-page'); if(!el)return;
     const charId=el.dataset.charId; const isNew=el.dataset.isNew==='true';
     const az=document.getElementById('char-avatar-zone'); if(az){let cur=charId?Storage.findById(STORAGE_KEY,charId):createEmptyChar();ImageUpload.setup(az,cur?.avatar||'',(v)=>{},'characters/');az.addEventListener('click',function(){const i=this.querySelector('img');if(i){const o=document.getElementById('skill-modal');document.getElementById('modal-title').textContent='立绘预览';document.getElementById('modal-body').innerHTML=`<img src="${i.src}" style="max-width:100%;max-height:70vh;">`;o.style.display='flex';}});}
+    const fz=document.getElementById('char-fullbody-zone'); if(fz){let cur=charId?Storage.findById(STORAGE_KEY,charId):createEmptyChar();ImageUpload.setup(fz,cur?.fullBody||'',(v)=>{},'characters/');fz.addEventListener('click',function(){const i=this.querySelector('img');if(i){const o=document.getElementById('skill-modal');document.getElementById('modal-title').textContent='全身立绘预览';document.getElementById('modal-body').innerHTML=`<img src="${i.src}" style="max-width:100%;max-height:70vh;">`;o.style.display='flex';}});}
     const save=()=>{const d=self._collect(charId);if(!d.name.trim()){alert('请输入角色姓名');return;}if(!d.id)d.id=Storage.uid();if(!d.realmStages||d.realmStages.length===0){d.realmStages=[emptyStage(d.realm)];}Storage.save(STORAGE_KEY,d);App.navigate('characters');};
     document.getElementById('btn-save-char')?.addEventListener('click',save);
     document.getElementById('btn-save-char2')?.addEventListener('click',save);
@@ -341,6 +342,7 @@ const Characters = {
     }
 
     d.avatar=document.querySelector('#char-avatar-zone .img-filename-input')?.value?.trim()||'';
+    d.fullBody=document.querySelector('#char-fullbody-zone .img-filename-input')?.value?.trim()||'';
     d.passiveSkills=[]; document.querySelectorAll('#skills-container .entry-item').forEach(item=>{const n=item.querySelector('input');const t=item.querySelector('textarea');d.passiveSkills.push({name:n?.value||'',desc:t?.value||''});});
     d.advancements=[]; document.querySelectorAll('#adv-container .entry-item').forEach(item=>{const s=item.querySelector('.bt-level-title');const t=item.querySelector('textarea');if(s){const r=ROMAN.indexOf(s.textContent.replace('阶',''));d.advancements.push({rank:r>=0?r+1:0,desc:t?.value||''});}});
     const yyCheck=document.querySelector('.yy-check:checked'); d.yuanYingSkill=yyCheck?yyCheck.dataset.skid:null;

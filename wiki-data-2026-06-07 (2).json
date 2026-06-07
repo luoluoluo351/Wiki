@@ -1,0 +1,6354 @@
+{
+  "skills_gongfa": [
+    {
+      "id": "mq3jdp072ni3js",
+      "name": "流水诀",
+      "image": "流水诀.png",
+      "elements": [
+        "水"
+      ],
+      "grade": "人阶下",
+      "type": "增益",
+      "desc": "水系伤害增加5%/7%/10%",
+      "cd": "",
+      "combat": 400,
+      "subtype": "战技",
+      "lingli": 0
+    },
+    {
+      "id": "mq21m71e17vydj",
+      "name": "驭水术",
+      "image": "驭水术.png",
+      "elements": [
+        "水"
+      ],
+      "grade": "人阶中",
+      "type": "增益",
+      "desc": "水系伤害提升6%/8%/10%；普攻造成的水系伤害再提升4%/6%/8%",
+      "cd": "",
+      "combat": 600,
+      "subtype": "战技",
+      "lingli": 0
+    },
+    {
+      "id": "mq1p0dnp9qh6fo",
+      "name": "万木诀",
+      "image": "万木诀.png",
+      "elements": [
+        "木"
+      ],
+      "grade": "人阶下",
+      "type": "增益",
+      "desc": "治疗效果提升6%/8%/10%",
+      "cd": "",
+      "combat": 400,
+      "subtype": "战技",
+      "lingli": 0
+    },
+    {
+      "id": "mq0v6148nr6loe",
+      "name": "金刚经",
+      "image": "金刚经.png",
+      "elements": [
+        "金"
+      ],
+      "grade": "人阶下",
+      "type": "增益",
+      "desc": "金系伤害增加5%/7%/10%",
+      "cd": "",
+      "combat": 400,
+      "subtype": "战技",
+      "lingli": 0
+    },
+    {
+      "id": "mpj7b0g7wdwu54",
+      "name": "养木功",
+      "elements": [
+        "木"
+      ],
+      "grade": "人阶下",
+      "type": "增益",
+      "desc": "木灵气获取量+6%/8%/10%",
+      "image": "养木功.png",
+      "cd": "",
+      "combat": 400
+    }
+  ],
+  "home_updates": [
+    {
+      "date": "2026-06-06",
+      "text": "1.0（上）版本【百世流芳】开启，筑基修士【芳华】现已上线！"
+    }
+  ],
+  "leaderboard": [
+    {
+      "charId": "mpje97pzc6bp5n"
+    },
+    {
+      "charId": "mq0u5s03x2dfwh"
+    },
+    {
+      "charId": "mq11hg5z71c4yi"
+    },
+    {
+      "charId": "mq20nxqn4uf695"
+    }
+  ],
+  "xiuxian_wiki_characters": [
+    {
+      "id": "mpid6oixfizo",
+      "createdAt": "2026-05-23T13:08:26.409Z",
+      "updatedAt": "2026-05-23T13:11:43.011Z",
+      "name": "云逸风",
+      "isMain": true,
+      "realm": "金丹初期",
+      "level": 50,
+      "elements": [
+        "火"
+      ],
+      "hp1": 1000,
+      "atk1": 50,
+      "def1": 30,
+      "hp100": 50000,
+      "atk100": 2500,
+      "def100": 1500,
+      "critRate": 5,
+      "critDmg": 150,
+      "res": {
+        "metal": 0,
+        "wood": 0,
+        "water": 0,
+        "fire": 10,
+        "earth": 0
+      },
+      "dmgBonus": {
+        "metal": 0,
+        "wood": 0,
+        "water": 0,
+        "fire": 20,
+        "earth": 0
+      },
+      "passives": [
+        {
+          "name": "烈焰之心",
+          "level": 1,
+          "description": "火系伤害提升10%",
+          "level1Data": {
+            "type": "buff",
+            "value": 10,
+            "valueType": "percent",
+            "target": "self"
+          },
+          "level5Data": {
+            "type": "buff",
+            "value": 30,
+            "valueType": "percent",
+            "target": "self"
+          }
+        },
+        {
+          "name": "abc",
+          "description": "s\n增加攻击力",
+          "level": 1,
+          "level1Data": {
+            "type": "support",
+            "value": 1,
+            "valueType": "percent",
+            "target": "self"
+          },
+          "level5Data": {
+            "type": "support",
+            "value": 5,
+            "valueType": "percent",
+            "target": "self"
+          }
+        }
+      ],
+      "breakthroughs": [],
+      "loadouts": []
+    },
+    {
+      "id": "mpid6oix8lgi",
+      "createdAt": "2026-05-23T13:08:26.409Z",
+      "updatedAt": "2026-05-23T13:08:26.409Z",
+      "name": "凌霜月",
+      "isMain": false,
+      "realm": "筑基后期",
+      "level": 38,
+      "elements": [
+        "水",
+        "木"
+      ],
+      "hp1": 800,
+      "atk1": 35,
+      "def1": 25,
+      "hp100": 40000,
+      "atk100": 1800,
+      "def100": 1200,
+      "critRate": 8,
+      "critDmg": 160,
+      "res": {
+        "metal": 0,
+        "wood": 5,
+        "water": 15,
+        "fire": -5,
+        "earth": 0
+      },
+      "dmgBonus": {
+        "metal": 0,
+        "wood": 10,
+        "water": 15,
+        "fire": 0,
+        "earth": 0
+      },
+      "passives": [],
+      "breakthroughs": [],
+      "loadouts": []
+    },
+    {
+      "id": "mpid6oix1sj9",
+      "createdAt": "2026-05-23T13:08:26.409Z",
+      "updatedAt": "2026-05-23T13:08:26.409Z",
+      "name": "铁无极",
+      "isMain": false,
+      "realm": "元婴初期",
+      "level": 72,
+      "elements": [
+        "金",
+        "土"
+      ],
+      "hp1": 1200,
+      "atk1": 40,
+      "def1": 50,
+      "hp100": 60000,
+      "atk100": 2000,
+      "def100": 2500,
+      "critRate": 3,
+      "critDmg": 140,
+      "res": {
+        "metal": 20,
+        "wood": -10,
+        "water": 0,
+        "fire": 5,
+        "earth": 15
+      },
+      "dmgBonus": {
+        "metal": 15,
+        "wood": 0,
+        "water": 0,
+        "fire": 0,
+        "earth": 10
+      },
+      "passives": [],
+      "breakthroughs": [],
+      "loadouts": []
+    }
+  ],
+  "gacha_char_base_rewards": [
+    {
+      "tier": "t0",
+      "itemType": "character",
+      "itemId": "mq20nxqn4uf695"
+    },
+    {
+      "tier": "t0",
+      "itemType": "lingshi",
+      "amount": 2000
+    },
+    {
+      "tier": "t1",
+      "itemType": "character",
+      "itemId": "mq11hg5z71c4yi"
+    },
+    {
+      "tier": "t1",
+      "itemType": "character",
+      "itemId": "mq0u5s03x2dfwh"
+    },
+    {
+      "tier": "t2",
+      "itemType": "lingshi",
+      "amount": 100
+    },
+    {
+      "tier": "t3",
+      "itemType": "lingshi",
+      "amount": 10
+    }
+  ],
+  "gacha_history_mq3agrfa1ue5mu": [],
+  "gacha_history__mq3bw20nxnksk7": [
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:39.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:39.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:39.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:39.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:39.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:39.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t0",
+      "tierIdx": 0,
+      "tierLabel": "仙品",
+      "tierColor": "#ff3333",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:39.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:39.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:39.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:39.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:35.872Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:35.872Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:35.872Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:35.872Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:35.872Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:35.872Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:35.872Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:35.872Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:35.872Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:35.872Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:33.105Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:33.105Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:33.105Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:33.105Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:33.105Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:33.105Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:33.105Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:33.105Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:33.105Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:33.105Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:55.472Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:55.472Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:55.472Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:55.472Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:55.472Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:55.472Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:55.472Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:55.472Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:55.472Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:55.472Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:22.328Z"
+    },
+    {
+      "name": "芳华",
+      "image": "fanghua.png",
+      "type": "角色",
+      "tierName": "t0",
+      "tierIdx": 0,
+      "tierLabel": "仙品",
+      "tierColor": "#ff3333",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:22.328Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:22.328Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:22.328Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:22.328Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:22.328Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:22.328Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:22.328Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:22.328Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:22.328Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:16.744Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:16.744Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:16.744Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:16.744Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:16.744Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:16.744Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:16.744Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:16.744Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:16.744Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:16.744Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:14.249Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:14.249Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:14.249Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:14.249Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:14.249Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:14.249Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:14.249Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:14.249Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:14.249Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:14.249Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:12.136Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:12.136Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:12.136Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:12.136Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:12.136Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:12.136Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:12.136Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:12.136Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:12.136Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:12.136Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:09.968Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:09.968Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:09.968Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:09.968Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:09.968Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:09.968Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:09.968Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:09.968Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:09.968Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:09.968Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:07.216Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:07.216Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:07.216Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:07.216Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:07.216Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:07.216Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:07.216Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:07.216Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:07.216Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:04:07.216Z"
+    }
+  ],
+  "gacha_stats_mq3bxgdxtxdjl4": {
+    "totalPulls": 0,
+    "upBigCount": 0,
+    "upBigIntervals": [],
+    "pullsSinceLastUP": 0,
+    "redCount": 0,
+    "redIntervals": [],
+    "pullsSinceLastRed": 0
+  },
+  "gacha_history__mq3ad1kjp3a0a9": [
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:01.952Z"
+    },
+    {
+      "name": "芳华",
+      "image": "fanghua.png",
+      "type": "角色",
+      "tierName": "t0",
+      "tierIdx": 0,
+      "tierLabel": "仙品",
+      "tierColor": "#ff3333",
+      "upType": "big",
+      "isBigUP": true,
+      "time": "2026-06-07T10:09:01.952Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:01.952Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:01.952Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:01.952Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:01.952Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:01.952Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:01.952Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:01.952Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:01.952Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:49.112Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:49.112Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:49.112Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:49.112Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:49.112Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:49.112Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:49.112Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:49.112Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:49.112Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:49.112Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:47.072Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:47.072Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:47.072Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:47.072Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:47.072Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:47.072Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:47.072Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:47.072Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:47.072Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:08:47.072Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.192Z"
+    },
+    {
+      "name": "芳华",
+      "image": "fanghua.png",
+      "type": "角色",
+      "tierName": "t0",
+      "tierIdx": 0,
+      "tierLabel": "仙品",
+      "tierColor": "#ff3333",
+      "upType": "big",
+      "isBigUP": true,
+      "time": "2026-06-07T10:06:52.192Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.192Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.192Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.192Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.192Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.192Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.192Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.192Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.192Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.016Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.016Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.016Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.016Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.016Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.016Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.016Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.016Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.016Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:52.016Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:51.616Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:51.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:51.264Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:50.360Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:50.360Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:50.360Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:50.360Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:50.360Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:50.360Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:50.360Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:50.360Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:50.360Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:50.360Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:09.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:09.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:09.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:09.464Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:09.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:09.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:09.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:09.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:09.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:09.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:07.600Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:07.600Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:07.600Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:07.600Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:07.600Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:07.600Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:07.600Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:07.600Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:07.600Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:48:07.600Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:57.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:57.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:57.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:57.464Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:57.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:57.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:57.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:57.464Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:57.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:57.464Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:51.280Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:51.280Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:51.280Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:51.280Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:51.280Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:51.280Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T09:47:51.280Z"
+    }
+  ],
+  "gacha_stats_mq3bw20nxnksk7": {
+    "totalPulls": 0,
+    "upBigCount": 0,
+    "upBigIntervals": [],
+    "pullsSinceLastUP": 0,
+    "redCount": 0,
+    "redIntervals": [],
+    "pullsSinceLastRed": 0
+  },
+  "home_bg": null,
+  "skills_shentong": [
+    {
+      "id": "mq266w95nexvff",
+      "name": "奔涌",
+      "image": "奔涌.png",
+      "elements": [
+        "水"
+      ],
+      "grade": "人阶中",
+      "type": "攻击",
+      "desc": "连续召唤三波浪潮，对正前方敌人每次造成55%/60%/65%攻击力水系伤害",
+      "cd": "14",
+      "combat": 400,
+      "subtype": "绝技",
+      "lingli": 90
+    },
+    {
+      "id": "mq21w0jp0ect58",
+      "name": "怒涛",
+      "image": "怒涛.png",
+      "elements": [
+        "水"
+      ],
+      "grade": "人阶上",
+      "type": "攻击",
+      "desc": "对大范围内敌人召唤漩涡聚集并用巨浪攻击，造成150%/165%/180%攻击力水系伤害，之后的5秒漩涡会持续吸附周围敌人",
+      "cd": "14",
+      "combat": 600,
+      "subtype": "绝技",
+      "lingli": 80
+    },
+    {
+      "id": "mq21rhi7cs3ujs",
+      "name": "海浪",
+      "image": "海浪.png",
+      "elements": [
+        "水"
+      ],
+      "grade": "人阶中",
+      "type": "攻击",
+      "desc": "向前方推动海浪，对前方所有敌人造成125%/135%/150%攻击力水系伤害",
+      "cd": "7",
+      "combat": 400,
+      "subtype": "战技",
+      "lingli": 30
+    },
+    {
+      "id": "mq21omkte8sxdy",
+      "name": "水枪",
+      "image": "水枪.png",
+      "elements": [
+        "水"
+      ],
+      "grade": "人阶下",
+      "type": "攻击",
+      "desc": "对正前方所有敌人造成100%/110%/120%攻击力水系伤害",
+      "cd": "5",
+      "combat": 300,
+      "subtype": "战技",
+      "lingli": 30
+    },
+    {
+      "id": "mq1pa1b7ayo60z",
+      "name": "静心术",
+      "image": "静心术.png",
+      "elements": [
+        "木"
+      ],
+      "grade": "人阶中",
+      "type": "辅助",
+      "desc": "为全体友方恢复120%/130%/140%攻击力生命，并随机解除一项负面状态",
+      "cd": "12",
+      "combat": 400,
+      "subtype": "绝技",
+      "lingli": 80
+    },
+    {
+      "id": "mq1p549al24woi",
+      "name": "养神术",
+      "image": "养神术.png",
+      "elements": [
+        "木"
+      ],
+      "grade": "人阶下",
+      "type": "辅助",
+      "desc": "为一名友方恢复140%/170%/200%攻击力生命",
+      "cd": "8",
+      "combat": 300,
+      "subtype": "战技",
+      "lingli": 30
+    },
+    {
+      "id": "mq0vq1zxzcuexa",
+      "name": "大金刚拳法",
+      "image": "大金刚拳法.png",
+      "elements": [
+        "金"
+      ],
+      "grade": "人阶中",
+      "type": "攻击",
+      "desc": "对前方扇形敌人连续挥拳5次，前4次每次造成25%/30%/35%攻击力金系伤害，最后一次造成50%/55%/60%攻击力金系伤害",
+      "cd": "12",
+      "combat": 400,
+      "subtype": "绝技",
+      "lingli": 80
+    },
+    {
+      "id": "mq0vjt3xj4japi",
+      "name": "金刚拳",
+      "image": "金刚拳.png",
+      "elements": [
+        "金"
+      ],
+      "grade": "人阶下",
+      "type": "攻击",
+      "desc": "对正前方所有敌人挥出重拳，造成120%/135%/150%攻击力金系伤害",
+      "cd": "8",
+      "combat": 300,
+      "subtype": "战技",
+      "lingli": 30
+    },
+    {
+      "id": "mq0v8nq1kdcx4g",
+      "name": "金盾",
+      "image": "金盾.png",
+      "elements": [
+        "金"
+      ],
+      "grade": "人阶下",
+      "type": "防御",
+      "desc": "为全体友方施加300/500/800+120%/140%/160%防御力金系护盾，持续6秒",
+      "cd": "12",
+      "combat": 300,
+      "subtype": "战技",
+      "lingli": 30
+    },
+    {
+      "id": "mq0np9gs0g4z5o",
+      "name": "万木缠绕",
+      "elements": [
+        "木"
+      ],
+      "grade": "人阶中",
+      "type": "攻击",
+      "desc": "驱使无数藤蔓攻击单个目标，造成220%/240%/260%攻击力木系伤害",
+      "image": "万木缠绕.png",
+      "cd": "10",
+      "combat": 400,
+      "subtype": "绝技",
+      "lingli": 60
+    },
+    {
+      "id": "mpjjhgzznwfuj7",
+      "name": "木藤术",
+      "elements": [
+        "木"
+      ],
+      "grade": "人阶下",
+      "type": "攻击",
+      "desc": "对前方最多三名目标造成120%/135%/150%攻击力木系伤害并禁锢3秒",
+      "image": "木藤术.png",
+      "cd": "12",
+      "combat": 300,
+      "subtype": "战技",
+      "lingli": 40
+    },
+    {
+      "id": "mpjetfjcz1m5pg",
+      "name": "驱木术",
+      "elements": [
+        "木"
+      ],
+      "grade": "人阶下",
+      "type": "攻击",
+      "desc": "驱动木灵气对前方扇形范围内敌人造成100%/110%/120%攻击力木系伤害",
+      "image": "驱木术.png",
+      "cd": "5",
+      "combat": 300,
+      "subtype": "战技",
+      "lingli": 30
+    }
+  ],
+  "map_image": null,
+  "gacha_stats_mq3ad1kjp3a0a9": {
+    "totalPulls": 0,
+    "upBigCount": 0,
+    "upBigIntervals": [],
+    "pullsSinceLastUP": 0,
+    "redCount": 0,
+    "redIntervals": [],
+    "pullsSinceLastRed": 0
+  },
+  "items": [
+    {
+      "id": "mq3a2johq4espi",
+      "name": "灵石",
+      "type": "货币",
+      "grade": "普通",
+      "desc": "修仙界通用货币，蕴含微量灵气",
+      "icon": "灵石.png"
+    }
+  ],
+  "gacha_history__mq3bxgdxtxdjl4": [
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:36.264Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:00.840Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:00.840Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:00.840Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:00.840Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:00.840Z"
+    },
+    {
+      "name": "大金刚拳法",
+      "image": "大金刚拳法.png",
+      "type": "神通",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:00.840Z"
+    },
+    {
+      "name": "奔涌",
+      "image": "奔涌.png",
+      "type": "神通",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:00.840Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:00.840Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:00.840Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:12:00.840Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:39.497Z"
+    },
+    {
+      "name": "大金刚拳法",
+      "image": "大金刚拳法.png",
+      "type": "神通",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:39.497Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:39.497Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:39.497Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:39.497Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:39.497Z"
+    },
+    {
+      "name": "奔涌",
+      "image": "奔涌.png",
+      "type": "神通",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:39.497Z"
+    },
+    {
+      "name": "海浪",
+      "image": "海浪.png",
+      "type": "神通",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:39.497Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:39.497Z"
+    },
+    {
+      "name": "驭水术",
+      "image": "驭水术.png",
+      "type": "功法",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:39.497Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:36.728Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:11:32.504Z"
+    },
+    {
+      "name": "静心术",
+      "image": "静心术.png",
+      "type": "神通",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:12.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:12.448Z"
+    },
+    {
+      "name": "大金刚拳法",
+      "image": "大金刚拳法.png",
+      "type": "神通",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:12.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:12.448Z"
+    },
+    {
+      "name": "奔涌",
+      "image": "奔涌.png",
+      "type": "神通",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:12.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:12.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:12.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:12.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:12.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:09:12.448Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.385Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.385Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.385Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.385Z"
+    },
+    {
+      "name": "奔涌",
+      "image": "奔涌.png",
+      "type": "神通",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.385Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.385Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.385Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.385Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.385Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.385Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.224Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.224Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.224Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.224Z"
+    },
+    {
+      "name": "怒涛",
+      "image": "怒涛.png",
+      "type": "神通",
+      "tierName": "t0",
+      "tierIdx": 0,
+      "tierLabel": "仙品",
+      "tierColor": "#ff3333",
+      "upType": "big",
+      "isBigUP": true,
+      "time": "2026-06-07T10:06:45.224Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.224Z"
+    },
+    {
+      "name": "静心术",
+      "image": "静心术.png",
+      "type": "神通",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.224Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.224Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.224Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.224Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.032Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.032Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.032Z"
+    },
+    {
+      "name": "奔涌",
+      "image": "奔涌.png",
+      "type": "神通",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.032Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.032Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.032Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.032Z"
+    },
+    {
+      "name": "驭水术",
+      "image": "驭水术.png",
+      "type": "功法",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.032Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.032Z"
+    },
+    {
+      "name": "海浪",
+      "image": "海浪.png",
+      "type": "神通",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:45.032Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.680Z"
+    },
+    {
+      "name": "驭水术",
+      "image": "驭水术.png",
+      "type": "功法",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:44.056Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:38.968Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:38.792Z"
+    },
+    {
+      "name": "奔涌",
+      "image": "奔涌.png",
+      "type": "神通",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:37.728Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:34.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:34.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:34.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:34.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:34.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:34.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:34.680Z"
+    },
+    {
+      "name": "奔涌",
+      "image": "奔涌.png",
+      "type": "神通",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:34.680Z"
+    },
+    {
+      "name": "大金刚拳法",
+      "image": "大金刚拳法.png",
+      "type": "神通",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:34.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:34.680Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:32.090Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:32.090Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:32.090Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:32.090Z"
+    },
+    {
+      "name": "驭水术",
+      "image": "驭水术.png",
+      "type": "功法",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:32.090Z"
+    },
+    {
+      "name": "水枪",
+      "image": "水枪.png",
+      "type": "神通",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:32.090Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:32.089Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t0",
+      "tierIdx": 0,
+      "tierLabel": "仙品",
+      "tierColor": "#ff3333",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:32.089Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:32.089Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:06:32.089Z"
+    },
+    {
+      "name": "驭水术",
+      "image": "驭水术.png",
+      "type": "功法",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:05:21.528Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:05:21.528Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "货币",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T10:05:21.528Z"
+    }
+  ],
+  "home_announcement": null,
+  "gacha_history_mq3ad1kjp3a0a9": [
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:21.545Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:21.545Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:21.545Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:21.545Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:21.545Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:21.545Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:21.545Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:21.545Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:21.545Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:21.545Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:16.888Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:12.605Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:11.075Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:08.405Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:08.405Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:08.405Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:08.405Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:08.405Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:08.405Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:08.405Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:08.405Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:08.405Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:08.405Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:07.129Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:07.129Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:07.129Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:07.129Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:07.129Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:07.129Z"
+    },
+    {
+      "name": "芳华",
+      "image": "fanghua.png",
+      "type": "角色",
+      "tierName": "t0",
+      "tierIdx": 0,
+      "tierLabel": "仙品",
+      "tierColor": "#ff3333",
+      "upType": "big",
+      "isBigUP": true,
+      "time": "2026-06-07T05:17:07.129Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:07.129Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:07.129Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:07.129Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:05.570Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:05.570Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:05.570Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:05.570Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:05.570Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:05.570Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:05.570Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:05.570Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:05.570Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:17:05.570Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:44.852Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:44.852Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:44.852Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:44.852Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:44.852Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:44.852Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:44.852Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:44.852Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:44.852Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:44.852Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:39.190Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:39.190Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:39.190Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:39.190Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:39.190Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:39.190Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:39.190Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:39.190Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:39.190Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:39.190Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:31.855Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:31.855Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:31.855Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:31.855Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:31.855Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:31.855Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:31.855Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:31.855Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:31.855Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:31.855Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:22.960Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:22.960Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:22.960Z"
+    },
+    {
+      "name": "芙蓉",
+      "image": "furong.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:22.960Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:22.960Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:22.960Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:22.960Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:22.960Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:22.960Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:07:22.960Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:14.786Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:14.786Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:14.786Z"
+    },
+    {
+      "name": "芳华",
+      "image": "fanghua.png",
+      "type": "角色",
+      "tierName": "t0",
+      "tierIdx": 0,
+      "tierLabel": "仙品",
+      "tierColor": "#ff3333",
+      "upType": "big",
+      "isBigUP": true,
+      "time": "2026-06-07T05:06:14.786Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:14.786Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:14.786Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:14.786Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:14.786Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:14.786Z"
+    },
+    {
+      "name": "金刚",
+      "image": "jingang.png",
+      "type": "角色",
+      "tierName": "t1",
+      "tierIdx": 1,
+      "tierLabel": "天品",
+      "tierColor": "#ff8800",
+      "upType": "small",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:14.786Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:09.438Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:09.438Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:09.438Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:09.438Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:09.438Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t3",
+      "tierIdx": 3,
+      "tierLabel": "玄品",
+      "tierColor": "#4488ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:09.438Z"
+    },
+    {
+      "name": "灵石",
+      "image": "",
+      "type": "道具",
+      "tierName": "t2",
+      "tierIdx": 2,
+      "tierLabel": "地品",
+      "tierColor": "#aa44ff",
+      "upType": "",
+      "isBigUP": false,
+      "time": "2026-06-07T05:06:09.438Z"
+    }
+  ],
+  "gacha_pools": [
+    {
+      "id": "mq3bxgdxtxdjl4",
+      "name": "波涛汹涌",
+      "version": "1.0上",
+      "type": "skill",
+      "subtype": "normal",
+      "rarityTiers": [
+        {
+          "name": "t0",
+          "label": "仙品",
+          "color": "#ff3333",
+          "rate": 0.8
+        },
+        {
+          "name": "t1",
+          "label": "天品",
+          "color": "#ff8800",
+          "rate": 3
+        },
+        {
+          "name": "t2",
+          "label": "地品",
+          "color": "#aa44ff",
+          "rate": 12
+        },
+        {
+          "name": "t3",
+          "label": "玄品",
+          "color": "#4488ff",
+          "rate": 84.2
+        }
+      ],
+      "rewards": [
+        {
+          "tier": "t0",
+          "itemType": "skill",
+          "itemId": "mq21w0jp0ect58"
+        },
+        {
+          "tier": "t0",
+          "itemType": "lingshi",
+          "amount": 5000
+        },
+        {
+          "tier": "t1",
+          "itemType": "skill",
+          "itemId": "mq266w95nexvff"
+        },
+        {
+          "tier": "t2",
+          "itemType": "skill",
+          "itemId": "mq21omkte8sxdy"
+        },
+        {
+          "tier": "t2",
+          "itemType": "skill",
+          "itemId": "mq21rhi7cs3ujs"
+        },
+        {
+          "tier": "t2",
+          "itemType": "skill",
+          "itemId": "mq21m71e17vydj"
+        },
+        {
+          "tier": "t2",
+          "itemType": "skill",
+          "itemId": "mq0vq1zxzcuexa"
+        },
+        {
+          "tier": "t2",
+          "itemType": "skill",
+          "itemId": "mq1pa1b7ayo60z"
+        },
+        {
+          "tier": "t3",
+          "itemType": "lingshi",
+          "amount": 10
+        }
+      ],
+      "upBig": null,
+      "upSmall": [],
+      "pityValue": 0,
+      "_tenCount": 0,
+      "upItems": [
+        {
+          "itemType": "shentong",
+          "itemId": "mq21w0jp0ect58",
+          "itemName": "怒涛"
+        }
+      ],
+      "upSmallItems": [
+        {
+          "itemType": "gongfa",
+          "itemId": "mq21m71e17vydj",
+          "itemName": "驭水术"
+        },
+        {
+          "itemType": "shentong",
+          "itemId": "mq21rhi7cs3ujs",
+          "itemName": "海浪"
+        },
+        {
+          "itemType": "shentong",
+          "itemId": "mq266w95nexvff",
+          "itemName": "奔涌"
+        }
+      ]
+    },
+    {
+      "id": "mq3bw20nxnksk7",
+      "name": "寻仙唤灵",
+      "version": "常驻",
+      "type": "character",
+      "subtype": "normal",
+      "rarityTiers": [
+        {
+          "name": "t0",
+          "label": "仙品",
+          "color": "#ff3333",
+          "rate": 0.6
+        },
+        {
+          "name": "t1",
+          "label": "天品",
+          "color": "#ff8800",
+          "rate": 3
+        },
+        {
+          "name": "t2",
+          "label": "地品",
+          "color": "#aa44ff",
+          "rate": 12
+        },
+        {
+          "name": "t3",
+          "label": "玄品",
+          "color": "#4488ff",
+          "rate": 84.4
+        }
+      ],
+      "rewards": [
+        {
+          "tier": "t0",
+          "itemType": "character",
+          "itemId": "mq11hg5z71c4yi"
+        },
+        {
+          "tier": "t0",
+          "itemType": "character",
+          "itemId": "mq0u5s03x2dfwh"
+        }
+      ],
+      "upBig": null,
+      "upSmall": [],
+      "pityValue": 0,
+      "_tenCount": 0
+    },
+    {
+      "id": "mq3ad1kjp3a0a9",
+      "name": "百世流芳",
+      "version": "1.0上",
+      "type": "character",
+      "subtype": "up",
+      "rarityTiers": [
+        {
+          "name": "t0",
+          "label": "仙品",
+          "color": "#ff3333",
+          "rate": 0.6
+        },
+        {
+          "name": "t1",
+          "label": "天品",
+          "color": "#ff8800",
+          "rate": 3
+        },
+        {
+          "name": "t2",
+          "label": "地品",
+          "color": "#aa44ff",
+          "rate": 12
+        },
+        {
+          "name": "t3",
+          "label": "玄品",
+          "color": "#4488ff",
+          "rate": 84.4
+        }
+      ],
+      "rewards": [
+        {
+          "tier": "t0",
+          "itemType": "character",
+          "itemId": "mq20nxqn4uf695"
+        },
+        {
+          "tier": "t1",
+          "itemType": "lingshi",
+          "amount": 150
+        },
+        {
+          "tier": "t2",
+          "itemType": "lingshi",
+          "amount": 50
+        },
+        {
+          "tier": "t3",
+          "itemType": "lingshi",
+          "amount": 10
+        }
+      ],
+      "upBig": {
+        "itemId": "mq20nxqn4uf695",
+        "itemName": "芳华"
+      },
+      "upSmall": [
+        {
+          "itemId": "mq11hg5z71c4yi",
+          "itemName": "芙蓉"
+        },
+        {
+          "itemId": "mq0u5s03x2dfwh",
+          "itemName": "金刚"
+        }
+      ],
+      "pityValue": 0,
+      "_tenCount": 0
+    }
+  ],
+  "pets": [],
+  "treasures": [
+    {
+      "id": "mq0vcnurmq8j9s",
+      "name": "金玉玺",
+      "image": "金玉玺.png",
+      "type": "accessory",
+      "subtype": "玺",
+      "grade": "下品法器",
+      "entry1": {
+        "lv1": 0,
+        "lv60": 0
+      },
+      "entry2": {
+        "stat": "防御",
+        "lv1": 0.2,
+        "lv60": 15
+      },
+      "passiveSkills": []
+    },
+    {
+      "id": "mq0o4c6brher9d",
+      "name": "铜珠",
+      "image": "铜珠.png",
+      "type": "accessory",
+      "subtype": "珠",
+      "grade": "下品法器",
+      "entry1": {
+        "lv1": 0,
+        "lv60": 0
+      },
+      "entry2": {
+        "stat": "攻击",
+        "lv1": 0.2,
+        "lv60": 15
+      },
+      "passiveSkills": []
+    },
+    {
+      "id": "mq0nyvy07ll8qh",
+      "name": "短袍",
+      "image": "短袍.png",
+      "type": "defense",
+      "subtype": "袍",
+      "grade": "下品法器",
+      "entry1": {
+        "lv1": 40,
+        "lv60": 600
+      },
+      "entry2": {
+        "stat": "防御",
+        "lv1": 0.2,
+        "lv60": 8
+      },
+      "passiveSkills": []
+    },
+    {
+      "id": "mpjf51q3dgk8ms",
+      "name": "短剑",
+      "image": "短剑.png",
+      "type": "attack",
+      "subtype": "剑",
+      "grade": "下品法器",
+      "entry1": {
+        "lv1": 5,
+        "lv60": 120
+      },
+      "entry2": {
+        "stat": "攻击",
+        "lv1": 0.2,
+        "lv60": 8
+      },
+      "passiveSkills": []
+    }
+  ],
+  "characters": [
+    {
+      "id": "mq20nxqn4uf695",
+      "name": "芳华",
+      "avatar": "芳华.png",
+      "realm": "筑基初期",
+      "sect": "翠筠都",
+      "spiritRoots": [
+        "水"
+      ],
+      "realmStages": [
+        {
+          "realm": "筑基初期",
+          "hp": 2500,
+          "atk": 280,
+          "def": 70,
+          "critRate": 10,
+          "critDmg": 150,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基中期",
+          "hp": 500,
+          "atk": 60,
+          "def": 10,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基后期",
+          "hp": 500,
+          "atk": 60,
+          "def": 10,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基巅峰",
+          "hp": 500,
+          "atk": 60,
+          "def": 10,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        }
+      ],
+      "passiveSkills": [
+        {
+          "name": "普攻",
+          "desc": "每次攻击造成25%/30%(金丹)/40%(元婴)攻击力水系伤害，【远程】最后一段(第五次)对前方所有敌人造成30%/35%(金丹)/45%(元婴)攻击力水系伤害"
+        },
+        {
+          "name": "舜华",
+          "desc": "单次消耗灵力不小于80点时，进入【舜华】状态：普通攻击伤害增加15%/20%(金丹)/30%(元婴)，每次普攻都会直接释放最后一段普攻，持续5秒"
+        },
+        {
+          "name": "水系精通",
+          "desc": "水系伤害增加10%/15%(金丹)/25%(元婴)"
+        }
+      ],
+      "mainSkills": [
+        "mq21m71e17vydj"
+      ],
+      "yuanYingSkill": null,
+      "learnedAbilities": [
+        "mq21omkte8sxdy",
+        "mq21rhi7cs3ujs",
+        "mq21w0jp0ect58"
+      ],
+      "equippedAttack": "mpjf51q3dgk8ms",
+      "equippedDefense": "mq0nyvy07ll8qh",
+      "equippedAccessory": "mq0o4c6brher9d",
+      "advancements": [],
+      "fullBody": "fanghua.png"
+    },
+    {
+      "id": "mq11hg5z71c4yi",
+      "name": "芙蓉",
+      "avatar": "芙蓉.png",
+      "realm": "练气后期",
+      "sect": "翠筠都",
+      "spiritRoots": [
+        "木"
+      ],
+      "realmStages": [
+        {
+          "realm": "练气后期",
+          "hp": 1800,
+          "atk": 200,
+          "def": 50,
+          "critRate": 5,
+          "critDmg": 150,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "练气巅峰",
+          "hp": 300,
+          "atk": 30,
+          "def": 8,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基初期",
+          "hp": 560,
+          "atk": 45,
+          "def": 12,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基中期",
+          "hp": 560,
+          "atk": 45,
+          "def": 12,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基后期",
+          "hp": 560,
+          "atk": 45,
+          "def": 12,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基巅峰",
+          "hp": 560,
+          "atk": 45,
+          "def": 12,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        }
+      ],
+      "passiveSkills": [
+        {
+          "name": "普攻",
+          "desc": "每次造成20%/25%(筑基)/30%(金丹)攻击力木系伤害"
+        },
+        {
+          "name": "草药精通",
+          "desc": "治疗效果提升10%/15%(筑基)/20%(金丹)"
+        },
+        {
+          "name": "百花齐放",
+          "desc": "友方被治疗单位同时获得10%/15%(筑基)/20%(金丹)攻击力提升，持续6秒"
+        }
+      ],
+      "mainSkills": [
+        "mq1p0dnp9qh6fo"
+      ],
+      "yuanYingSkill": null,
+      "learnedAbilities": [
+        "mpjetfjcz1m5pg",
+        "mq1p549al24woi",
+        "mq1pa1b7ayo60z"
+      ],
+      "equippedAttack": "mpjf51q3dgk8ms",
+      "equippedDefense": "mq0nyvy07ll8qh",
+      "equippedAccessory": "mq0o4c6brher9d",
+      "advancements": [
+        {
+          "rank": 1,
+          "desc": "【需要1颗筑基丹（芙蓉）】突破至筑基初期，基础属性大幅提升，进阶属性提升，被动技能等级提升"
+        }
+      ],
+      "fullBody": "furong.png"
+    },
+    {
+      "id": "mq0u5s03x2dfwh",
+      "name": "金刚",
+      "avatar": "金刚.png",
+      "realm": "练气后期",
+      "sect": "翠筠都",
+      "spiritRoots": [
+        "金"
+      ],
+      "realmStages": [
+        {
+          "realm": "练气后期",
+          "hp": 1800,
+          "atk": 150,
+          "def": 65,
+          "critRate": 5,
+          "critDmg": 150,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "练气巅峰",
+          "hp": 300,
+          "atk": 20,
+          "def": 10,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基初期",
+          "hp": 600,
+          "atk": 40,
+          "def": 20,
+          "critRate": 5,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基中期",
+          "hp": 600,
+          "atk": 40,
+          "def": 20,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基后期",
+          "hp": 600,
+          "atk": 40,
+          "def": 20,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基巅峰",
+          "hp": 600,
+          "atk": 40,
+          "def": 20,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        }
+      ],
+      "passiveSkills": [
+        {
+          "name": "普攻",
+          "desc": "每次造成20%/25%(筑基)/30%(金丹)攻击力金系伤害"
+        },
+        {
+          "name": "攻守兼备",
+          "desc": "每5点防御力额外增加1/1.5(筑基)/2(金丹)点攻击力"
+        },
+        {
+          "name": "护盾增益",
+          "desc": "护盾效果增加15%/20%(筑基)/25%(金丹)"
+        }
+      ],
+      "mainSkills": [
+        "mq0v6148nr6loe"
+      ],
+      "yuanYingSkill": null,
+      "learnedAbilities": [
+        "mq0v8nq1kdcx4g",
+        "mq0vjt3xj4japi",
+        "mq0vq1zxzcuexa"
+      ],
+      "equippedAttack": "mpjf51q3dgk8ms",
+      "equippedDefense": "mq0nyvy07ll8qh",
+      "equippedAccessory": "mq0vcnurmq8j9s",
+      "advancements": [
+        {
+          "rank": 1,
+          "desc": "【需要1枚筑基丹（金刚）】突破境界至筑基初期，基础属性大幅提升，进阶属性提升，被动技能等级提升"
+        }
+      ],
+      "fullBody": "jingang.png"
+    },
+    {
+      "id": "mpje97pzc6bp5n",
+      "name": "天命者",
+      "avatar": "天命者.png",
+      "realm": "练气初期",
+      "sect": "无",
+      "spiritRoots": [
+        "木"
+      ],
+      "basicAttr": {
+        "hp": {
+          "lv1": 320,
+          "lv100": 8000
+        },
+        "atk": {
+          "lv1": 80,
+          "lv100": 800
+        },
+        "def": {
+          "lv1": 40,
+          "lv100": 400
+        }
+      },
+      "advancedAttr": {
+        "critRate": 20,
+        "critDmg": 150,
+        "resist": {
+          "metal": 0,
+          "wood": 0,
+          "water": 0,
+          "fire": 0,
+          "earth": 0
+        },
+        "dmgBonus": {
+          "metal": 0,
+          "wood": 10,
+          "water": 0,
+          "fire": 0,
+          "earth": 0
+        }
+      },
+      "passiveSkills": [
+        {
+          "name": "普攻",
+          "desc": "每次造成20%/25%(筑基)/30%(金丹)/40%(元婴)/50%(化神)攻击力木系伤害"
+        },
+        {
+          "name": "驭木术",
+          "desc": "木灵气获取量增加20%/25%(筑基)/30%(金丹)/40%(元婴)/50%(化神)"
+        },
+        {
+          "name": "木系精通",
+          "desc": "每60/50(元婴)/40(化神)点攻击力增加自身1%木系伤害加成，最多20%/25%(筑基)/30%(金丹)/40%(元婴)/50%(化神)"
+        }
+      ],
+      "breakthroughs": [],
+      "advancements": [
+        {
+          "rank": 1,
+          "desc": "【需要1枚筑基丹】突破至筑基初期，基础属性大幅提升，进阶属性提升，被动技能等级提升"
+        }
+      ],
+      "mainSkills": [
+        "mpj7b0g7wdwu54"
+      ],
+      "yuanYingSkill": null,
+      "learnedAbilities": [
+        "mpjetfjcz1m5pg",
+        "mpjjhgzznwfuj7",
+        "mq0np9gs0g4z5o"
+      ],
+      "realmStages": [
+        {
+          "realm": "▾ ▸ ▾ ▾ ▸ ▾ ▾ ▾ 练气初期",
+          "hp": 1200,
+          "atk": 150,
+          "def": 40,
+          "critRate": 5,
+          "critDmg": 150,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "练气中期",
+          "hp": 300,
+          "atk": 20,
+          "def": 8,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "练气后期",
+          "hp": 300,
+          "atk": 20,
+          "def": 8,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "练气巅峰",
+          "hp": 300,
+          "atk": 20,
+          "def": 8,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基初期",
+          "hp": 600,
+          "atk": 40,
+          "def": 15,
+          "critRate": 5,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基中期",
+          "hp": 600,
+          "atk": 40,
+          "def": 15,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基后期",
+          "hp": 600,
+          "atk": 40,
+          "def": 15,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        },
+        {
+          "realm": "筑基巅峰",
+          "hp": 600,
+          "atk": 40,
+          "def": 15,
+          "critRate": 0,
+          "critDmg": 0,
+          "resist": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          },
+          "dmgBonus": {
+            "metal": 0,
+            "wood": 0,
+            "water": 0,
+            "fire": 0,
+            "earth": 0
+          }
+        }
+      ],
+      "equippedAttack": "mpjf51q3dgk8ms",
+      "equippedDefense": "mq0nyvy07ll8qh",
+      "equippedAccessory": "mq0o4c6brher9d",
+      "fullBody": "tianmingzhe.png"
+    }
+  ],
+  "home_bg_count": 4
+}

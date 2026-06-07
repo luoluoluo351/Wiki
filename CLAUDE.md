@@ -8,20 +8,36 @@
 |------|------|
 | [index.html](index.html) | 主页面 |
 | [css/style.css](css/style.css) | 全局样式 |
-| [js/app.js](js/app.js) | 入口：路由、导航、初始化 |
+| [js/app.js](js/app.js) | 入口：路由、导航、初始化、首页、排行榜 |
 | [js/storage.js](js/storage.js) | LocalStorage 读写封装 |
-| [js/image.js](js/image.js) | 拖拽上传图片通用组件 |
+| [js/image.js](js/image.js) | 图片文件名引用组件（非 base64） |
 | [js/characters.js](js/characters.js) | 角色图鉴 |
 | [js/treasures.js](js/treasures.js) | 法宝图鉴 |
 | [js/pets.js](js/pets.js) | 灵宠图鉴 |
 | [js/skills.js](js/skills.js) | 功法与神通 |
+| [js/items.js](js/items.js) | 道具图鉴 |
 | [js/damage.js](js/damage.js) | 伤害计算器 |
+| [js/gacha.js](js/gacha.js) | 模拟抽卡系统（卡池管理+抽卡逻辑+动画） |
+| [js/map.js](js/map.js) | 地图 |
 | [js/placeholder.js](js/placeholder.js) | 未开发模块占位 |
 | [docs/requirements.md](docs/requirements.md) | 需求文档 |
 | [docs/tech-specs.md](docs/tech-specs.md) | 技术规范 |
 | [docs/design.md](docs/design.md) | 设计规范 |
 | [docs/execution-plan.md](docs/execution-plan.md) | 执行步骤 |
 | [devlog/](devlog/) | 开发日志目录 |
+
+## 图片目录
+
+| 目录 | 用途 |
+|------|------|
+| img/characters/ | 角色半身头像+全身立绘 |
+| img/treasures/ | 法宝图片 |
+| img/pets/ | 灵宠图片 |
+| img/skills/ | 功法神通图片 |
+| img/items/ | 道具图片 |
+| img/map/ | 地图图片 |
+| img/background/ | 全局背景轮换（bg1~4.jpg） |
+| img/events/ | 首页活动轮播 |
 
 ## 工作说明
 
