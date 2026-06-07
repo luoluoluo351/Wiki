@@ -96,6 +96,15 @@ const App = {
     const { module, action, params } = this._parseHash(hash);
     const app = document.getElementById('app');
 
+    // 首页使用全屏透明布局，不需要白色矩形背景；其他页面统一加上
+    if (module === 'home') {
+      app.style.background = 'none';
+      app.style.borderRadius = '0';
+    } else {
+      app.style.background = 'rgba(255,255,255,0.8)';
+      app.style.borderRadius = '16px';
+    }
+
     document.querySelectorAll('.nav-link').forEach(link => {
       link.classList.toggle('active', link.dataset.route === module);
     });
@@ -355,10 +364,10 @@ const HomePage = {
 
     return `
       <div class="home-page">
-        <div class="home-hero" id="home-bg-zone" style="background-image:url(${bg});background-size:cover;background-position:center;display:flex;flex-direction:column;padding:58px 0 0;min-height:calc(100vh - 58px);">
+        <div class="home-hero" id="home-bg-zone" style="display:flex;flex-direction:column;padding:58px 0 0;min-height:calc(100vh - 58px);">
 
           <!-- 三栏：左更新 + 中轮播 + 右公告 -->
-          <div style="display:flex;width:100%;align-items:stretch;flex:1;min-height:400px;gap:0;padding:0;max-width:1400px;margin:0 auto;background:rgba(255,255,255,0.5);border-radius:16px;">
+          <div style="display:flex;width:100%;align-items:stretch;flex:1;min-height:400px;gap:0;padding:0;max-width:1400px;margin:0 auto;background:rgba(255,255,255,0.6);border-radius:16px;">
 
           <!-- 左栏：近期更新 -->
           <div class="home-panel" style="width:260px;border-right:1px solid rgba(184,148,76,0.15);">
@@ -476,18 +485,13 @@ function limitCheckbox(e, max) {
   if (checked.length > max) { e.target.checked = false; alert(`最多选择 ${max} 个`); }
 }
 
+// 全局背景轮换（img/background/ 文件夹图片，所有模块共用）
+(function(){
+  if(!localStorage.getItem('home_bg_count')) localStorage.setItem('home_bg_count','4');
+  let idx=0,count=parseInt(localStorage.getItem('home_bg_count'),10);
+  setTimeout(()=>{const e=document.getElementById('global-bg');if(e)e.style.backgroundImage='url(img/background/bg1.jpg)';},50);
+  setInterval(()=>{const e=document.getElementById('global-bg');if(e){idx=(idx+1)%count;e.style.backgroundImage=`url(img/background/bg${idx+1}.jpg)`;}},15000);
+})();
+
 document.addEventListener('DOMContentLoaded', () => App.init());
 
-// 全局背景轮换 — 独立于所有模块
-(function () {
-  var _idx = 0;
-  var _count = parseInt(localStorage.getItem('home_bg_count') || '4', 10);
-  if (_count >= 2) {
-    setInterval(function () {
-      var el = document.getElementById('home-bg-zone');
-      if (!el) return;
-      _idx = (_idx + 1) % _count;
-      el.style.backgroundImage = 'url(img/bg-' + (_idx + 1) + '.jpg)';
-    }, 30000);
-  }
-})();

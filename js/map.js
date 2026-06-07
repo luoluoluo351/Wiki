@@ -1,6 +1,6 @@
 // 地图模块
 
-const MAP_IMAGE = 'img/e9b08fb6de6cf23e6c08468bd25ca29c.jpg';
+const MAP_IMAGE = 'img/map/e9b08fb6de6cf23e6c08468bd25ca29c.jpg';
 
 const MapModule = {
 

@@ -151,6 +151,13 @@ body::after {
   max-width:1200px; margin-left:auto; margin-right:auto;
 }
 
+/* === 全局背景 === */
+#global-bg {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background-size: cover; background-position: center;
+  z-index: 0; opacity: 1.0; transition: background-image 1s ease;
+}
+
 /* === 活动轮播 === */
 .event-carousel {
   width: 100%; max-width: 850px; margin: 0 auto;
@@ -180,8 +187,7 @@ body::after {
 .home-hero {
   width:100%; height:100%;
   display:flex; align-items:center; justify-content:center;
-  background:
-    linear-gradient(180deg, #d8e8cc 0%, #e3edda 30%, #eaf0e2 60%, #e3edda 100%);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -190,12 +196,10 @@ body::after {
   content: ''; position: absolute;
   top:0; left:0; right:0; bottom:0;
   background:
-    /* 竹林光斑 */
     radial-gradient(ellipse 550px 450px at 10% 18%, rgba(74,107,58,0.15) 0%, transparent 55%),
     radial-gradient(ellipse 450px 380px at 90% 32%, rgba(74,107,58,0.12) 0%, transparent 50%),
     radial-gradient(ellipse 500px 420px at 48% 68%, rgba(74,107,58,0.10) 0%, transparent 55%),
     radial-gradient(ellipse 380px 320px at 28% 52%, rgba(184,148,76,0.06) 0%, transparent 60%),
-    /* 竹竿纹 */
     linear-gradient(90deg,
       transparent 5%, rgba(74,107,58,0.06) 7%, transparent 11%,
       transparent 28%, rgba(74,107,58,0.05) 31%, transparent 34%,
