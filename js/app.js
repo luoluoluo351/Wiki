@@ -103,6 +103,9 @@ const App = {
     } else {
       app.style.background = 'rgba(255,255,255,0.8)';
       app.style.borderRadius = '16px';
+      app.style.padding = '28px 24px';
+      app.style.marginTop = '58px';
+      app.style.maxWidth = '1200px';
     }
 
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -144,7 +147,7 @@ const App = {
         case 'skills':
           app.innerHTML = Skills.renderList();      Skills.bindListEvents();      break;
         case 'story':
-          app.innerHTML = Placeholder.render('剧情 — 暂未开发'); break;
+          app.innerHTML = Story.render(); if (Story.bindEvents) Story.bindEvents(); break;
         case 'map':
           app.innerHTML = MapModule.render(); if (MapModule.bindEvents) MapModule.bindEvents(); break;
         case 'damage':

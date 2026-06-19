@@ -24,7 +24,7 @@ function nextAdvRank(el){for(let i=1;i<=4;i++)if(!el.includes(i))return i;return
 function emptyStage(realm) {
   return {
     realm: realm,
-    hp:0, atk:0, def:0, critRate:0, critDmg:0,
+    hp:0, atk:0, def:0, maxLingli:0, critRate:0, critDmg:0,
     resist:{metal:0,wood:0,water:0,fire:0,earth:0},
     dmgBonus:{metal:0,wood:0,water:0,fire:0,earth:0}
   };
@@ -32,9 +32,10 @@ function emptyStage(realm) {
 
 // 计算满级总属性
 function totalAttr(c) {
-  let t = { hp:0,atk:0,def:0,critRate:0,critDmg:0,resist:{metal:0,wood:0,water:0,fire:0,earth:0},dmgBonus:{metal:0,wood:0,water:0,fire:0,earth:0} };
+  let t = { hp:0,atk:0,def:0,maxLingli:0,critRate:0,critDmg:0,resist:{metal:0,wood:0,water:0,fire:0,earth:0},dmgBonus:{metal:0,wood:0,water:0,fire:0,earth:0} };
   (c.realmStages||[]).forEach(s => {
     t.hp += s.hp||0; t.atk += s.atk||0; t.def += s.def||0;
+    t.maxLingli += s.maxLingli||0;
     t.critRate += s.critRate||0; t.critDmg += s.critDmg||0;
     ['metal','wood','water','fire','earth'].forEach(k => { t.resist[k] += (s.resist||{})[k]||0; t.dmgBonus[k] += (s.dmgBonus||{})[k]||0; });
   });
@@ -182,6 +183,7 @@ const Characters = {
         <div class="form-row" style="margin-top:8px;">
           <div style="flex:1;"><label>暴击率(%)</label><input type="number" value="${s.critRate}" data-field="stage_cr_${i}" step="0.01"></div>
           <div style="flex:1;"><label>暴击伤害(%)</label><input type="number" value="${s.critDmg}" data-field="stage_cd_${i}" step="0.01"></div>
+          <div style="flex:1;"><label>灵力上限</label><input type="number" value="${s.maxLingli||0}" data-field="stage_lingli_${i}" min="0"></div>
         </div>
         <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <div><label style="color:var(--gold);">五行抗性(%)</label>${ELEMENTS.map(e=>{const m={'金':'metal','木':'wood','水':'water','火':'fire','土':'earth'};return`<div style="margin-top:4px;"><label>${e}</label><input type="number" value="${(s.resist||{})[m[e]]||0}" data-field="stage_res_${m[e]}_${i}" step="0.01"></div>`;}).join('')}</div>
@@ -207,7 +209,7 @@ const Characters = {
     char.learnedAbilities.forEach((skId,i)=>{const sk=skillNameById(skId);learnedHtml+=`<div class="entry-item"><div class="entry-header"><span>${sk?sk.name:'(已删除)'}</span><button class="btn-delete la-del">×</button></div></div>`;});
 
     return `<div class="detail-page" data-char-id="${char.id||''}" data-is-new="${isNew}">
-      <div class="toolbar"><button class="btn-primary" onclick="App.navigate('characters')">← 返回列表</button><button class="btn-primary" id="btn-save-char">保存</button><button class="btn-danger" id="btn-del-char" ${isNew?'style="display:none"':''}>删除角色</button></div>
+      <div class="toolbar"><button class="btn-primary" id="btn-back-list">← 返回列表</button><button class="btn-primary" id="btn-save-char">保存</button><button class="btn-danger" id="btn-del-char" ${isNew?'style="display:none"':''}>删除角色</button></div>
 
       <fieldset class="fieldset"><legend>基本信息</legend>
         <div class="form-row"><div style="flex:0 0 200px;"><label>半身头像（列表展示）</label><div id="char-avatar-zone" class="drop-zone">拖拽图片到此处<br>或点击选择文件</div></div><div style="flex:0 0 200px;"><label>全身立绘（抽卡展示）</label><div id="char-fullbody-zone" class="drop-zone">拖拽图片到此处<br>或点击选择文件</div></div><div style="flex:1;">
@@ -223,6 +225,7 @@ const Characters = {
           <div style="text-align:center;"><div style="color:var(--gold);font-weight:bold;">生命</div><div style="font-size:18px;">${total.hp}</div></div>
           <div style="text-align:center;"><div style="color:var(--gold);font-weight:bold;">攻击</div><div style="font-size:18px;">${total.atk}</div></div>
           <div style="text-align:center;"><div style="color:var(--gold);font-weight:bold;">防御</div><div style="font-size:18px;">${total.def}</div></div>
+          <div style="text-align:center;"><div style="color:var(--gold);font-weight:bold;">灵力上限</div><div style="font-size:18px;">${total.maxLingli}</div></div>
         `;if(total.critRate)h+=`<div style="text-align:center;"><div style="color:var(--gold);font-weight:bold;">暴击率</div><div style="font-size:18px;">${total.critRate}%</div></div>`;if(total.critDmg)h+=`<div style="text-align:center;"><div style="color:var(--gold);font-weight:bold;">暴击伤害</div><div style="font-size:18px;">${total.critDmg}%</div></div>`;['金','木','水','火','土'].forEach(e=>{const m={金:'metal',木:'wood',水:'water',火:'fire',土:'earth'};const v=total.resist[m[e]];if(v)h+=`<div style="text-align:center;"><div style="color:var(--gold);font-weight:bold;">${e}抗性</div><div style="font-size:18px;">${v}%</div></div>`;});['金','木','水','火','土'].forEach(e=>{const m={金:'metal',木:'wood',水:'water',火:'fire',土:'earth'};const v=total.dmgBonus[m[e]];if(v)h+=`<div style="text-align:center;"><div style="color:var(--gold);font-weight:bold;">${e}伤害加成</div><div style="font-size:18px;">${v}%</div></div>`;});h+=`<div style="text-align:center;"><div style="color:var(--gold);font-weight:bold;">战力</div><div style="font-size:22px;color:var(--gold);">${calcCombatPower(char)}</div></div>`;return h;})()}</div>
       </fieldset>
 
@@ -243,12 +246,28 @@ const Characters = {
   bindDetailEvents() {
     const self=this; const el=document.querySelector('.detail-page'); if(!el)return;
     const charId=el.dataset.charId; const isNew=el.dataset.isNew==='true';
-    const az=document.getElementById('char-avatar-zone'); if(az){let cur=charId?Storage.findById(STORAGE_KEY,charId):createEmptyChar();ImageUpload.setup(az,cur?.avatar||'',(v)=>{},'characters/');az.addEventListener('click',function(){const i=this.querySelector('img');if(i){const o=document.getElementById('skill-modal');document.getElementById('modal-title').textContent='立绘预览';document.getElementById('modal-body').innerHTML=`<img src="${i.src}" style="max-width:100%;max-height:70vh;">`;o.style.display='flex';}});}
-    const fz=document.getElementById('char-fullbody-zone'); if(fz){let cur=charId?Storage.findById(STORAGE_KEY,charId):createEmptyChar();ImageUpload.setup(fz,cur?.fullBody||'',(v)=>{},'characters/');fz.addEventListener('click',function(){const i=this.querySelector('img');if(i){const o=document.getElementById('skill-modal');document.getElementById('modal-title').textContent='全身立绘预览';document.getElementById('modal-body').innerHTML=`<img src="${i.src}" style="max-width:100%;max-height:70vh;">`;o.style.display='flex';}});}
-    const save=()=>{const d=self._collect(charId);if(!d.name.trim()){alert('请输入角色姓名');return;}if(!d.id)d.id=Storage.uid();if(!d.realmStages||d.realmStages.length===0){d.realmStages=[emptyStage(d.realm)];}Storage.save(STORAGE_KEY,d);App.navigate('characters');};
+    let _dirty=false;
+    const setDirty=()=>{_dirty=true;};
+    const az=document.getElementById('char-avatar-zone'); if(az){let cur=charId?Storage.findById(STORAGE_KEY,charId):createEmptyChar();ImageUpload.setup(az,cur?.avatar||'',setDirty,'characters/');az.addEventListener('click',function(){const i=this.querySelector('img');if(i){const o=document.getElementById('skill-modal');document.getElementById('modal-title').textContent='立绘预览';document.getElementById('modal-body').innerHTML=`<img src="${i.src}" style="max-width:100%;max-height:70vh;">`;o.style.display='flex';}});}
+    const fz=document.getElementById('char-fullbody-zone'); if(fz){let cur=charId?Storage.findById(STORAGE_KEY,charId):createEmptyChar();ImageUpload.setup(fz,cur?.fullBody||'',setDirty,'characters/');fz.addEventListener('click',function(){const i=this.querySelector('img');if(i){const o=document.getElementById('skill-modal');document.getElementById('modal-title').textContent='全身立绘预览';document.getElementById('modal-body').innerHTML=`<img src="${i.src}" style="max-width:100%;max-height:70vh;">`;o.style.display='flex';}});}
+
+    // 输入框变更标记脏数据
+    document.querySelectorAll('input,textarea,select').forEach(function(inp){
+      if (inp.id==='char-realm') return; // realm change via dropdown doesn't need save
+      inp.addEventListener('change',setDirty);
+      inp.addEventListener('input',setDirty);
+    });
+
+    // 关闭/刷新前检查未保存
+    window.addEventListener('beforeunload',function(e){if(_dirty){e.preventDefault();e.returnValue='确定离开？未保存的修改将丢失。';}});
+
+    const save=()=>{const d=self._collect(charId);if(!d.name.trim()){alert('请输入角色姓名');return;}if(!d.id)d.id=Storage.uid();if(!d.realmStages||d.realmStages.length===0){d.realmStages=[emptyStage(d.realm)];}Storage.save(STORAGE_KEY,d);_dirty=false;App.navigate('characters');};
+    const back=()=>{if(_dirty&&!confirm('有未保存的修改，确定离开？'))return;_dirty=false;App.navigate('characters');};
+    document.getElementById('btn-back-list')?.addEventListener('click',back);
     document.getElementById('btn-save-char')?.addEventListener('click',save);
     document.getElementById('btn-save-char2')?.addEventListener('click',save);
-    // 添加修为阶段
+
+    // 添加修为阶段（不自动保存）
     document.getElementById('btn-add-stage')?.addEventListener('click',()=>{
       const cur=self._quickCollect(charId);
       if(!cur.realmStages)cur.realmStages=[];
@@ -262,9 +281,10 @@ const Characters = {
       if(nextIdx>maxIdx||nextIdx>=REALMS.length){alert('已达可解锁的最高阶段');return;}
       cur.realmStages.push(emptyStage(REALMS[nextIdx]));
       Storage.save(STORAGE_KEY,cur);
+      _dirty=false;
       App.navigate('characters/detail?id='+cur.id);
     });
-    const del=()=>{if(confirm('确定删除该角色？')){Storage.deleteById(STORAGE_KEY,charId);App.navigate('characters');}};
+    const del=()=>{if(confirm('确定删除该角色？')){_dirty=false;Storage.deleteById(STORAGE_KEY,charId);App.navigate('characters');}};
     document.getElementById('btn-del-char')?.addEventListener('click',del);
     document.getElementById('btn-del-char2')?.addEventListener('click',del);
 
@@ -316,7 +336,7 @@ const Characters = {
   _collectStages(d){
     d.realmStages=[];
     const sc=document.querySelectorAll('[data-field^="stage_hp_"]').length;
-    for(let i=0;i<sc;i++){const fel=document.querySelector(`#stages-container .fieldset:nth-child(${i+1}) legend span`);const realm=fel?fel.textContent.replace(/^[▾▸]\s*/,'').trim():REALMS[0];const s=emptyStage(realm);s.hp=parseFloat(document.querySelector(`[data-field="stage_hp_${i}"]`)?.value)||0;s.atk=parseFloat(document.querySelector(`[data-field="stage_atk_${i}"]`)?.value)||0;s.def=parseFloat(document.querySelector(`[data-field="stage_def_${i}"]`)?.value)||0;s.critRate=parseFloat(document.querySelector(`[data-field="stage_cr_${i}"]`)?.value)||0;s.critDmg=parseFloat(document.querySelector(`[data-field="stage_cd_${i}"]`)?.value)||0;['metal','wood','water','fire','earth'].forEach(k=>{s.resist[k]=parseFloat(document.querySelector(`[data-field="stage_res_${k}_${i}"]`)?.value)||0;s.dmgBonus[k]=parseFloat(document.querySelector(`[data-field="stage_dmg_${k}_${i}"]`)?.value)||0;});d.realmStages.push(s);}
+    for(let i=0;i<sc;i++){const fel=document.querySelector(`#stages-container .fieldset:nth-child(${i+1}) legend span`);const realm=fel?fel.textContent.replace(/^[▾▸]\s*/,'').trim():REALMS[0];const s=emptyStage(realm);s.hp=parseFloat(document.querySelector(`[data-field="stage_hp_${i}"]`)?.value)||0;s.atk=parseFloat(document.querySelector(`[data-field="stage_atk_${i}"]`)?.value)||0;s.def=parseFloat(document.querySelector(`[data-field="stage_def_${i}"]`)?.value)||0;s.maxLingli=parseInt(document.querySelector(`[data-field="stage_lingli_${i}"]`)?.value)||0;s.critRate=parseFloat(document.querySelector(`[data-field="stage_cr_${i}"]`)?.value)||0;s.critDmg=parseFloat(document.querySelector(`[data-field="stage_cd_${i}"]`)?.value)||0;['metal','wood','water','fire','earth'].forEach(k=>{s.resist[k]=parseFloat(document.querySelector(`[data-field="stage_res_${k}_${i}"]`)?.value)||0;s.dmgBonus[k]=parseFloat(document.querySelector(`[data-field="stage_dmg_${k}_${i}"]`)?.value)||0;});d.realmStages.push(s);}
   },
 
   _collect(charId){
@@ -332,6 +352,7 @@ const Characters = {
       s.hp=parseFloat(document.querySelector(`[data-field="stage_hp_${i}"]`)?.value)||0;
       s.atk=parseFloat(document.querySelector(`[data-field="stage_atk_${i}"]`)?.value)||0;
       s.def=parseFloat(document.querySelector(`[data-field="stage_def_${i}"]`)?.value)||0;
+      s.maxLingli=parseInt(document.querySelector(`[data-field="stage_lingli_${i}"]`)?.value)||0;
       s.critRate=parseFloat(document.querySelector(`[data-field="stage_cr_${i}"]`)?.value)||0;
       s.critDmg=parseFloat(document.querySelector(`[data-field="stage_cd_${i}"]`)?.value)||0;
       ['metal','wood','water','fire','earth'].forEach(k=>{
