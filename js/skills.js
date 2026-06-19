@@ -6,7 +6,7 @@ const SKILL_GRADES = ['人阶下','人阶中','人阶上'];
 const SKILL_TYPES = ['攻击','防御','增益','辅助'];
 
 function createEmptySkill() {
-  return { id: '', name: '', image: '', elements: [], grade: '人阶下', type: '攻击', desc: '', cd: '', combat: 0, subtype: '战技', lingli: 0 };
+  return { id: '', name: '', image: '', elements: [], grade: '人阶下', type: '攻击', desc: '', cd: '', combat: 0, lingli: 0 };
 }
 
 const Skills = {
@@ -29,7 +29,7 @@ const Skills = {
         <span class="row-h-col" style="width:90px;">五行</span>
         <span class="row-h-col" style="width:75px;">等阶</span>
         <span class="row-h-col" style="width:60px;">类型</span>
-        ${this._currentTab==='shentong'?'<span class="row-h-col" style="width:100px;">获取/消耗灵力</span>':''}
+        ${this._currentTab==='shentong'?'<span class="row-h-col" style="width:100px;">消耗灵力</span>':''}
         <span class="row-h-col" style="width:50px;">战力</span>
       </div>`;
       list.forEach(s => {
@@ -47,7 +47,7 @@ const Skills = {
             <span class="row-tags" style="width:90px;justify-content:center;">${elTag}</span>
             <span style="color:var(--text-dim);width:75px;font-size:13px;text-align:center;white-space:nowrap;">${s.grade}</span>
             <span style="color:var(--text-dim);width:60px;font-size:13px;text-align:center;white-space:nowrap;">${s.type||'攻击'}类</span>
-            ${Skills._currentTab==='shentong'?`<span style="color:var(--text-dim);width:100px;font-size:13px;text-align:center;white-space:nowrap;">${s.subtype==='绝技'?'消耗':'获取'}${s.lingli||0}</span>`:''}
+            ${Skills._currentTab==='shentong'?`<span style="color:var(--text-dim);width:100px;font-size:13px;text-align:center;white-space:nowrap;">消耗${s.lingli||0}</span>`:''}
             <span style="color:var(--gold);width:50px;font-size:14px;text-align:center;white-space:nowrap;">${s.combat||0}</span>
             <span class="row-actions">
               <button class="row-icon-btn" onclick="App.navigate('skills/detail?id=${s.id}&type=${Skills._currentTab}')" title="编辑">✎</button>
@@ -108,9 +108,7 @@ const Skills = {
                 ${isShentong?`<div style="flex:1;"><label>冷却时间(CD)</label><input type="text" id="skill-cd" value="${skill.cd||''}" placeholder="如：30秒"></div>`:''}
                 <div style="flex:1;"><label>战力</label><input type="number" id="skill-combat" value="${skill.combat||0}"></div>
               </div>
-              ${isShentong?`<div class="form-row"><div style="flex:1;"><label>神通类型</label><select id="skill-subtype"><option value="战技" ${(skill.subtype||'战技')==='战技'?'selected':''}>战技（获取灵力）</option><option value="绝技" ${skill.subtype==='绝技'?'selected':''}>绝技（消耗灵力）</option></select></div><div style="flex:1;"><label>灵力${skill.subtype==='绝技'?'消耗':'获取'}</label><input type="number" id="skill-lingli" value="${skill.lingli||0}"></div></div>`:''}
-              <div class="form-group"><label>详细描述</label>
-              </div>
+              ${isShentong?`<div class="form-row"><div style="flex:1;"><label>消耗灵力</label><input type="number" id="skill-lingli" value="${skill.lingli||0}"></div><div style="flex:1;"></div></div>`:''}
               <div class="form-group"><label>详细描述</label><textarea id="skill-desc" style="width:100%;min-height:120px;">${skill.desc||''}</textarea></div>
             </div>
           </div>
@@ -172,7 +170,6 @@ const Skills = {
     data.cd = type === 'shentong' ? (document.getElementById('skill-cd')?.value || '') : '';
     data.combat = parseInt(document.getElementById('skill-combat')?.value) || 0;
     if (type === 'shentong') {
-      data.subtype = document.getElementById('skill-subtype')?.value || '战技';
       data.lingli = parseInt(document.getElementById('skill-lingli')?.value) || 0;
     }
     return data;
