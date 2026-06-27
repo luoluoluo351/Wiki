@@ -73,6 +73,15 @@ function getSkillUPRate(pv) {
   if (pv <= 35) return 0.25 + (pv - 1) * 0.00735;      // 25% → 50%
   return Math.min(1, 0.50 + (pv - 35) * 0.02);          // 50% → 100%
 }
+function getCharUPRate(pv) {
+  // 角色池红色UP概率：歪率75%→25%，仙缘值越高歪率越低
+  if (pv <= 25) return 0.25 + (pv - 1) * 0.004;        // 25% → 35%
+  if (pv <= 50) return 0.35 + (pv - 25) * 0.008;       // 35% → 55%
+  if (pv <= 75) return 0.55 + (pv - 50) * 0.004;       // 55% → 65%
+  if (pv <= 95) return 0.65 + (pv - 75) * 0.005;       // 65% → 75%
+  if (pv <= 99) return 0.75 + (pv - 95) * 0.0625;      // 75% → 100%
+  return 1.0;                                            // 100抽必UP
+}
 
 var TEN_PULL_RESET = 10;
 
@@ -154,8 +163,17 @@ function doPull(pool) {
   var selected = null, isBigUP = false;
 
   if (hitIdx === 0) {
-    if (isChar && pool.upBig) { selected = { itemType:'character', itemId:pool.upBig.itemId, upType:'big' }; isBigUP = true; }
-    else if (!isChar && pool.upItems && pool.upItems.length > 0) {
+    if (isChar && pool.upBig) {
+      // 角色池：仙缘值决定UP还是歪
+      if (Math.random() < getCharUPRate(pv)) {
+        selected = { itemType:'character', itemId:pool.upBig.itemId, upType:'big' }; isBigUP = true;
+      } else if (tierRewards.length > 0) {
+        // 歪：从红色档常驻奖励中随机选（排除大UP角色）
+        var offRewards = tierRewards.filter(function(r){ return r.itemId !== pool.upBig.itemId; });
+        if (offRewards.length > 0) selected = offRewards[Math.floor(Math.random() * offRewards.length)];
+        else if (tierRewards.length > 0) selected = tierRewards[Math.floor(Math.random() * tierRewards.length)];
+      }
+    } else if (!isChar && pool.upItems && pool.upItems.length > 0) {
       if (Math.random() < getSkillUPRate(pv)) {
         var upItem = pool.upItems[Math.floor(Math.random() * pool.upItems.length)];
         selected = { itemType:'skill', itemId: upItem.itemId, upType:'big' }; isBigUP = true;
@@ -854,7 +872,7 @@ var Gacha = {
       } else {
         redCons = '1.56%（约64抽出1红）';
         goldCons = '11.5%（约9抽出1金，含十连保底）';
-        redUPCons = '1.10%（约91抽出1大UP，计入可歪概率）';
+        redUPCons = '1.02%（约98抽出1大UP，计入可歪概率）';
       }
 
       html += '<fieldset class="fieldset"><legend>稀有度分档</legend><table style="width:100%;">'+
@@ -881,14 +899,19 @@ var Gacha = {
       if (pool.subtype==='up' || isSkill) {
         html += '<fieldset class="fieldset"><legend>UP 机制</legend>';
         if (isSkill) {
-          html += '<p>· 抽出红色时，根据悟道值决定获得UP还是常驻奖励</p>'+
-            '<p>· 悟道值较低时易"歪"，悟道值越高UP概率越大</p>'+
-            '<p>· 悟道值达 '+maxP+' 时必出UP</p>'+
+          html += '<p>· 大UP（红色仙品）：歪率75%→0%（综合约69抽出1当期UP）</p>'+
+            '<p>· 悟道值1-35：UP率25%→50%（歪率75%→50%）</p>'+
+            '<p>· 悟道值36-60：UP率50%→100%（歪率50%→0%），60抽必出当期UP</p>'+
             '<p>· UP 包含当期配置的功法/神通（红色品质）</p>'+
             (pool.upSmallItems&&pool.upSmallItems.length>0?'<p>· 金色品质也有概率获得小UP奖励</p>':'')+
             '<p>· 各卡池UP独立，不互相继承</p>';
         } else if (pool.subtype==='up') {
-          html += '<p>· 大UP（红色仙品）：抽出红色时按仙缘值决定UP概率，仙缘值越高越不易歪</p>'+
+          html += '<p>· 大UP（红色仙品）：歪率75%→25%（综合约98抽出1）</p>'+
+            '<p>· 仙缘值1-25：UP率25%→35%（歪率75%→65%）</p>'+
+            '<p>· 仙缘值26-50：UP率35%→55%（歪率65%→45%）</p>'+
+            '<p>· 仙缘值51-75：UP率55%→65%（歪率45%→35%）</p>'+
+            '<p>· 仙缘值76-95：UP率65%→75%（歪率35%→25%）</p>'+
+            '<p>· 仙缘值96-99：UP率75%→100%，100抽必出当期UP</p>'+
             '<p>· 小UP（金色天品）：抽出金色时有50%概率获得</p>'+
             '<p>· 仙缘值跨卡池保留，抽出红色后清零</p>';
         }

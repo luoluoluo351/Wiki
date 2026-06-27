@@ -79,7 +79,7 @@ const Characters = {
         <span class="row-h-col" style="width:72px;"></span>
         <span class="row-h-col" style="width:80px;">名称</span>
         <span class="row-h-col" style="width:85px;">初始/当前</span>
-        <span class="row-h-col" style="width:50px;">宗门</span>
+        <span class="row-h-col" style="width:50px;">所属</span>
         <span class="row-h-col" style="width:55px;">灵根</span>
         <span class="row-h-col" style="width:55px;">生命</span>
         <span class="row-h-col" style="width:55px;">攻击</span>
@@ -115,12 +115,12 @@ const Characters = {
         const stages=c.realmStages||[];const curRealmName=majorName(stages.length>0?stages[stages.length-1].realm:c.realm)+'期';const dispRealm=majorName(c.realm)+'期/'+curRealmName;
         let mainSkillText = '—';
         if (c.mainSkills.length>0) {
-          const names = c.mainSkills.map(id=>{const s=skillNameById(id);if(!s)return'';return id===c.yuanYingSkill?s.name+'(元婴)':s.name;}).filter(Boolean);
-          mainSkillText = names.join('、')||'—';
+          const s=skillNameById(c.mainSkills[0]);
+          if (s) mainSkillText = c.mainSkills[0]===c.yuanYingSkill?s.name+'(元婴)':s.name;
         }
         // 弹窗
         const modalData = [...c.passiveSkills];
-        (c.mainSkills||[]).forEach(skId=>{const sk=skillNameById(skId);if(sk)modalData.push({name:'主修功法：'+sk.name,desc:(Storage.findById('skills_gongfa',skId)||{}).desc||''});});
+        (c.mainSkills||[]).forEach((skId,i)=>{const sk=skillNameById(skId);if(sk){const label=skId===c.yuanYingSkill?'元婴功法':(i===0?'主修功法':'其他功法');modalData.push({name:label+'：'+sk.name,desc:(Storage.findById('skills_gongfa',skId)||{}).desc||''});}});
         (c.learnedAbilities||[]).forEach(skId=>{const sk=skillNameById(skId);if(sk)modalData.push({name:'习得神通：'+sk.name,desc:(Storage.findById('skills_shentong',skId)||{}).desc||''});});
         const modalEsc = JSON.stringify(modalData).replace(/'/g,'&#39;');
 
@@ -214,7 +214,7 @@ const Characters = {
       <fieldset class="fieldset"><legend>基本信息</legend>
         <div class="form-row"><div style="flex:0 0 200px;"><label>半身头像（列表展示）</label><div id="char-avatar-zone" class="drop-zone">拖拽图片到此处<br>或点击选择文件</div></div><div style="flex:0 0 200px;"><label>全身立绘（抽卡展示）</label><div id="char-fullbody-zone" class="drop-zone">拖拽图片到此处<br>或点击选择文件</div></div><div style="flex:1;">
         <div class="form-group"><label>姓名</label><input type="text" id="char-name" value="${char.name}" style="width:100%;font-size:18px;"></div>
-        <div class="form-row"><div style="flex:1;"><label>宗门</label><input type="text" id="char-sect" value="${char.sect||''}" placeholder="如：青云宗" style="width:100%;"></div><div style="flex:1;"><label>初始修为</label><select id="char-realm" style="width:100%;">${REALMS.map(r=>`<option value="${r}" ${char.realm===r?'selected':''}>${r}</option>`).join('')}</select></div></div>
+        <div class="form-row"><div style="flex:1;"><label>所属</label><input type="text" id="char-sect" value="${char.sect||''}" placeholder="如：青云门" style="width:100%;"></div><div style="flex:1;"><label>初始修为</label><select id="char-realm" style="width:100%;">${REALMS.map(r=>`<option value="${r}" ${char.realm===r?'selected':''}>${r}</option>`).join('')}</select></div></div>
         <div class="form-group"><label>灵根（可多选，最多3个）</label><div class="checkbox-group" id="char-roots">${rootsHtml}</div></div></div></div>
       </fieldset>
 

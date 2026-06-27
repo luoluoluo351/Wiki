@@ -146,8 +146,6 @@ const App = {
           app.innerHTML = Pets.renderList();       Pets.bindListEvents();       break;
         case 'skills':
           app.innerHTML = Skills.renderList();      Skills.bindListEvents();      break;
-        case 'story':
-          app.innerHTML = Story.render(); if (Story.bindEvents) Story.bindEvents(); break;
         case 'map':
           app.innerHTML = MapModule.render(); if (MapModule.bindEvents) MapModule.bindEvents(); break;
         case 'damage':
@@ -248,10 +246,10 @@ const Leaderboard = {
         }
         const aSrc=(c.avatar||'').startsWith('data:')?c.avatar:(c.avatar?'img/characters/'+c.avatar:'');const avatarHtml=aSrc?`<img src="${aSrc}" alt="${c.name}">`:'<div class="row-noimg">无图</div>';
         let totalCombat = calcCombatPower(c);
-        let mainNames = [];
-        (c.mainSkills||[]).forEach(skId => {
+        let mainName = '—';
+        (c.mainSkills||[]).forEach((skId,i) => {
           const s = skillNameById(skId);
-          if (s) { totalCombat += (s.combat||0); mainNames.push(s.name); }
+          if (s) { totalCombat += (s.combat||0); if (i===0) mainName = c.mainSkills[0]===c.yuanYingSkill ? s.name+'(元婴)' : s.name; }
         });
         (c.learnedAbilities||[]).forEach(skId => {
           const s = skillNameById(skId);
@@ -269,7 +267,7 @@ const Leaderboard = {
           <span class="row-name" style="width:100px;">${c.name||'未命名'}</span>
           ${(()=>{const stages=c.realmStages||[];const cr=stages.length>0?stages[stages.length-1].realm:c.realm;return`<span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${majorName(cr)}期</span>`;})()}
           <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${c.sect||'—'}</span>
-          <span style="color:var(--text-dim);width:150px;font-size:12px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${mainNames.join('、')||'—'}</span>
+          <span style="color:var(--text-dim);width:150px;font-size:12px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${mainName}</span>
           <span style="color:var(--gold);font-size:18px;font-weight:bold;width:70px;text-align:center;white-space:nowrap;">${totalCombat}</span>
           <span class="row-actions"><button class="row-icon-btn" onclick="Leaderboard.remove('${entry.charId}')" title="移除">×</button></span>
         </div>`;

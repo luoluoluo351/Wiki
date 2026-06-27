@@ -1,7 +1,7 @@
 // 法宝图鉴
 
 const TREASURE_STORAGE = 'treasures';
-const TREASURE_TYPES = { attack:{label:'攻击类',sub:['剑','枪','斧','针','盾']}, defense:{label:'防具类',sub:['甲','胄','袍']}, accessory:{label:'饰品类',sub:['环','玺','镜','珠','印']} };
+const TREASURE_TYPES = { attack:{label:'攻击类',sub:['剑','枪','斧','针','盾','扇']}, defense:{label:'防具类',sub:['甲','胄','袍']}, accessory:{label:'饰品类',sub:['环','玺','镜','珠','印']} };
 const TREASURE_GRADES = ['下品法器','中品法器','上品法器','极品法器'];
 const ENTRY2_STATS = ['生命','攻击','防御','暴击率','暴击伤害','金抗','木抗','水抗','火抗','土抗','金伤加成','木伤加成','水伤加成','火伤加成','土伤加成'];
 
