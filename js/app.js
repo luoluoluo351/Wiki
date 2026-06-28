@@ -257,14 +257,7 @@ const Leaderboard = {
           continue;
         }
         // 兼容旧数据
-        if (!c.realmStages||c.realmStages.length===0) {
-          c.realmStages = [];
-          if (c.basicAttr) {
-            const s = {realm:c.realm||'练气初期',hp:c.basicAttr.hp?.lv100||0,atk:c.basicAttr.atk?.lv100||0,def:c.basicAttr.def?.lv100||0,critRate:0,critDmg:0,resist:{metal:0,wood:0,water:0,fire:0,earth:0},dmgBonus:{metal:0,wood:0,water:0,fire:0,earth:0}};
-            if (c.advancedAttr) { s.critRate=c.advancedAttr.critRate||0; s.critDmg=c.advancedAttr.critDmg||0; ['metal','wood','water','fire','earth'].forEach(k=>{s.resist[k]=c.advancedAttr.resist?.[k]||0;s.dmgBonus[k]=c.advancedAttr.dmgBonus?.[k]||0;}); }
-            c.realmStages.push(s);
-          }
-        }
+        if (typeof _migrateChar === 'function') _migrateChar(c);
         const aSrc=(c.avatar||'').startsWith('data:')?c.avatar:(c.avatar?'img/characters/'+c.avatar:'');const avatarHtml=aSrc?`<img src="${aSrc}" alt="${c.name}">`:'<div class="row-noimg">无图</div>';
         let totalCombat = calcCombatPower(c);
         let mainName = '—';
@@ -286,10 +279,10 @@ const Leaderboard = {
           <span class="rank-badge ${rankClass}">${rankLabel}</span>
           ${avatarHtml}
           <span class="row-name" style="width:100px;">${c.name||'未命名'}</span>
-          ${(()=>{const stages=c.realmStages||[];const cr=stages.length>0?stages[stages.length-1].realm:c.realm;return`<span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${majorName(cr)}期</span>`;})()}
+          ${(()=>{const stages=c.realmStages||[];const cr=stages.length>0?stages[stages.length-1].majorRealm:'练气';return`<span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${cr}期</span>`;})()}
           <span style="color:var(--text-dim);width:80px;font-size:13px;text-align:center;white-space:nowrap;">${c.sect||'—'}</span>
           <span style="color:var(--text-dim);width:150px;font-size:12px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${mainName}</span>
-          <span style="color:var(--gold);font-size:18px;font-weight:bold;width:70px;text-align:center;white-space:nowrap;">${totalCombat}</span>
+          <span style="color:var(--gold);font-size:18px;font-weight:bold;width:70px;text-align:center;white-space:nowrap;">${fmtNum(totalCombat)}</span>
           <span class="row-actions"><button class="row-icon-btn" onclick="Leaderboard.remove('${entry.charId}')" title="移除">×</button></span>
         </div>`;
       }
@@ -305,7 +298,8 @@ const Leaderboard = {
       const list = Storage.list(this.STORAGE);
       const names = chars.map((c,i) => {
         const already = list.some(e => e.charId === c.id) ? ' [已添加]' : '';
-        return `${i+1}. ${c.name||'未命名'} ${c.realm}${already}`;
+        const stages=c.realmStages||[];const cr=stages.length>0?stages[stages.length-1].majorRealm+'期':'练气期';
+        return `${i+1}. ${c.name||'未命名'} ${cr}${already}`;
       }).join('\n');
       const idx = prompt('选择角色加入排行榜（输入序号）：\n' + names);
       if (!idx) return;
