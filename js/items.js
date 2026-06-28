@@ -43,7 +43,7 @@ const Items = {
       </div>`;
       list.forEach(item => {
         const iconSrc = (item.icon || '').startsWith('data:') ? item.icon : (item.icon ? 'img/items/' + item.icon : '');
-        const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${item.name}">` : '<div class="row-noimg">无图</div>';
+        const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${item.name}" class="thumb-clickable" style="cursor:pointer;">` : '<div class="row-noimg">无图</div>';
         rows += `<div class="row-item">
           ${iconHtml}
           <span class="row-name" style="width:140px;">${item.name || '未命名'}</span>

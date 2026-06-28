@@ -441,6 +441,8 @@ label { display:block; margin-bottom:4px; color: var(--text-dim); font-size:13px
 .tag-water { background: #5b8a9a; }
 .tag-fire  { background: #c46b5b; }
 .tag-earth { background: #9b7b5b; }
+.tag-light { background: #d4a843; color: #3d2e00; }
+.tag-dark  { background: #5b3f6b; }
 
 /* === 拖拽上传 === */
 .drop-zone {

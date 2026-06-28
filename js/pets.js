@@ -17,7 +17,8 @@ function petTotalAttr(p) {
 
 function calcPetCombat(p) {
   const t=petTotalAttr(p);let pts=0;
-  pts+=t.hp/10+t.atk/2+t.def/2+t.critRate+t.critDmg;
+  pts+=t.hp/10+t.atk/2+t.def/1.5;
+  pts+=(t.critRate/100)*((t.critDmg-100)/100)*100;
   ['metal','wood','water','fire','earth'].forEach(k=>{pts+=t.resist[k]/0.8+t.dmgBonus[k]/0.8;});
   return Math.round(pts);
 }
@@ -46,7 +47,7 @@ const Pets={
       list.forEach(p=>{
         // 兼容旧数据
         if(!p.realmStages||p.realmStages.length===0){p.realmStages=[];if(p.basicAttr){const s=emptyPetStage(p.realm||'练气初期');s.hp=p.basicAttr.hp?.lv60||0;s.atk=p.basicAttr.atk?.lv60||0;s.def=p.basicAttr.def?.lv60||0;if(p.advancedAttr){s.critRate=p.advancedAttr.critRate?.lv60||0;s.critDmg=p.advancedAttr.critDmg?.lv60||0;['metal','wood','water','fire','earth'].forEach(k=>{const rk='resist_'+k;s.resist[k]=p.advancedAttr[rk]?.lv60||0;const dk='dmg_'+k;s.dmgBonus[k]=p.advancedAttr[dk]?.lv60||0;});}p.realmStages.push(s);}}
-        const pSrc=(p.image||'').startsWith('data:')?p.image:(p.image?'img/pets/'+p.image:'');const imgHtml=pSrc?`<img src="${pSrc}" alt="${p.name}">`:'<div class="row-noimg">无图</div>';
+        const pSrc=(p.image||'').startsWith('data:')?p.image:(p.image?'img/pets/'+p.image:'');const imgHtml=pSrc?`<img src="${pSrc}" alt="${p.name}" class="thumb-clickable" style="cursor:pointer;">`:'<div class="row-noimg">无图</div>';
         const tags=p.spiritRoots.map(e=>`<span class="tag tag-${e==='金'?'gold':e==='木'?'wood':e==='水'?'water':e==='火'?'fire':'earth'}">${e}</span>`).join('');
         const total=petTotalAttr(p);const cp=calcPetCombat(p);
         const activeEsc=JSON.stringify(p.activeSkills||[]).replace(/'/g,'&#39;');
@@ -56,10 +57,10 @@ const Pets={
           <span class="row-name" style="width:85px;">${p.name||'未命名'}</span>
           <span style="color:var(--text-dim);width:65px;font-size:13px;text-align:center;white-space:nowrap;">${majorName(p.realm)}期</span>
           <span class="row-tags" style="width:50px;justify-content:center;">${tags}</span>
-          <span class="row-stat" style="width:55px;">${total.hp}</span>
-          <span class="row-stat" style="width:55px;">${total.atk}</span>
-          <span class="row-stat" style="width:55px;">${total.def}</span>
-          <span style="color:var(--gold);width:50px;font-size:14px;text-align:center;white-space:nowrap;">${cp}</span>
+          <span class="row-stat" style="width:55px;">${fmtNum(total.hp)}</span>
+          <span class="row-stat" style="width:55px;">${fmtNum(total.atk)}</span>
+          <span class="row-stat" style="width:55px;">${fmtNum(total.def)}</span>
+          <span style="color:var(--gold);width:50px;font-size:14px;text-align:center;white-space:nowrap;">${fmtNum(cp)}</span>
           <span class="row-actions" style="width:100px;justify-content:center;">
             <button class="row-icon-btn" onclick="App.navigate('pets/detail?id=${p.id}')" title="编辑">✎</button>
             <button class="row-icon-btn" data-active='${activeEsc}' data-passive='${passiveEsc}' onclick="event.stopPropagation();showAbilityModal('${p.name||'灵宠'} 技能',JSON.parse(this.dataset.active),JSON.parse(this.dataset.passive))" title="查看能力">👁</button>

@@ -1,5 +1,13 @@
 // 应用入口：路由 + 导航 + 初始化
 
+// 数值超过1万显示为 xx万
+function fmtNum(n) {
+  if (n == null || isNaN(n)) return '0';
+  var v = Math.abs(n);
+  if (v >= 10000) return (n / 10000).toFixed(1).replace(/\.0$/, '') + '万';
+  return String(Math.round(n));
+}
+
 // 全局技能查看弹窗
 function showAbilityModal(title, skills, extraSkills) {
   let html = '<div style="display:flex;flex-direction:column;gap:12px;">';
@@ -34,6 +42,16 @@ const App = {
   init() {
     this._bindNav();
     this._bindDataActions();
+    // 全局委托：列表缩略图点击放大
+    document.getElementById('app').addEventListener('click', function (e) {
+      const img = e.target.closest('.thumb-clickable');
+      if (!img) return;
+      e.stopPropagation();
+      const modal = document.getElementById('skill-modal');
+      document.getElementById('modal-title').textContent = img.alt || '图片预览';
+      document.getElementById('modal-body').innerHTML = '<img src="' + img.src + '" style="max-width:100%;max-height:70vh;">';
+      modal.style.display = 'flex';
+    });
     window.addEventListener('hashchange', () => {
       if (this._suppressHashChange) { this._suppressHashChange = false; return; }
       this._route(location.hash.slice(1));
@@ -118,6 +136,7 @@ const App = {
           case 'characters': app.innerHTML = Characters.renderDetail(params.id || ''); Characters.bindDetailEvents(); return;
           case 'treasures':  app.innerHTML = Treasures.renderDetail(params.id || '');  Treasures.bindDetailEvents();  return;
           case 'pets':       app.innerHTML = Pets.renderDetail(params.id || '');       Pets.bindDetailEvents();       return;
+          case 'monsters':   app.innerHTML = Monsters.renderDetail(params.id || '');   Monsters.bindDetailEvents();   return;
           case 'skills':     app.innerHTML = Skills.renderDetail(params.id || '', params.type || ''); Skills.bindDetailEvents(); return;
           case 'items':      app.innerHTML = Items.renderDetail(params.id || '');      Items.bindDetailEvents();      return;
           case 'gacha':      app.innerHTML = Gacha.renderPoolDetail(params.id || '');  Gacha.bindPoolDetailEvents();  return;
@@ -139,7 +158,7 @@ const App = {
         case 'treasures':
           app.innerHTML = Treasures.renderList();  Treasures.bindListEvents();  break;
         case 'monsters':
-          app.innerHTML = Placeholder.render('怪物图鉴 — 暂未开发'); break;
+          app.innerHTML = Monsters.renderList(); Monsters.bindListEvents(); break;
         case 'items':
           app.innerHTML = Items.renderList();       Items.bindListEvents();       break;
         case 'pets':
@@ -148,6 +167,8 @@ const App = {
           app.innerHTML = Skills.renderList();      Skills.bindListEvents();      break;
         case 'map':
           app.innerHTML = MapModule.render(); if (MapModule.bindEvents) MapModule.bindEvents(); break;
+        case 'guide':
+          app.innerHTML = Guide.render(); if (Guide.bindEvents) Guide.bindEvents(); break;
         case 'damage':
           app.innerHTML = Damage.render();   if (Damage.bindEvents)   Damage.bindEvents();   break;
         case 'leaderboard':

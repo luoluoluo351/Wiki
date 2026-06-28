@@ -158,7 +158,7 @@ const Damage = {
     const bonusEl = document.getElementById('acc-treasure-bonus');
     if (!id || !bonusEl) return;
     const t = Storage.findById('treasures', id);
-    if (t && t.entry2) bonusEl.textContent = t.entry2.stat + ': +' + treasureValueAtLevel(t.entry2, Math.min(Math.max(level, 1), 60)).toFixed(2) + '%';
+    if (t && t.entry2) bonusEl.textContent = t.entry2.stat + ': +' + treasureValueAtLevel(t.entry2, Math.min(Math.max(level, 1), 60)).toFixed(2) + (t.entry2.valType==='fixed'?'':'%');
   },
 
   _calculate() {
@@ -171,16 +171,16 @@ const Damage = {
     if (atkTid) { const at = Storage.findById('treasures', atkTid); if (at) baseAtk += treasureValueAtLevel(at.entry1, Math.min(Math.max(atkTLevel, 1), 60)); }
 
     let atkPctBonus = parseFloat(document.getElementById('dam-atk-pct')?.value) || 0;
+    let flatBonus = parseFloat(document.getElementById('dam-atk-flat')?.value) || 0;
     const accTid = document.getElementById('dam-acc-treasure')?.value;
     const accTLevel = parseInt(document.getElementById('dam-acc-treasure-level')?.value) || 60;
-    if (accTid) { const acc = Storage.findById('treasures', accTid); if (acc && acc.entry2 && acc.entry2.stat === '攻击') atkPctBonus += treasureValueAtLevel(acc.entry2, Math.min(Math.max(accTLevel, 1), 60)); }
-    const flatBonus = parseFloat(document.getElementById('dam-atk-flat')?.value) || 0;
+    if (accTid) { const acc = Storage.findById('treasures', accTid); if (acc && acc.entry2 && acc.entry2.stat === '攻击') { const v = treasureValueAtLevel(acc.entry2, Math.min(Math.max(accTLevel, 1), 60)); if (acc.entry2.valType === 'fixed') flatBonus += v; else atkPctBonus += v; } }
     const totalAtk = baseAtk * (1 + atkPctBonus / 100) + flatBonus;
 
     let critRate = parseFloat(document.getElementById('dam-atk-critrate')?.value) || 5;
     let critDmg = parseFloat(document.getElementById('dam-atk-critdmg')?.value) || 150;
     let pen = parseFloat(document.getElementById('dam-atk-pen')?.value) || 0;
-    if (accTid) { const acc = Storage.findById('treasures', accTid); if (acc && acc.entry2 && acc.entry2.stat !== '攻击') { const val = treasureValueAtLevel(acc.entry2, Math.min(Math.max(accTLevel, 1), 60)); const stat = acc.entry2.stat; if (stat === '暴击率') critRate += val; else if (stat === '暴击伤害') critDmg += val; } }
+    if (accTid) { const acc = Storage.findById('treasures', accTid); if (acc && acc.entry2 && acc.entry2.stat !== '攻击') { const v = treasureValueAtLevel(acc.entry2, Math.min(Math.max(accTLevel, 1), 60)); const stat = acc.entry2.stat; if (stat==='暴击率') critRate += v; else if (stat==='暴击伤害') critDmg += v; } }
 
     const atkDmgBonus = {}; ELEMENTS.forEach(e => { atkDmgBonus[e] = parseFloat(document.getElementById(`dam-dmg2-${e}`)?.value) || 0; });
 
@@ -197,9 +197,11 @@ const Damage = {
     const atkMajor = majorIndex(atkRealm); const defMajor = majorIndex(defRealm);
     if (atkMajor > defMajor) pen += (atkMajor - defMajor) * 10;
 
-    // 3. 防御免伤
+    // 3. 防御免伤（常数K随境界变化）
+    const K_VALUES = [500, 650, 900, 1250, 1700]; // 练气/筑基/金丹/元婴/化神
+    const K = K_VALUES[defMajor] || 800;
     const effectiveDef = Math.max(defDef * (1 - pen / 100), 0);
-    const defReduction = effectiveDef / (effectiveDef + 800);
+    const defReduction = effectiveDef / (effectiveDef + K);
 
     // 4. 五行克制
     const countered = atkElements.some(ae => defElements.some(de => ELEM_CYCLE[ae] === de));

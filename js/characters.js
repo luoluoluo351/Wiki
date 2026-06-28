@@ -20,6 +20,15 @@ function displayRealm(baseRealm, advCount) { const idx=REALMS.indexOf(baseRealm)
 function nextBreakLevel(el){for(let lv=20;lv<=100;lv+=20)if(!el.includes(lv))return lv;return 0;}
 function nextAdvRank(el){for(let i=1;i<=4;i++)if(!el.includes(i))return i;return 0;}
 
+// 技能数量限制
+function getSkillLimits(realm) {
+  const mi = majorIndex(realm);
+  // 练气:1/2  筑基:2/3  金丹:3/3  元婴:4/4  化神:5/4
+  const gongfa = [1,2,3,4,5];
+  const shentong = [2,3,3,4,4];
+  return { gongfa: gongfa[mi]||1, shentong: shentong[mi]||2 };
+}
+
 // 创建空领域阶段
 function emptyStage(realm) {
   return {
@@ -46,7 +55,9 @@ function totalAttr(c) {
 function calcCombatPower(c) {
   const t = totalAttr(c);
   let pts = 0;
-  pts += t.hp/10 + t.atk/2 + t.def/2 + t.critRate + t.critDmg;
+  pts += t.hp/10 + t.atk/2 + t.def/1.5;
+  // 暴击综合值 = 暴击率 × (暴击伤害 - 100%) × 100
+  pts += (t.critRate/100) * ((t.critDmg-100)/100) * 100;
   ['metal','wood','water','fire','earth'].forEach(k => { pts += t.resist[k]/0.8 + t.dmgBonus[k]/0.8; });
   return Math.round(pts);
 }
@@ -108,7 +119,7 @@ const Characters = {
         if(!c.advancements)c.advancements=[];
         if(!c.mainSkills)c.mainSkills=[]; if(!c.learnedAbilities)c.learnedAbilities=[];
 
-        const aSrc=(c.avatar||'').startsWith('data:')?c.avatar:(c.avatar?'img/characters/'+c.avatar:'');const avatarHtml=aSrc?`<img src="${aSrc}" alt="${c.name}">`:'<div class="row-noimg">无图</div>';
+        const aSrc=(c.avatar||'').startsWith('data:')?c.avatar:(c.avatar?'img/characters/'+c.avatar:'');const avatarHtml=aSrc?`<img src="${aSrc}" alt="${c.name}" class="thumb-clickable" style="cursor:pointer;">`:'<div class="row-noimg">无图</div>';
         const tags = c.spiritRoots.map(e=>`<span class="tag tag-${e==='金'?'gold':e==='木'?'wood':e==='水'?'water':e==='火'?'fire':'earth'}">${e}</span>`).join('');
         const total = totalAttr(c);
         const cp = calcCombatPower(c);
@@ -121,7 +132,7 @@ const Characters = {
         // 弹窗
         const modalData = [...c.passiveSkills];
         (c.mainSkills||[]).forEach((skId,i)=>{const sk=skillNameById(skId);if(sk){const label=skId===c.yuanYingSkill?'元婴功法':(i===0?'主修功法':'其他功法');modalData.push({name:label+'：'+sk.name,desc:(Storage.findById('skills_gongfa',skId)||{}).desc||''});}});
-        (c.learnedAbilities||[]).forEach(skId=>{const sk=skillNameById(skId);if(sk)modalData.push({name:'习得神通：'+sk.name,desc:(Storage.findById('skills_shentong',skId)||{}).desc||''});});
+        (c.learnedAbilities||[]).forEach(skId=>{const sk=skillNameById(skId);const full=Storage.findById('skills_shentong',skId)||{};if(sk){var n='习得神通：'+sk.name;var extra=[];if(full.cd)extra.push('CD：'+full.cd+'s');if(full.lingli)extra.push('消耗：'+full.lingli);if(extra.length)n+=' <span style="font-size:12px;color:var(--text-dim);">'+extra.join(' / ')+'</span>';modalData.push({name:n,desc:full.desc||''});}});
         const modalEsc = JSON.stringify(modalData).replace(/'/g,'&#39;');
 
         rows += `<div class="row-item" style="gap:18px;padding:22px 28px;min-height:140px;">
@@ -130,11 +141,11 @@ const Characters = {
           <span style="color:var(--text-dim);width:85px;font-size:12px;text-align:center;white-space:nowrap;overflow:hidden;">${dispRealm}</span>
           <span style="color:var(--text-dim);width:50px;font-size:13px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.sect||'—'}</span>
           <span class="row-tags" style="width:55px;overflow:hidden;">${tags}</span>
-          <span class="row-stat" style="width:55px;">${total.hp}</span>
-          <span class="row-stat" style="width:55px;">${total.atk}</span>
-          <span class="row-stat" style="width:55px;">${total.def}</span>
+          <span class="row-stat" style="width:55px;">${fmtNum(total.hp)}</span>
+          <span class="row-stat" style="width:55px;">${fmtNum(total.atk)}</span>
+          <span class="row-stat" style="width:55px;">${fmtNum(total.def)}</span>
           <span style="color:var(--text-dim);width:90px;font-size:12px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${mainSkillText}</span>
-          <span style="color:var(--gold);width:50px;font-size:14px;text-align:center;white-space:nowrap;">${cp}</span>
+          <span style="color:var(--gold);width:50px;font-size:14px;text-align:center;white-space:nowrap;">${fmtNum(cp)}</span>
           <span class="row-actions" style="width:100px;justify-content:center;">
             <button class="row-icon-btn" onclick="App.navigate('characters/detail?id=${c.id}')" title="编辑">✎</button>
             <button class="row-icon-btn" data-skills='${modalEsc}' onclick="event.stopPropagation();showAbilityModal('${c.name||'角色'} 详情',JSON.parse(this.dataset.skills))" title="查看能力">👁</button>
@@ -201,12 +212,12 @@ const Characters = {
     let mainSkillHtml='';
     char.mainSkills.forEach((skId,i)=>{
       const sk=skillNameById(skId); const name=sk?sk.name:'(已删除)'; const isYY=(skId===char.yuanYingSkill);
-      mainSkillHtml+=`<div class="entry-item"><div class="entry-header"><span>${isYY?'元婴功法':(i===0?'主修功法':'其他功法')}：${name}</span><div style="display:flex;align-items:center;gap:6px;"><span style="font-size:12px;color:var(--text-dim);">元婴功法</span><input type="checkbox" class="yy-check" data-skid="${skId}" ${isYY?'checked':''} ${yuanyingOk?'':'disabled'}></div><button class="btn-delete ms-del">×</button></div></div>`;
+      mainSkillHtml+=`<div class="entry-item" data-skid="${skId}"><div class="entry-header"><span>${isYY?'元婴功法':(i===0?'主修功法':'其他功法')}：${name}</span><div style="display:flex;align-items:center;gap:6px;"><span style="font-size:12px;color:var(--text-dim);">元婴功法</span><input type="checkbox" class="yy-check" data-skid="${skId}" ${isYY?'checked':''} ${yuanyingOk?'':'disabled'}></div><button class="btn-delete ms-del">×</button></div></div>`;
     });
 
     // 习得神通
     let learnedHtml='';
-    char.learnedAbilities.forEach((skId,i)=>{const sk=skillNameById(skId);learnedHtml+=`<div class="entry-item"><div class="entry-header"><span>${sk?sk.name:'(已删除)'}</span><button class="btn-delete la-del">×</button></div></div>`;});
+    char.learnedAbilities.forEach((skId,i)=>{const sk=skillNameById(skId);learnedHtml+=`<div class="entry-item" data-skid="${skId}"><div class="entry-header"><span>${sk?sk.name:'(已删除)'}</span><button class="btn-delete la-del">×</button></div></div>`;});
 
     return `<div class="detail-page" data-char-id="${char.id||''}" data-is-new="${isNew}">
       <div class="toolbar"><button class="btn-primary" id="btn-back-list">← 返回列表</button><button class="btn-primary" id="btn-save-char">保存</button><button class="btn-danger" id="btn-del-char" ${isNew?'style="display:none"':''}>删除角色</button></div>
@@ -297,12 +308,12 @@ const Characters = {
     document.querySelectorAll('.yy-check').forEach(cb=>{cb.addEventListener('change',function(){if(this.checked){document.querySelectorAll('.yy-check').forEach(o=>{if(o!==this)o.checked=false;});}});});
 
     // 主修功法删除
-    document.querySelectorAll('.ms-del').forEach(b=>{b.addEventListener('click',function(){const cur=self._quickCollect(charId);const skId=this.closest('.entry-item').querySelector('.yy-check')?.dataset.skid;if(skId){cur.mainSkills=(cur.mainSkills||[]).filter(id=>id!==skId);if(cur.yuanYingSkill===skId)cur.yuanYingSkill=null;Storage.save(STORAGE_KEY,cur);}App.navigate('characters/detail?id='+(cur.id||charId));});});
-    document.getElementById('btn-add-ms')?.addEventListener('click',()=>{const gl=Storage.list('skills_gongfa');if(gl.length===0){alert('请先添加功法');return;}const names=gl.map((g,i)=>`${i+1}. ${g.name||'未命名'}`).join('\n');const idx=prompt('选择功法（输入序号）：\n'+names);if(!idx)return;const gi=parseInt(idx)-1;if(gi<0||gi>=gl.length){alert('无效序号');return;}const cur=self._quickCollect(charId);if(!cur.mainSkills)cur.mainSkills=[];if(cur.mainSkills.includes(gl[gi].id)){alert('已添加');return;}cur.mainSkills.push(gl[gi].id);Storage.save(STORAGE_KEY,cur);App.navigate('characters/detail?id='+(cur.id||charId));});
+    document.querySelectorAll('.ms-del').forEach(b=>{b.addEventListener('click',function(){const cur=self._quickCollect(charId);const skId=this.closest('.entry-item')?.dataset.skid;if(skId){cur.mainSkills=(cur.mainSkills||[]).filter(id=>id!==skId);if(cur.yuanYingSkill===skId)cur.yuanYingSkill=null;Storage.save(STORAGE_KEY,cur);}App.navigate('characters/detail?id='+(cur.id||charId));});});
+    document.getElementById('btn-add-ms')?.addEventListener('click',()=>{const gl=Storage.list('skills_gongfa');if(gl.length===0){alert('请先添加功法');return;}const cur=self._quickCollect(charId);const curMajor=majorIndex(cur.realm)+(cur.advancements||[]).length;const limits={gongfa:[1,2,3,4,5][curMajor]||1,shentong:[2,3,3,4,4][curMajor]||2};if((cur.mainSkills||[]).length>=limits.gongfa){alert('功法已达上限（'+limits.gongfa+'个），当前境界：'+majorName(cur.realm)+'期');return;}const names=gl.map((g,i)=>`${i+1}. ${g.name||'未命名'}`).join('\n');const idx=prompt('选择功法（输入序号）：\n'+names);if(!idx)return;const gi=parseInt(idx)-1;if(gi<0||gi>=gl.length){alert('无效序号');return;}if(!cur.mainSkills)cur.mainSkills=[];if(cur.mainSkills.includes(gl[gi].id)){alert('已添加');return;}cur.mainSkills.push(gl[gi].id);Storage.save(STORAGE_KEY,cur);App.navigate('characters/detail?id='+(cur.id||charId));});
 
     // 习得神通
-    document.querySelectorAll('.la-del').forEach(b=>{b.addEventListener('click',function(){const cur=self._quickCollect(charId);const item=this.closest('.entry-item');const nameSpan=item.querySelector('.entry-header span');const curIds=cur.learnedAbilities||[];const sl=Storage.list('skills_shentong');for(const skId of curIds){const sk=sl.find(g=>g.id===skId);if(sk&&nameSpan&&nameSpan.textContent.trim()===(sk.name||'')){cur.learnedAbilities=curIds.filter(id=>id!==skId);break;}}Storage.save(STORAGE_KEY,cur);App.navigate('characters/detail?id='+(cur.id||charId));});});
-    document.getElementById('btn-add-la')?.addEventListener('click',()=>{const sl=Storage.list('skills_shentong');if(sl.length===0){alert('请先添加神通');return;}const names=sl.map((s,i)=>`${i+1}. ${s.name||'未命名'}`).join('\n');const idx=prompt('选择神通（输入序号）：\n'+names);if(!idx)return;const si=parseInt(idx)-1;if(si<0||si>=sl.length){alert('无效序号');return;}const cur=self._quickCollect(charId);if(!cur.learnedAbilities)cur.learnedAbilities=[];if(cur.learnedAbilities.includes(sl[si].id)){alert('已添加');return;}cur.learnedAbilities.push(sl[si].id);Storage.save(STORAGE_KEY,cur);App.navigate('characters/detail?id='+(cur.id||charId));});
+    document.querySelectorAll('.la-del').forEach(b=>{b.addEventListener('click',function(){const cur=self._quickCollect(charId);const skId=this.closest('.entry-item')?.dataset.skid;if(skId){cur.learnedAbilities=(cur.learnedAbilities||[]).filter(id=>id!==skId);Storage.save(STORAGE_KEY,cur);}App.navigate('characters/detail?id='+(cur.id||charId));});});
+    document.getElementById('btn-add-la')?.addEventListener('click',()=>{const sl=Storage.list('skills_shentong');if(sl.length===0){alert('请先添加神通');return;}const cur=self._quickCollect(charId);const curMajor=majorIndex(cur.realm)+(cur.advancements||[]).length;const limits={gongfa:[1,2,3,4,5][curMajor]||1,shentong:[2,3,3,4,4][curMajor]||2};if((cur.learnedAbilities||[]).length>=limits.shentong){alert('神通已达上限（'+limits.shentong+'个），当前境界：'+majorName(cur.realm)+'期');return;}const names=sl.map((s,i)=>`${i+1}. ${s.name||'未命名'}`).join('\n');const idx=prompt('选择神通（输入序号）：\n'+names);if(!idx)return;const si=parseInt(idx)-1;if(si<0||si>=sl.length){alert('无效序号');return;}if(!cur.learnedAbilities)cur.learnedAbilities=[];if(cur.learnedAbilities.includes(sl[si].id)){alert('已添加');return;}cur.learnedAbilities.push(sl[si].id);Storage.save(STORAGE_KEY,cur);App.navigate('characters/detail?id='+(cur.id||charId));});
 
     document.getElementById('char-realm')?.addEventListener('change',function(){const yuanyingOk=REALMS.indexOf(this.value)>=12;document.querySelectorAll('.yy-check').forEach(cb=>{cb.disabled=!yuanyingOk;if(!yuanyingOk&&cb.checked)cb.checked=false;});});
   },

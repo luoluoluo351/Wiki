@@ -33,7 +33,7 @@ const Skills = {
         <span class="row-h-col" style="width:50px;">战力</span>
       </div>`;
       list.forEach(s => {
-        const sSrc=(s.image||'').startsWith('data:')?s.image:(s.image?'img/skills/'+s.image:'');const imgHtml=sSrc?`<img src="${sSrc}" alt="${s.name}">`:'<div class="row-noimg">无图</div>';
+        const sSrc=(s.image||'').startsWith('data:')?s.image:(s.image?'img/skills/'+s.image:'');const imgHtml=sSrc?`<img src="${sSrc}" alt="${s.name}" class="thumb-clickable" style="cursor:pointer;">`:'<div class="row-noimg">无图</div>';
         const els = Array.isArray(s.elements) ? s.elements : (s.element ? [s.element] : []);
         const elTag = els.map(e => `<span class="tag tag-${e==='金'?'gold':e==='木'?'wood':e==='水'?'water':e==='火'?'fire':'earth'}">${e}</span>`).join('');
         // 详情弹窗 — 不显示"描述"标签
@@ -48,7 +48,7 @@ const Skills = {
             <span style="color:var(--text-dim);width:75px;font-size:13px;text-align:center;white-space:nowrap;">${s.grade}</span>
             <span style="color:var(--text-dim);width:60px;font-size:13px;text-align:center;white-space:nowrap;">${s.type||'攻击'}类</span>
             ${Skills._currentTab==='shentong'?`<span style="color:var(--text-dim);width:100px;font-size:13px;text-align:center;white-space:nowrap;">消耗${s.lingli||0}</span>`:''}
-            <span style="color:var(--gold);width:50px;font-size:14px;text-align:center;white-space:nowrap;">${s.combat||0}</span>
+            <span style="color:var(--gold);width:50px;font-size:14px;text-align:center;white-space:nowrap;">${fmtNum(s.combat||0)}</span>
             <span class="row-actions">
               <button class="row-icon-btn" onclick="App.navigate('skills/detail?id=${s.id}&type=${Skills._currentTab}')" title="编辑">✎</button>
               <button class="row-icon-btn" data-detail='${detailEsc}' onclick="event.stopPropagation();showAbilityModal('${s.name||'功法'} 详情',JSON.parse(this.dataset.detail))" title="查看详情">👁</button>
@@ -148,6 +148,18 @@ const Skills = {
     const del = () => {
       if (confirm('确定删除？')) {
         const storageKey = skillType === 'shentong' ? SKILL_SHENTONG : SKILL_GONGFA;
+        // 清理角色中的引用
+        const chars = Storage.list('characters');
+        chars.forEach(c => {
+          let changed = false;
+          if (skillType === 'gongfa') {
+            if (c.mainSkills && c.mainSkills.includes(skillId)) { c.mainSkills = c.mainSkills.filter(id => id !== skillId); changed = true; }
+            if (c.yuanYingSkill === skillId) { c.yuanYingSkill = null; changed = true; }
+          } else {
+            if (c.learnedAbilities && c.learnedAbilities.includes(skillId)) { c.learnedAbilities = c.learnedAbilities.filter(id => id !== skillId); changed = true; }
+          }
+          if (changed) Storage.save('characters', c);
+        });
         Storage.deleteById(storageKey, skillId);
         this._currentTab = skillType;
         App.navigate('skills');
